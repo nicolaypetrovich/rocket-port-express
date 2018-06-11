@@ -253,19 +253,28 @@
     </section>
     <section class="contact__feedback d-flex">
         <div class="feed__leftside">
-            <form action="#" class="feed__form" name="feed__form" id="feed__form" method="get">
+            <form class="feed__form" name="feed__form" id="feed__form">
                 <h5>
                     ОБРАТНАЯ СВЯЗЬ
                 </h5>
-                <input type="text" id="input33" name="input" placeholder="Имя*" required class="feed__input input">
-                <input type="email" id="input34" name="input" placeholder="Email*" required class="feed__input input">
-                <textarea name="input" id="textarea1" rows="6" cols="10" maxlength="333" form="feed__form" placeholder="Комментарий" class="feed__input input"></textarea>
+                <div>
+					<input type="text" placeholder="Имя*" class="required feed__input input">
+				</div>
+                <div>
+					<input type="text" placeholder="Email*" class="required email feed__input input">
+				</div>
+                <div>
+					<textarea rows="6" cols="10" maxlength="333" form="feed__form" placeholder="Комментарий" class="feed__input input"></textarea>
+				</div>
                 <p>Поля, отмеченные * обязательны для заполнения</p>
-                <input type="checkbox" id="chechbox21" name="chechbox" value="True" required>
-                <label for="chechbox21" id="chechboxLabel21" class="d-flex justify-content-center align-items-center">
-                    <p>Выполняя подтверждение, Вы даете согласие на обработку своих персональных данных
-                    </p>
-                </label>
+                <div class="checkbox-group group-required">
+					<input type="checkbox" id="checkbox21" value="True">
+					<label for="checkbox21" id="checkboxLabel21" class="d-flex justify-content-center align-items-center">
+						<p>
+							Выполняя подтверждение, Вы даете согласие на обработку своих персональных данных
+						</p>
+					</label>
+				</div>
                 <button type="submit" class="contact-box__btn">
                     ОТПРАВИТЬ
                 </button>
@@ -326,8 +335,8 @@
 					</h2>
 					<input type="text" id="input38" name="input" placeholder="ФИО" required class="popup__input input">
 					<input type="tel" id="input39" name="input" placeholder="Телефон" required class="popup__input input phone-mask">
-					<input type="checkbox" id="chechbox22" name="chechbox" required>
-					<label for="chechbox22" id="chechboxLabel22" class="pt15 d-flex justify-content-center align-items-center">
+					<input type="checkbox" id="checkbox22" name="checkbox" required>
+					<label for="checkbox22" id="checkboxLabel22" class="pt15 d-flex justify-content-center align-items-center">
 						<span>
 							Я согласен с
 							<a href="#">
@@ -354,8 +363,8 @@
 					</h2>
 					<input type="text" id="input40" name="input" placeholder="Логин" required class="popup__input input">
 					<input type="password" id="input41" name="input" placeholder="Пароль" required class="popup__input input">
-					<input type="checkbox" id="chechbox23" name="chechbox" required>
-					<label for="chechbox23" id="chechboxLabel23" class="pt15 d-flex justify-content-center align-items-center">
+					<input type="checkbox" id="checkbox23" name="checkbox" required>
+					<label for="checkbox23" id="checkboxLabel23" class="pt15 d-flex justify-content-center align-items-center">
 						<span>
 							Я согласен с
 							<a href="#">
@@ -391,8 +400,8 @@
 					<input type="text" id="input44" name="input" placeholder="Организация (не обязательно)" class="popup__input input">
 					<input type="password" id="input45" name="input" placeholder="Пароль" required class="popup__input input">
 					<input type="password" id="input46" name="input" placeholder="Повторите пароль" required class="popup__input input">
-					<input type="checkbox" id="chechbox24" name="chechbox" required>
-					<label for="chechbox24" id="chechboxLabel24" class="pt15 d-flex justify-content-center align-items-center">
+					<input type="checkbox" id="checkbox24" name="checkbox" required>
+					<label for="checkbox24" id="checkboxLabel24" class="pt15 d-flex justify-content-center align-items-center">
 						<span>
 							Я согласен с
 							<a href="#">
@@ -404,8 +413,8 @@
 					<button type="submit" class="contact-box__btn">
 						ОТПРАВИТЬ
 					</button>
-					<input type="checkbox" id="chechbox25" name="chechbox">
-					<label for="chechbox25" id="chechboxLabel25" class="pt15 d-flex justify-content-center align-items-center">
+					<input type="checkbox" id="checkbox25" name="checkbox">
+					<label for="checkbox25" id="checkboxLabel25" class="pt15 d-flex justify-content-center align-items-center">
 						<span class="w115">
 							Оставаться в системе
 						</span>
@@ -419,17 +428,17 @@
 		</div>
 		<div id="faq__popup" class="white-popup-block mfp-hide">
 			<div class="popup__faq popup">
-				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="faq__form" id="faq__form" method="get">
+				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="faq__form" id="faq__form">
 					<img src="img/russia.png" alt="">
 					<h2 class="section__title rect__title">
 						Задать вопрос службе поддержки
 					</h2>
 					<input type="text" id="input47" name="input" placeholder="ФИО" required class="popup__input input">
-					<input type="email" id="input48" name="input" placeholder="Ваш E-mail" required class="popup__input input">
+					<input type="text" id="input48" name="input" placeholder="Ваш E-mail" required class="popup__input input">
 
 					<textarea name="input" id="textarea2" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос" class="feed__input input"></textarea>
-					<input type="checkbox" id="chechbox26" name="chechbox" required>
-					<label for="chechbox26" id="chechboxLabel26" class="pt15 d-flex align-items-center">
+					<input type="checkbox" id="checkbox26" name="checkbox" required>
+					<label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
 						<span>
 							Я согласен с
 							<a href="#">
@@ -449,9 +458,13 @@
 				</button>
 			</div>
 		</div>
+		<div class="form__success">
+			Форма отправлена
+		</div>
 	</section>
 	<script src="js/jquery-3.3.1.js"></script>
 	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/forms.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
 	<script src="js/main.js"></script>

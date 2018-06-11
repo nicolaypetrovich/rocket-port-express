@@ -1318,11 +1318,11 @@ label {
 	font-size: 14pt;
 }
 
-#chechboxLabel19, #chechboxLabel20 {
+#checkboxLabel19, #checkboxLabel20 {
 	margin-left: 125px;
 }
 
-#chechboxLabel20 {
+#checkboxLabel20 {
 	margin-top: 10px;
 }
 
@@ -1560,7 +1560,7 @@ label {
 	margin-top: 10px;
 }
 
-#chechboxLabel21 p {
+#checkboxLabel21 p {
 	width: 295px;
 }
 
@@ -2205,6 +2205,43 @@ button.mfp-close {
 	margin-left: 10px;
 }
 
+form>div .error {
+	font-size: 10px;
+	color: red;
+}
+
+.invalid {
+	border-color: red;
+	box-shadow: 0 0 10px -2px red;
+}
+
+.invalid.checkbox-group {
+	box-shadow: none;
+}
+
+.invalid.checkbox-group label:before {
+	border-color: red;
+	box-shadow: 0 0 10px -2px red;
+}
+
+.form__success {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 200px;
+	transform: translateX(-50%);
+	margin: 0 auto;
+	background: rgba(255,255,255,0.5);
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	opacity: 0;
+	z-index: 2000;
+}
+
+.showTab {
+	opacity: 1;
+}
 
 /*---POPUP`s END---*/
 
