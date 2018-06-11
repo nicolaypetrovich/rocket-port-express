@@ -308,22 +308,28 @@
 	<section>
 		<div id="ordercall__popup" class="white-popup-block mfp-hide">
 			<div class="popup__ordercall popup">
-				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="ordercall__form" id="ordercall__form" method="get">
+				<form class="form__ordercall d-flex flex-column align-items-center" name="ordercall__form" id="ordercall__form">
 					<h2 class="section__title rect__title red">
 						ЗАКАЗАТЬ ЗВОНОК
 					</h2>
-					<input type="text" id="input38" name="input" placeholder="ФИО" required class="popup__input input">
-					<input type="tel" id="input39" name="input" placeholder="Телефон" required class="popup__input input phone-mask">
-					<input type="checkbox" id="checkbox22" name="checkbox" required>
-					<label for="checkbox22" id="checkboxLabel22" class="pt15 d-flex justify-content-center align-items-center">
-						<span>
-							Я согласен с
-							<a href="#">
-								Политикой конфиденциальности
-							</a>
-							и даю согласие на обработку моих данных
-						</span>
-					</label>
+					<div>
+						<input type="text" placeholder="ФИО" class="required popup__input input">
+					</div>
+					<div>
+						<input type="tel" placeholder="Телефон" class="required popup__input input phone-mask">
+					</div>
+					<div class="checkbox-group group-required">
+						<input type="checkbox" id="checkbox22" name="checkbox">
+						<label for="checkbox22" id="checkboxLabel22" class="pt15 d-flex justify-content-center align-items-center">
+							<span>
+								Я согласен с
+								<a href="#">
+									Политикой конфиденциальности
+								</a>
+								и даю согласие на обработку моих данных
+							</span>
+						</label>
+					</div>
 					<button type="submit" class="contact-box__btn">
 						ОТПРАВИТЬ
 					</button>
@@ -336,22 +342,28 @@
 		</div>
 		<div id="entry__popup" class="white-popup-block mfp-hide">
 			<div class="popup__entry popup">
-				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form" method="get">
+				<form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
 					<h2 class="section__title rect__title red">
 						ВХОД В ЛИЧНЫЙ КАБИНЕТ
 					</h2>
-					<input type="text" id="input40" name="input" placeholder="Логин" required class="popup__input input">
-					<input type="password" id="input41" name="input" placeholder="Пароль" required class="popup__input input">
-					<input type="checkbox" id="checkbox23" name="checkbox" required>
-					<label for="checkbox23" id="checkboxLabel23" class="pt15 d-flex justify-content-center align-items-center">
-						<span>
-							Я согласен с
-							<a href="#">
-								Политикой конфиденциальности
-							</a>
-							и даю согласие на обработку моих данных
-						</span>
-					</label>
+					<div>
+						<input type="text" placeholder="Логин" class="required popup__input input">
+					</div>
+					<div>
+						<input type="password" placeholder="Пароль" class="required popup__input input">
+					</div>
+					<div class="checkbox-group group-required">
+						<input type="checkbox" id="checkbox23" name="checkbox">
+						<label for="checkbox23" id="checkboxLabel23" class="pt15 d-flex justify-content-center align-items-center">
+							<span>
+								Я согласен с
+								<a href="#">
+									Политикой конфиденциальности
+								</a>
+								и даю согласие на обработку моих данных
+							</span>
+						</label>
+					</div>
 					<div class="d-flex">
 						<button type="submit" class="contact-box__btn">
 							ВОЙТИ
@@ -369,35 +381,49 @@
 		</div>
 		<div id="reg__popup" class="white-popup-block mfp-hide">
 			<div class="popup__reg popup">
-				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="reg__form" id="reg__form" method="get">
+				<form class="form__ordercall d-flex flex-column align-items-center" name="reg__form" id="reg__form">
 					<img src="img/russia.png" alt="">
 					<h2 class="section__title rect__title red">
 						ЗАРЕГИСТРИРОВАТЬСЯ
 					</h2>
-					<input type="text" id="input42" name="input" placeholder="ФИО" required class="popup__input input">
-					<input type="email" id="input43" name="input" placeholder="E-mail" required class="popup__input input">
-					<input type="text" id="input44" name="input" placeholder="Организация (не обязательно)" class="popup__input input">
-					<input type="password" id="input45" name="input" placeholder="Пароль" required class="popup__input input">
-					<input type="password" id="input46" name="input" placeholder="Повторите пароль" required class="popup__input input">
-					<input type="checkbox" id="checkbox24" name="checkbox" required>
-					<label for="checkbox24" id="checkboxLabel24" class="pt15 d-flex justify-content-center align-items-center">
-						<span>
-							Я согласен с
-							<a href="#">
-								Политикой конфиденциальности
-							</a>
-							и даю согласие на обработку моих данных
-						</span>
-					</label>
+					<div>
+						<input type="text" placeholder="ФИО" class="required popup__input input">
+					</div>
+					<div>
+						<input type="text" placeholder="E-mail" class="required email popup__input input">
+					</div>
+					<div>
+						<input type="text" placeholder="Организация (не обязательно)" class="popup__input input">
+					</div>
+					<div>
+						<input type="password" placeholder="Пароль" class="required password popup__input input">
+					</div>
+					<div>
+						<input type="password" placeholder="Повторите пароль" class="required passwordConfirmation popup__input input">
+					</div>
+					<div class="checkbox-group group-required">
+						<input type="checkbox" id="checkbox24">
+						<label for="checkbox24" id="checkboxLabel24" class="pt15 d-flex justify-content-center align-items-center">
+							<span>
+								Я согласен с
+								<a href="#">
+									Политикой конфиденциальности
+								</a>
+								и даю согласие на обработку моих данных
+							</span>
+						</label>
+					</div>
 					<button type="submit" class="contact-box__btn">
 						ОТПРАВИТЬ
 					</button>
-					<input type="checkbox" id="checkbox25" name="checkbox">
-					<label for="checkbox25" id="checkboxLabel25" class="pt15 d-flex justify-content-center align-items-center">
-						<span class="w115">
-							Оставаться в системе
-						</span>
-					</label>
+					<div>
+						<input type="checkbox" id="checkbox25">
+						<label for="checkbox25" id="checkboxLabel25" class="pt15 d-flex justify-content-center align-items-center">
+							<span class="w115">
+								Оставаться в системе
+							</span>
+						</label>
+					</div>
 				</form>
 				<button class="popup-modal-dismiss close-btn">
 					<span class="yui1"></span>
@@ -407,25 +433,32 @@
 		</div>
 		<div id="faq__popup" class="white-popup-block mfp-hide">
 			<div class="popup__faq popup">
-				<form action="#" class="form__ordercall d-flex flex-column align-items-center" name="faq__form" id="faq__form" method="get">
+				<form class="form__ordercall d-flex flex-column align-items-center" name="faq__form" id="faq__form">
 					<img src="img/russia.png" alt="">
 					<h2 class="section__title rect__title">
 						Задать вопрос службе поддержки
 					</h2>
-					<input type="text" id="input47" name="input" placeholder="ФИО" required class="popup__input input">
-					<input type="email" id="input48" name="input" placeholder="Ваш E-mail" required class="popup__input input">
-
-					<textarea name="input" id="textarea2" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос" class="feed__input input"></textarea>
-					<input type="checkbox" id="checkbox26" name="checkbox" required>
-					<label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
-						<span>
-							Я согласен с
-							<a href="#">
-								Политикой конфиденциальности
-							</a>
-							и даю согласие на обработку моих данных
-						</span>
-					</label>
+					<div>
+						<input type="text" placeholder="ФИО" class="required popup__input input">
+					</div>
+					<div>
+						<input type="text" placeholder="Ваш E-mail" class="required popup__input input">
+					</div>
+					<div>
+						<textarea rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос" class="feed__input input"></textarea>
+					</div>
+					<div class="checkbox-group group-required">
+						<input type="checkbox" id="checkbox26" name="checkbox">
+						<label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
+							<span>
+								Я согласен с
+								<a href="#">
+									Политикой конфиденциальности
+								</a>
+								и даю согласие на обработку моих данных
+							</span>
+						</label>
+					</div>
 					<button type="submit" class="contact-box__btn">
 						ОТПРАВИТЬ
 					</button>
@@ -437,8 +470,12 @@
 				</button>
 			</div>
 		</div>
+		<div class="form__success">
+			Форма отправлена
+		</div>
 	</section>
 	<script src="js/jquery-3.3.1.js"></script>
+	<script src="js/forms.js"></script>
 	<script src="js/jquery.maskedinput.min.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/slick.min.js"></script>
