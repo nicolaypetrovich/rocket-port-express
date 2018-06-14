@@ -149,34 +149,6 @@ $(document).ready(function(){
             e.preventDefault();
         });
 
-// // Validate password
-//         $('#reg__form button').on('click', function(e){
-//         var pass = $('#input45').val();
-//         var passRepeat = $('#input46').val();
-//         if(pass != passRepeat) {
-//             alert('Пароли не совпадают');
-//             e.preventDefault();
-//         }
-//
-//         $('#reg__form button').on('click', function(e){
-//             var pass = $('#input35').val();
-//             var passRepeat = $('#input36').val();
-//             if(pass != passRepeat) {
-//                 alert('Пароли не совпадают');
-//                 e.preventDefault();
-//             }
-//
-//             var mail = $('.mail');
-//             if (mail.val().indexOf('@') < 1 || mail.val().indexOf('.') < 1){
-//                 alert('Введите электронную почту в формате test@test.te');
-//                 e.preventDefault();
-//             }
-//         });
-//     });
-
-
-
-
 /* ---Yandex map--- */
 
             // ymaps.ready(function () {
