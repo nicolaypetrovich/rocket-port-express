@@ -1,17 +1,26 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use yii\helpers\Html;
+use app\assets\AppAsset;
+
+AppAsset::register($this);
+?>
+<?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="UTF-8">
-    <title>Экспресс доставка</title>
-    <link rel="icon" href="img/favicon.png" type="image/favicon">
-    <link rel="shortcut icon" href="img/favicon.png" type="image/favicon">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=cyrillic" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700&amp;subset=cyrillic" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css"/>
-    <link rel="stylesheet" type="text/css" href="css/slick.css"/>
-    <link rel="stylesheet" href="css/main.css">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <?= Html::csrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+    <?php $this->registerLinkTag(['rel' => 'shortcut icon', 'type' => 'image/png', 'href' => 'img/favicon.png']); ?>
+    <?php $this->head() ?>
 </head>
+
 <body>
+    <?php $this->beginBody() ?>
     <header class="header" id="header">
         <div class="container">
             <div class="hat-up d-flex justify-content-between">
@@ -88,9 +97,9 @@
         </div>
     </header>
 
+    <?= $content ?>
 
-
-        <footer class="footer" id="footer">
+    <footer class="footer" id="footer">
         <div>
             <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&amp;width=100%25&amp;height=260&amp;lang=ru_UA&amp;scroll=false"></script>
         </div>
@@ -308,11 +317,7 @@
             Форма отправлена
         </div>
     </section>
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/forms.js"></script>
-    <script src="js/jquery.maskedinput.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/main.js"></script>
+    <?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>
