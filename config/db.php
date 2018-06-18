@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=rocket01.mysql.tools;dbname=rocket01_portex',
+    'username' => 'rocket01_portex',
+    'password' => 'hcsa7z8q',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
