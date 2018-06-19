@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-    function validateForm( ) {
+    function validateForm(form) {
         var form = document.querySelectorAll('form');
 
         var generateError = function (text) {
@@ -127,14 +127,18 @@ $(document).ready(function () {
                 }
 
                 if ( submit ) {
-                    var success = document.querySelector('.form__success');
-                    success.classList.add('showTab');
-                    console.log('start');
-                    setTimeout(function () {
-                        success.classList.remove('showTab');
-                        console.log('end');
-                        self.submit();
-                    },1000);
+                    console.log(submit);
+                    // for ( var i = 0; i < requiredForm.length; i++ ){
+                    //     console.log(requiredForm[i].value);
+                    // }
+                    // var success = document.querySelector('.form__success');
+                    // success.classList.add('showTab');
+                    // console.log('start');
+                    // setTimeout(function () {
+                    //     success.classList.remove('showTab');
+                    //     console.log('end');
+                    //     self.submit();
+                    // },1000);
                 }
             })
         }

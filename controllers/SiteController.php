@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Ordercall;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -125,4 +126,36 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+
+
+
+
+    /**
+     *
+     * this section is dedicated for actions related to OrderCall
+     */
+
+    /**
+     * Creates a new Ordercall model.
+     * If creation is successful, the action will be return "success".
+     * @return mixed
+     */
+    public function actionCreateOrderCall()
+    {
+
+//        $model = new Ordercall();
+
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return 'success';
+//        }
+
+        $data = Yii::$app->request->post();
+        var_dump($data);
+
+        return 'false';
+
+    }
+
 }
