@@ -117,6 +117,16 @@ class SiteController extends Controller
     }
 
     /**
+     * Display delivery page
+     *
+     * @return string
+     */
+    public function actionDelivery()
+    {
+        return $this->render('delivery');
+    }
+
+    /**
      * Displays about page.
      *
      * @return string
