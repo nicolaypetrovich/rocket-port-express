@@ -145,17 +145,16 @@ class SiteController extends Controller
     public function actionCreateOrderCall()
     {
 
-//        $model = new Ordercall();
-
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return 'success';
-//        }
-
+        $model = new Ordercall();
         $data = Yii::$app->request->post();
-        var_dump($data);
-
-        return 'false';
-
+        if(isset($data['call_name'])&&isset($data['call_phone'])){
+            $model->name=$_POST['call_name'];
+            $model->phone=$_POST['call_phone'];
+            if($model->validate()&&$model->save()){
+                return 'success';
+            }
+        }
+        return 'fail';
     }
 
 }

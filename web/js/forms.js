@@ -127,7 +127,35 @@ $(document).ready(function () {
                 }
 
                 if ( submit ) {
-                    console.log(submit);
+
+
+                    var fd=$(this).serializeArray();
+                    var form=this;
+                    if(this.id==='ordercall__form'){
+                        $.ajax({
+                            type: 'POST',
+                            url: createcalllink,
+                            data: fd,
+                            success: function (result) {
+                                var success = document.querySelector('.form__success');
+                                success.classList.add('showTab');
+                                setTimeout(function () {
+                                    success.classList.remove('showTab');
+                                    // console.log('end');
+                                    // self.submit();
+                                    $.magnificPopup.close();
+                                    form.reset();
+                                },1000);
+                            },
+                            error: function () {
+                                console.log('Error while processing request');
+                            }
+                        });
+
+                    }
+
+
+
                     // for ( var i = 0; i < requiredForm.length; i++ ){
                     //     console.log(requiredForm[i].value);
                     // }

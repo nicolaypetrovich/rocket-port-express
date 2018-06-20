@@ -118,35 +118,8 @@ AppAsset::register($this);
                 <div class="triangle t_left"></div>
                 <div class="triangle t_right"></div>
             </div>
-            <?php
-
-$script =
-<<< JS
-    $('#ordercall__form').on('submit', function(e) {
-        // console.log($(this).closest('form'));
-        // console.log(e);
-        // validateForm($(this).closest('form'));
-        sendForm($(this).closest('form'));    
-    });
-    
-JS;
-
-   // $this->registerJs($script, View::POS_END);
-    ?>
-
             <script>
-                function sendForm(form){
-
-                    var test = "this is an ajax test";
-                    var f=form.serializeArray();
-                    $.ajax({
-                        url: "<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call') ?>",
-                        data: f,
-                        success: function(data) {
-                            alert(data)
-                        }
-                    });
-                }
+                var createcalllink='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
             </script>
         </div>
     </header>
@@ -213,13 +186,15 @@ JS;
                         ЗАКАЗАТЬ ЗВОНОК
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input">
                     </div>
                     <div>
-                        <input type="tel" placeholder="Телефон" class="required popup__input input phone-mask">
+                        <input type="tel" placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input">
                     </div>
+                    <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
+                           value="<?=Yii::$app->request->csrfToken?>"/>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox22" name="checkbox">
+                        <input type="checkbox" id="checkbox22" name="checkbox" class="mm-form-input">
                         <label for="checkbox22" id="checkboxLabel22"
                                class="pt15 d-flex justify-content-center align-items-center">
                             <span>
