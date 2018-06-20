@@ -38,16 +38,16 @@ class m180618_190013_update_pages extends Migration
             'content' => 'Page content was created from migrations.',
         ]);
 
-        echo "Default pages created.\n";
+        echo "Default pages created\n";
 
         return true;
     }
 
     public function down()
     {
-        $this->delete('news', ['pages' => 1]);
+        $this->delete('pages', ['id' => 1]);
 
-        echo "Default pages deleted.\n";
+        echo "Default pages deleted\n";
 
         return true;
     }
