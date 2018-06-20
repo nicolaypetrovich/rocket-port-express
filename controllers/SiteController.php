@@ -2,7 +2,9 @@
 
 namespace app\controllers;
 
+use app\models\News;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -136,7 +138,30 @@ class SiteController extends Controller
      */
     public function actionNews()
     {
-        return $this->render('news');
+//        $searchModel = new NewsSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $query = News::find();
+        $countQuery = clone $query;
+
+        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeParam'=>'pageSize']);
+
+//        $request = Yii::$app->request;
+//        var_dump($request->get('pageSize'));
+//        die();
+
+        $models = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+//        return $this->render('news', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+
+        return $this->render('news', [
+            'models' => $models,
+            'pages' => $pages,
+        ]);
     }
 
 
