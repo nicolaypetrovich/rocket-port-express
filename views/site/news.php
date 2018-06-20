@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
 						Показать по:
 					</span>
                 <div class="select-wrapper">
-                    <?php $selArr = array(1,5, 8, 10, 15); ?>
+                    <?php $selArr = array(1,5, 8, 10, 15, 20); ?>
                     <form method="get">
                         <select name="pageSize" id="amoutNews" onchange="this.form.submit()">
                             <?php foreach ($selArr as $item): ?>
-                                <option <?php echo $_GET['pageSize']==$item?'selected':'';?> value="<?php echo $item; ?>"><?php echo $item; ?></option>
+                                <option <?php echo $_GET['pageSize']==$item?'selected':!isset($_GET['pageSize'])&&20==$item?'selected':'';?> value="<?php echo $item; ?>"><?php echo $item; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </form>
