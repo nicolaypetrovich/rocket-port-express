@@ -186,13 +186,13 @@ AppAsset::register($this);
                         ЗАКАЗАТЬ ЗВОНОК
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input">
+                        <input type="text" placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="tel" placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input">
+                        <input type="tel" placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input" autocomplete="off">
                     </div>
                     <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
-                           value="<?=Yii::$app->request->csrfToken?>"/>
+                           value="<?=Yii::$app->request->csrfToken?>" autocomplete="off"/>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox22" name="checkbox" class="mm-form-input">
                         <label for="checkbox22" id="checkboxLabel22"
