@@ -37,7 +37,7 @@ class m180618_185945_create_table_pages extends Migration
             'content' => $this->text(),
         ]);
 
-        echo "Table 'pages' created.\n";
+        echo "Table 'pages' created\n";
 
         return true;
     }
@@ -46,7 +46,7 @@ class m180618_185945_create_table_pages extends Migration
     {
         $this->dropTable('pages');
 
-        echo "Table 'pages' deleted.\n";
+        echo "Table 'pages' deleted\n";
 
         return true;
     }

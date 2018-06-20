@@ -7,9 +7,11 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
+use yii\web\UploadedFile; /**** DELETE WITH IMAGE UPLOAD PAGE ****/
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Media;
 
 class SiteController extends Controller
 {
@@ -157,4 +159,36 @@ class SiteController extends Controller
         return 'fail';
     }
 
+
+
+
+
+
+
+    /**
+     * TEMPORAL PAGES. DELETE AFTER PROJECT START!
+     */
+
+
+    /**
+     * Displays temporal image upload page.
+     *
+     * @return string
+     */
+    public function actionMedia()
+    {
+        $this->layout = false;
+
+        $model = new Media;
+
+        if(Yii::$app->request->isPost)
+        {
+            $file = UploadedFile::getInstance($model, 'image');
+            $model -> uploadImage($file);
+        }
+
+        return $this->render('media', [
+            'model' => $model,
+        ]);
+    }
 }
