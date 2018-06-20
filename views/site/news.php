@@ -97,6 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ?>
+            <div class="nav-links d-flex justify-content-center">
             <?php // display pagination
             echo LinkPager::widget([
                 'pagination' => $pages,
@@ -104,6 +105,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'nextPageLabel'=>'Далее',
             ]);
             ?>
+            </div>
+
             <li class="news-frame news__box big-frame">
                 <div class="news__pic">
                     <a href="#">

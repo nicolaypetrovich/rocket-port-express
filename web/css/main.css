@@ -1032,28 +1032,40 @@ label {
 	color: #ab1010;
 }
 
-.page-numbers {
+.nav-links > ul {
+	display: flex;
+}
+
+.nav-links > ul > li {
 	width: 30px;
 	margin: 0 2px;
 	text-align: center;
 	border-radius: 50%;
 }
 
-.current {
-	color: #ab7659;
+.nav-links > ul > li.active {
 	background-color: #ffca00;
 }
 
-.prev, .next {
+.nav-links > ul > li.active a {
+	color: #ab7659;
+}
+
+.nav-links > ul > li > a {
+	color: #ab1010;
+}
+
+.nav-links > ul > li.prev,
+.nav-links > ul > li.next {
 	width: 115px;
 	margin: 0 10px;
 }
 
-.prev {
+.nav-links > ul > li.prev {
 	background: url("../img/l-arrow.png") no-repeat left center;
 }
 
-.next {
+.nav-links > ul > li.next {
 	background: url("../img/r-arrow.png") no-repeat right center;
 }
 
