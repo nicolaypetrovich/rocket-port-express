@@ -975,6 +975,41 @@ label {
 	align-items: center;
 }
 
+/*?>*/
+ /*<div class="nav-links d-flex justify-content-center">*/
+													 /*<?php // display pagination*/
+															  /*echo LinkPager::widget([*/
+                /*'pagination' => $pages,*/
+                /*'prevPageLabel'=>'Назад',*/
+                /*'nextPageLabel'=>'Далее',*/
+            /*]);*/
+/*?>*/
+
+.news-frame:nth-child(2n-1) .news__date {
+	order: 1;
+}
+
+.news-frame:nth-child(2n-1) .news__item {
+	order: 2;
+}
+
+.news-frame:nth-child(2n-1) .news__pic {
+	order: 3;
+}
+
+.news-frame:nth-child(2n) .news__date {
+    order: 2;
+}
+
+.news-frame:nth-child(2n) .news__item {
+    order: 3;
+}
+
+.news-frame:nth-child(2n) .news__pic {
+    order: 1;
+}
+
+
 .newsbody__wrapper :first-child {
 	margin-top: 0;
 }
@@ -1024,7 +1059,7 @@ label {
 	margin-top: 60px;
 }
 
-.nav-links>* {
+.nav-links > * {
 	display: block;
 	font-size: 12pt;
 	line-height: 30px;

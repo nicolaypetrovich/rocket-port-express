@@ -258,20 +258,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </li>
         </ul>
-        <nav class="navigation pagination" role="navigation">
 
-            <h2 class="screen-reader-text"></h2>
-            <div class="nav-links d-flex justify-content-center">
-                <a class="prev page-numbers" href="#">Назад</a>
-                <span aria-current="page" class="page-numbers current">1</span>
-                <a class="page-numbers" href="#">2</a>
-                <a class="page-numbers" href="#">3</a>
-                <a class="page-numbers" href="#">4</a>
-                <a class="page-numbers" href="#">5</a>
-                <a class="page-numbers" href="#">6</a>
-                <a class="next page-numbers" href="#">Далее</a>
-            </div>
-        </nav>
     </div>
 </section>
 <section class="newsbuttons">
