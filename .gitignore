@@ -17,6 +17,5 @@ sftp-config.json
 
 
 # ignore dev files
-config/db.php
 web/uploads/images/
-config/web.php
+
