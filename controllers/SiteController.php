@@ -2,7 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\News;
+use app\models\NewsSearch;
+use app\models\Ordercall;
 use Yii;
+use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -127,6 +131,90 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+
+    /**
+     * Displays news page.
+     *
+     * @return string
+     */
+    public function actionNews()
+    {
+//        $searchModel = new NewsSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+//        $query = News::find();
+//
+//        $countQuery = clone $query;
+//
+//        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeParam'=>'pageSize']);
+//
+//        $models = $query->offset($pages->offset)
+//            ->limit($pages->limit)
+//            ->all();
+//        return $this->render('news', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+
+        return $this->render('news', [
+            'dataProvider' => $dataProvider,
+//            'pages' => $pages,
+        ]);
+    }
+
+
+    /**
+     * Displays news Search page.
+     *
+     * @return string
+     */
+    public function actionSearch()
+    {
+
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('news', [
+
+            'dataProvider' => $dataProvider,
+//            'model'=>$searchModel,
+        ]);
+
+
+    }
+
+
+
+
+    /**
+     *
+     * this section is dedicated for actions related to OrderCall
+     */
+
+    /**
+     * Creates a new Ordercall model.
+     * If creation is successful, the action will be return "success".
+     * @return mixed
+     */
+    public function actionCreateOrderCall()
+    {
+
+        $model = new Ordercall();
+        $data = Yii::$app->request->post();
+        if(isset($data['call_name'])&&isset($data['call_phone'])){
+            $model->name=$_POST['call_name'];
+            $model->phone=$_POST['call_phone'];
+            if($model->validate()&&$model->save()){
+                return 'success';
+            }
+        }
+        return 'fail';
+    }
+
 
 
 
