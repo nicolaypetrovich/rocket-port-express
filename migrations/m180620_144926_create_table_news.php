@@ -38,7 +38,6 @@ class m180620_144926_create_table_news extends Migration
             'date' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             'shortdesc' => $this->string(200)->notNull(),
             'slug' => $this->string(20)->notNull()->unique(),
-            'media_pos' => $this->string(),     //temp
             'media_id' => $this->integer(),     //temp
         ]);
 
@@ -65,7 +64,7 @@ class m180620_144926_create_table_news extends Migration
         $this->dropTable('news');
         echo "m180620_144926_create_table_news cannot be reverted.\n";
 
-        return false;
+        return true;
     }
 
 }

@@ -909,7 +909,7 @@ label {
 
 /*---NEWS PAGE---*/
 
-.crumbs {
+.breadcrumb {
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -918,16 +918,16 @@ label {
 	margin-top: 25px;
 }
 
-.crumbs li {
+.breadcrumb li {
 	margin: 0 8px;
 }
 
-.crumbs li a {
+.breadcrumb li a {
 	cursor: pointer;
 	color: #333;
 }
 
-.crumbs li:first-child a {
+.breadcrumb li:first-child a {
 	font-weight: 700;
 	color: #ab1010;
 }
