@@ -39,24 +39,24 @@ AppAsset::register($this);
                 <div class="logo-box d-flex justify-content-end align-items-center">
                     <a href="/" class="logo"><img src="img/logo.png" alt="Экспресс доставка"></a>
                     <h1 class="logo-box__text">
-                        <span class="red"><?php echo json_decode($header_settings['global_headertext1']['value']); ?></span>
-                        <?php echo json_decode($header_settings['global_headertext2']['value']); ?>
+                        <span class="red"><?php echo ($header_settings['global_headertext1']['value']); ?></span>
+                        <?php echo ($header_settings['global_headertext2']['value']); ?>
                     </h1>
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
-                        <a href="tel:<?php echo preg_replace('/\s/', '', json_decode($header_settings['global_phone']['value'])); ?>"
+                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>"
                            class="contact-box__tel">
-                            <?php echo json_decode($header_settings['global_phone']['value']); ?>
+                            <?php echo ($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <a href="#ordercall__popup" class="contact-box__btn popup-with-form">
                             ЗАКАЗАТЬ ЗВОНОК
                         </a>
-                        <a href="mailto:<?php echo json_decode($header_settings['global_email']['value']); ?>"
+                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>"
                            class="contact-box__link">
-                            <?php echo json_decode($header_settings['global_email']['value']); ?>
+                            <?php echo ($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ AppAsset::register($this);
                     <p class="contact-box__text" id="mail">
                         <?php
                         //todo: id="mail"?? Is there a way to remove <br> without breaking code?
-                        echo json_decode($header_settings['global_address']['value']); ?>
+                        echo ($header_settings['global_address']['value']); ?>
                     </p>
                 </div>
             </div>
