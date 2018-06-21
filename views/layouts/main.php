@@ -1,15 +1,17 @@
 <?php
 
 /* @var $this \yii\web\View */
-
 /* @var $content string */
 
+use app\models\News;
 use app\models\Settings;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 use yii\web\View;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
 ?>
@@ -27,10 +29,7 @@ AppAsset::register($this);
     <body>
     <?php $this->beginBody() ?>
 
-
     <?php
-
-
     $header_settings = Settings::find()->select('key,value')->where(['like', 'key', 'global'])->indexBy('key')->asArray()->all();
     ?>
     <header class="header" id="header">
@@ -109,12 +108,37 @@ AppAsset::register($this);
                     //                    NavBar::end();
                     ?>
                 </nav>
+
                 <div class="search">
-                    <input type="text" placeholder="Поиск" class="search__input input">
-                    <button class="search__btn">
-                        <img src="img/search.png" alt="Поиск">
-                    </button>
+<!--                    <form action="/search" method="get">-->
+<!--                    <input type="text" placeholder="Поиск" class="search__input input" name="title" value="--><?php //echo htmlspecialchars($_GET['title']); ?><!--" >-->
+<!--                    <button type="submit" class="search__btn" onclick="">-->
+<!--                        <img src="img/search.png" alt="Поиск">-->
+<!--                    </button>-->
+<!--                    </form>-->
+                    <?php
+
+                    $model= new \app\models\NewsSearch();
+                    $form = ActiveForm::begin([
+                        'action' => ['search'],
+                        'method' => 'get',
+                    ]); ?>
+
+
+                    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
+
+
+
+                    <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
+
+
+                    <?php ActiveForm::end(); ?>
                 </div>
+
+
+
+
+
                 <div class="triangle t_left"></div>
                 <div class="triangle t_right"></div>
             </div>

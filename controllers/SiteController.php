@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\News;
+use app\models\NewsSearch;
 use app\models\Ordercall;
 use Yii;
 use yii\data\Pagination;
@@ -133,7 +134,7 @@ class SiteController extends Controller
 
 
     /**
-     * Displays about page.
+     * Displays news page.
      *
      * @return string
      */
@@ -142,30 +143,49 @@ class SiteController extends Controller
 //        $searchModel = new NewsSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $query = News::find();
-        $countQuery = clone $query;
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeParam'=>'pageSize']);
-
-//        $request = Yii::$app->request;
-//        var_dump($request->get('pageSize'));
-//        die();
-
-        $models = $query->offset($pages->offset)
-            ->limit($pages->limit)
-            ->all();
+//        $query = News::find();
+//
+//        $countQuery = clone $query;
+//
+//        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeParam'=>'pageSize']);
+//
+//        $models = $query->offset($pages->offset)
+//            ->limit($pages->limit)
+//            ->all();
 //        return $this->render('news', [
 //            'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider,
 //        ]);
 
         return $this->render('news', [
-            'models' => $models,
-            'pages' => $pages,
+            'dataProvider' => $dataProvider,
+//            'pages' => $pages,
         ]);
     }
 
 
+    /**
+     * Displays news Search page.
+     *
+     * @return string
+     */
+    public function actionSearch()
+    {
+
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('news', [
+
+            'dataProvider' => $dataProvider,
+//            'model'=>$searchModel,
+        ]);
+
+
+    }
 
 
 

@@ -16,7 +16,6 @@ use yii\db\ActiveRecord;
  * @property string $date
  * @property string $shortdesc
  * @property string $slug
- * @property string $media_pos
  * @property int $media_id
  *
  * @property Media $media
@@ -43,7 +42,6 @@ class News extends ActiveRecord
             [['title'], 'string', 'max' => 50],
             [['description', 'keywords', 'content', 'shortdesc'], 'string', 'max' => 200],
             [['slug'], 'string', 'max' => 20],
-            [['media_pos'], 'string', 'max' => 10],
             [['slug'], 'unique'],
             [['media_id'], 'exist', 'skipOnError' => true, 'targetClass' => Media::className(), 'targetAttribute' => ['media_id' => 'id']],
         ];
@@ -63,7 +61,6 @@ class News extends ActiveRecord
             'date' => 'Date',
             'shortdesc' => 'Shortdesc',
             'slug' => 'Slug',
-            'media_pos' => 'Media Pos',
             'media_id' => 'Media ID',
         ];
     }
