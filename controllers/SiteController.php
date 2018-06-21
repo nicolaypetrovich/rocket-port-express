@@ -11,9 +11,13 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Media;
+use app\models\Page;
 
 class SiteController extends Controller
 {
+
+    public $page;
+
     /**
      * {@inheritdoc}
      */
@@ -56,6 +60,35 @@ class SiteController extends Controller
         ];
     }
 
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+
+        $action = $this->action->id;
+
+        $page = Page::find()->where(['=', 'slug', $action])->one();
+
+        $this->view->title = $page['title'];
+
+        $this->view->registerMetaTag([
+            'name' => 'description',
+            'content' => $page['description']
+        ]);
+        $this->view->registerMetaTag([
+            'name' => 'keywords',
+            'content' => $page['keywords']
+        ]);
+
+        $this->page = $page;
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * Displays homepage.
      *
@@ -63,7 +96,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        $page = $this->page;
+
+        return $this->render('index', compact('page'));
     }
 
     /**
@@ -125,7 +161,10 @@ class SiteController extends Controller
      */
     public function actionDelivery()
     {
-        return $this->render('delivery');
+
+        $page = $this->page;
+
+        return $this->render('delivery', compact('page'));
     }
 
     /**
@@ -137,10 +176,6 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-
-
-
-
 
 
     /**
@@ -169,4 +204,5 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 }
