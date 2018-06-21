@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 
@@ -85,9 +85,12 @@ $this->params['breadcrumbs'][] = $this->title;
                             </a>
                         </div>
                         <?php if (null != $model->media): ?>
+
                             <div class="news__pic">
                                 <a href="#">
-                                    <?php echo '<img style="height:176px;" src="' . Yii::getAlias('@web') . 'uploads/images/' . $model->media->name . '" alt="' . $model->media->alt . '">'; ?>
+
+                                    <?php echo '<img style="height:176px;" src="' . Yii::getAlias('@web/'.'uploads/images/'.$model->media->name) . '" alt="' . $model->media->alt . '">'; ?>
+
                                 </a>
                             </div>
                         <?php endif; ?>
