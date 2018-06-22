@@ -38,14 +38,14 @@ class Media extends ActiveRecord
 	}
 
 
-	public function getImageOfSize($height,$width){
+	public function getImageOfSize($height,$width,$quality=90){
 
         if(file_exists(Yii::getAlias('@web'). 'uploads/images/'.$this->name) || file_exists(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name)){
             if(! file_exists(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name) ){
                 if (!is_dir(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/')) {
                     mkdir(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/', 0777, true);
                 }
-                Image::getImagine()->open(Yii::getAlias('@web') . 'uploads/images/'.$this->name)->thumbnail(new Box($width,$height ))->save(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name , ['quality' => 90]);
+                Image::getImagine()->open(Yii::getAlias('@web') . 'uploads/images/'.$this->name)->thumbnail(new Box($width,$height ))->save(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name , ['quality' => $quality]);
             }
 
             return Yii::getAlias('@web/' . 'uploads/images/'.$width.'x'.$height.'/' . $this->name);
