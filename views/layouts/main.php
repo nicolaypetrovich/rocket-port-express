@@ -117,7 +117,7 @@ AppAsset::register($this);
                         'method' => 'get',
                     ]); ?>
 
-                    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
 
                     <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
 

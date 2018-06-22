@@ -34,10 +34,9 @@ class m180620_144935_update_table_news extends Migration
 
             $this->insert('news', [
                 'id' => $i,
-                'title' => 'title'.$i,
-                'description' => 'desc'.$i,
+                'name' => ' Заголовок текстовой новости может быть длинным или в две три строки, например, это пример заголовка'.$i,
+                'shortdesc' => 'Это пример текста новости, сделан для того, чтобы было понятно, где будет текст. Это пример текста новости, сделан для того, чтобы было понятно, где будет текст'.$i,
                 'content' => 'Some small content'.$i,
-                'shortdesc' => 'short Desc'.$i,
                 'slug' => 'news_slug'.$i,
                 'media_id' => $i,
             ]);

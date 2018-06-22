@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="section__title y-line red mt40">
-                <?php echo (null != (Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
+                <?php echo (null != (Yii::$app->getRequest()->get("NewsSearch")['name'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
             </h2>
             <div class="newsbody__select">
 					<span>
@@ -43,9 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         value="<?php echo $item; ?>"><?php echo $item; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <?php if (isset(Yii::$app->getRequest()->get("NewsSearch")['title'])): ?>
-                            <input type="hidden" name="NewsSearch[title]"
-                                   value="<?php echo Yii::$app->getRequest()->get("NewsSearch")['title']; ?>">
+                        <?php if (isset(Yii::$app->getRequest()->get("NewsSearch")['name'])): ?>
+                            <input type="hidden" name="NewsSearch[name]"
+                                   value="<?php echo Yii::$app->getRequest()->get("NewsSearch")['name']; ?>">
                         <?php endif; ?>
                     </form>
                 </div>
@@ -76,11 +76,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="news__item">
                             <a href="#">
                                 <p class="news__subtitle red">
-                                    <?php echo $model->title; ?>
+                                    <?php echo $model->name; ?>
                                 </p>
                             </a>
                             <p class="news__text">
-                                <?php echo $model->description; ?>
+                                <?php echo $model->shortdesc; ?>
                             </p>
                             <a href="#" class="news__link">
                                 <img src="img/arrow-gray.png" alt="Читать">
