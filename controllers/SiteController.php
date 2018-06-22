@@ -205,7 +205,7 @@ class SiteController extends Controller
 
         $model = new Ordercall();
         $data = Yii::$app->request->post();
-        if(isset($data['call_name'])&&isset($data['call_phone'])){
+        if(isset($data['call_name'])&&isset($data['call_phone']) && Yii::$app->request->isAjax){
             $model->name=$_POST['call_name'];
             $model->phone=$_POST['call_phone'];
             if($model->validate()&&$model->save()){

@@ -30,18 +30,6 @@ class Media extends ActiveRecord
 			$image->title = $file->name;
 			$image->alt = '';
 
-//			$imageSizes=array('');
-//
-//			(Image::getImagine()->open(Yii::getAlias('@web') . 'uploads/images/'.$name)->thumbnail(new Box(200, 200))->save(Yii::getAlias('@runtime/'.$name) , ['quality' => 90]));
-//                        var_dump(Yii::getAlias('@runtime/'.$model->media->name));
-//                        var_dump(Url::to('@runtime/'.$model->media->name));
-//                        $imagine=new Imagine\Imagick\Imagine();
-//                            $imagetest=Image::getImagine()->open(Yii::getAlias('@runtime/'.$model->media->name))->show();
-//                        $image = Image::getImagine();
-//                        var_dump($imagetest);
-//                        var_dump($image->open(Yii::getAlias('@runtime/'.$model->media->name))->show('jpg'));
-
-
 
 			$image->save();
 		}

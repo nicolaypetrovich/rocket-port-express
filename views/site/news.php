@@ -1,6 +1,8 @@
 <?php
 
 
+use Imagine\Image\Box;
+use yii\imagine\Image;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 
@@ -8,7 +10,7 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $dataProvider app\models\NewsSearch */
 
-$this->title =(isset(Yii::$app->getRequest()->get("NewsSearch")['title']))?'Поиск':'Новости';
+$this->title = (null != (Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'Поиск' : 'Новости';
 //$this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="section__title y-line red mt40">
-                <?php echo (isset(Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
+                <?php echo (null != (Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
             </h2>
             <div class="newsbody__select">
 					<span>
@@ -85,14 +87,28 @@ $this->params['breadcrumbs'][] = $this->title;
                             </a>
                         </div>
                         <?php if (null != $model->media): ?>
+                            <?php
+                            $newImageName=$model->media->name;
+                            $newImageAlt=$model->media->alt;
+                            if(file_exists(Yii::getAlias('@web'). 'uploads/images/'.$newImageName) || file_exists(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName)){
+                                if(! file_exists(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName) ){
+                                    if (!is_dir(Yii::getAlias('@web'). 'uploads/images/358x176/')) {
+                                        mkdir(Yii::getAlias('@web'). 'uploads/images/358x176/', 0777, true);
+                                    }
+                                    (Image::getImagine()->open(Yii::getAlias('@web') . 'uploads/images/'.$newImageName)->thumbnail(new Box(358, 176))->save(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName , ['quality' => 90]));
+                                }
 
-                            <div class="news__pic">
-                                <a href="#">
+                                echo '<div class="news__pic">';
+                                echo ' <a href="#">';
 
-                                    <?php echo '<img style="height:176px;" src="' . Yii::getAlias('@web/'.'uploads/images/'.$model->media->name) . '" alt="' . $model->media->alt . '">'; ?>
+                                echo '<img style="height:176px;" src="' . Yii::getAlias('@web/' . 'uploads/images/358x176/' . $newImageName) . '" alt="' . $model->media->alt . '">';
 
-                                </a>
-                            </div>
+                                echo '</a>';
+                                echo '</div>';
+                            }
+
+                            ?>
+
                         <?php endif; ?>
 
                     </li>
