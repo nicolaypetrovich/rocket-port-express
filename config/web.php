@@ -13,6 +13,12 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapPluginAsset' => ['js'=>[]], //removing bootstrap JS
+                'yii\bootstrap\BootstrapAsset' => ['css' => []] //removing bootstrap CSS
+            ]
+        ],
         'request' => [
             'cookieValidationKey' => 'j72L44Gu8GzPRxQO',
             'baseUrl' => '',

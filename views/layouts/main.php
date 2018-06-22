@@ -3,46 +3,59 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\models\News;
+use app\models\Settings;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 use yii\helpers\Html;
 use app\assets\AppAsset;
+use yii\helpers\Url;
+use yii\web\View;
+use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
-<!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
-<head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->registerLinkTag(['rel' => 'shortcut icon', 'type' => 'image/png', 'href' => 'img/favicon.png']); ?>
-    <?php $this->head() ?>
-</head>
+    <!DOCTYPE html>
+    <html lang="<?= Yii::$app->language ?>">
+    <head>
+        <meta charset="<?= Yii::$app->charset ?>">
+        <?= Html::csrfMetaTags() ?>
+        <title><?= Html::encode($this->title) ?></title>
+        <?php $this->registerLinkTag(['rel' => 'shortcut icon', 'type' => 'image/png', 'href' => 'img/favicon.png']); ?>
+        <?php $this->head() ?>
+    </head>
 
-<body>
+    <body>
     <?php $this->beginBody() ?>
+
+    <?php
+    $header_settings = Settings::find()->select('key,value')->where(['like', 'key', 'global'])->indexBy('key')->asArray()->all();
+    ?>
     <header class="header" id="header">
         <div class="container">
             <div class="hat-up d-flex justify-content-between">
                 <div class="logo-box d-flex justify-content-end align-items-center">
                     <a href="/" class="logo"><img src="img/logo.png" alt="Экспресс доставка"></a>
                     <h1 class="logo-box__text">
-                        <span class="red">БЫСТРАЯ И ЭКОНОМИЧНАЯ</span>
-                        ДОСТАВКА ВАШИХ ДОКУМЕНТОВ И ГРУЗОВ
+                        <span class="red"><?php echo ($header_settings['global_headertext1']['value']); ?></span>
+                        <?php echo ($header_settings['global_headertext2']['value']); ?>
                     </h1>
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
-                        <a href="tel:+7(8202)202148" class="contact-box__tel">
-                            8 (800) 511-98-11
+                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>"
+                           class="contact-box__tel">
+                            <?php echo ($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <a href="#ordercall__popup" class="contact-box__btn popup-with-form">
                             ЗАКАЗАТЬ ЗВОНОК
                         </a>
-                        <a href="mailto:info@port-express.net" class="contact-box__link">
-                            info@port-express.net
+                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>"
+                           class="contact-box__link">
+                            <?php echo ($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
@@ -51,49 +64,76 @@ AppAsset::register($this);
                         Личный кабинет
                     </a>
                     <p class="contact-box__text" id="mail">
-                        Наш адрес: <br>г. Череповец, ул. <br>К.Маркса, д. 78
+                        <?php
+                        //todo: id="mail"?? Is there a way to remove <br> without breaking code?
+                        echo ($header_settings['global_address']['value']); ?>
                     </p>
                 </div>
             </div>
+
             <div class="hat-down">
                 <nav class="menu">
-                    <ul>
-                        <li>
-                            <a href="/">
-                                НА ГЛАВНУЮ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about.html">
-                                О КОМПАНИИ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="services.html">
-                                УСЛУГИ И ТАРИФЫ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="client.html">
-                                КЛИЕНТАМ
-                            </a>
-                        </li>
-                        <li>
-                            <a href="contact.html">
-                                КОНТАКТНАЯ ИНФОРМАЦИЯ
-                            </a>
-                        </li>
-                    </ul>
+                    <?php
+                    //                    NavBar::begin(
+                    //                        [
+                    //                            'brandLabel' => Yii::$app->name,
+                    //                            'brandUrl' => Yii::$app->homeUrl,
+                    //                            'options' => [
+                    //                                'class' => 'navbar-inverse navbar-fixed-top',
+                    //                            ],
+                    //                        ]
+                    //                    );
+                    echo Nav::widget([
+                        'options' => ['class' => ''],
+                        'items' => [
+                            ['label' => 'НА ГЛАВНУЮ', 'url' => ['/']],
+                            ['label' => 'О КОМПАНИИ', 'url' => ['/site/about']],
+                            ['label' => 'УСЛУГИ И ТАРИФЫ', 'url' => ['/site/services']],
+                            ['label' => 'КЛИЕНТАМ', 'url' => ['/site/client']],
+                            ['label' => 'КОНТАКТНАЯ ИНФОРМАЦИЯ', 'url' => ['/site/contact']],
+//                            Yii::$app->user->isGuest ? ( might be needed later
+//                            ['label' => 'Login', 'url' => ['/site/login']]
+//                            ) : (
+//                                '<li>'
+//                                . Html::beginForm(['/site/logout'], 'post')
+//                                . Html::submitButton(
+//                                    'Logout (' . Yii::$app->user->identity->username . ')',
+//                                    ['class' => 'btn btn-link logout']
+//                                )
+//                                . Html::endForm()
+//                                . '</li>'
+//                            )
+                        ],
+                    ]);
+                    //                    NavBar::end();
+                    ?>
                 </nav>
+
                 <div class="search">
-                    <input type="text" placeholder="Поиск" class="search__input input">
-                    <button class="search__btn">
-                        <img src="img/search.png" alt="Поиск">
-                    </button>
+                    <?php
+                    $model= new \app\models\NewsSearch();
+                    $form = ActiveForm::begin([
+                        'action' => ['search'],
+                        'method' => 'get',
+                    ]); ?>
+
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
+
+                    <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
+
+
+
+
+
                 <div class="triangle t_left"></div>
                 <div class="triangle t_right"></div>
             </div>
+            <script>
+                var createcalllink='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
+            </script>
         </div>
     </header>
 
@@ -101,7 +141,8 @@ AppAsset::register($this);
 
     <footer class="footer" id="footer">
         <div>
-            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&amp;width=100%25&amp;height=260&amp;lang=ru_UA&amp;scroll=false"></script>
+            <script type="text/javascript" charset="utf-8" async
+                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&amp;width=100%25&amp;height=260&amp;lang=ru_UA&amp;scroll=false"></script>
         </div>
         <div class="container">
             <div class="footer__title red">
@@ -149,21 +190,26 @@ AppAsset::register($this);
         </div>
     </footer>
     <section>
+
         <div id="ordercall__popup" class="white-popup-block mfp-hide">
             <div class="popup__ordercall popup">
-                <form class="form__ordercall d-flex flex-column align-items-center" name="ordercall__form" id="ordercall__form">
+                <form class="form__ordercall d-flex flex-column align-items-center" name="ordercall__form"
+                      id="ordercall__form" method="post">
                     <h2 class="section__title rect__title red">
                         ЗАКАЗАТЬ ЗВОНОК
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="tel" placeholder="Телефон" class="required popup__input input phone-mask">
+                        <input type="tel" placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input" autocomplete="off">
                     </div>
+                    <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
+                           value="<?=Yii::$app->request->csrfToken?>" autocomplete="off"/>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox22" name="checkbox">
-                        <label for="checkbox22" id="checkboxLabel22" class="pt15 d-flex justify-content-center align-items-center">
+                        <input type="checkbox" id="checkbox22" name="checkbox" class="mm-form-input">
+                        <label for="checkbox22" id="checkboxLabel22"
+                               class="pt15 d-flex justify-content-center align-items-center">
                             <span>
                                 Я согласен с
                                 <a href="#">
@@ -197,7 +243,8 @@ AppAsset::register($this);
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox23" name="checkbox">
-                        <label for="checkbox23" id="checkboxLabel23" class="pt15 d-flex justify-content-center align-items-center">
+                        <label for="checkbox23" id="checkboxLabel23"
+                               class="pt15 d-flex justify-content-center align-items-center">
                             <span>
                                 Я согласен с
                                 <a href="#">
@@ -242,11 +289,13 @@ AppAsset::register($this);
                         <input type="password" placeholder="Пароль" class="required password popup__input input">
                     </div>
                     <div>
-                        <input type="password" placeholder="Повторите пароль" class="required passwordConfirmation popup__input input">
+                        <input type="password" placeholder="Повторите пароль"
+                               class="required passwordConfirmation popup__input input">
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox24">
-                        <label for="checkbox24" id="checkboxLabel24" class="pt15 d-flex justify-content-center align-items-center">
+                        <label for="checkbox24" id="checkboxLabel24"
+                               class="pt15 d-flex justify-content-center align-items-center">
                             <span>
                                 Я согласен с
                                 <a href="#">
@@ -261,7 +310,8 @@ AppAsset::register($this);
                     </button>
                     <div>
                         <input type="checkbox" id="checkbox25">
-                        <label for="checkbox25" id="checkboxLabel25" class="pt15 d-flex justify-content-center align-items-center">
+                        <label for="checkbox25" id="checkboxLabel25"
+                               class="pt15 d-flex justify-content-center align-items-center">
                             <span class="w115">
                                 Оставаться в системе
                             </span>
@@ -288,7 +338,8 @@ AppAsset::register($this);
                         <input type="text" placeholder="Ваш E-mail" class="required popup__input input">
                     </div>
                     <div>
-                        <textarea rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос" class="feed__input input"></textarea>
+                        <textarea rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
+                                  class="feed__input input"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox26" name="checkbox">
@@ -318,6 +369,6 @@ AppAsset::register($this);
         </div>
     </section>
     <?php $this->endBody() ?>
-</body>
-</html>
+    </body>
+    </html>
 <?php $this->endPage() ?>

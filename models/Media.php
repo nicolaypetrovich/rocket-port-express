@@ -29,6 +29,8 @@ class Media extends ActiveRecord
 			$image->name = $name;
 			$image->title = $file->name;
 			$image->alt = '';
+
+
 			$image->save();
 		}
 	}

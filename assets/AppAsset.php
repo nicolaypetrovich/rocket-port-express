@@ -27,7 +27,7 @@ class AppAsset extends AssetBundle
         'css/main.css',
     ];
     public $js = [
-        'js/jquery-3.3.1.js',
+//        'js/jquery-3.3.1.js',
         'js/forms.js',
         'js/jquery.maskedinput.min.js',
         'js/jquery.magnific-popup.min.js',
@@ -35,5 +35,6 @@ class AppAsset extends AssetBundle
         'js/main.js',
     ];
     public $depends = [
+        'yii\web\JqueryAsset'
     ];
 }

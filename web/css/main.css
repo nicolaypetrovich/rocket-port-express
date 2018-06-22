@@ -909,7 +909,7 @@ label {
 
 /*---NEWS PAGE---*/
 
-.crumbs {
+.breadcrumb {
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -918,16 +918,16 @@ label {
 	margin-top: 25px;
 }
 
-.crumbs li {
+.breadcrumb li {
 	margin: 0 8px;
 }
 
-.crumbs li a {
+.breadcrumb li a {
 	cursor: pointer;
 	color: #333;
 }
 
-.crumbs li:first-child a {
+.breadcrumb li:first-child a {
 	font-weight: 700;
 	color: #ab1010;
 }
@@ -974,6 +974,41 @@ label {
 	display: flex;
 	align-items: center;
 }
+
+/*?>*/
+ /*<div class="nav-links d-flex justify-content-center">*/
+													 /*<?php // display pagination*/
+															  /*echo LinkPager::widget([*/
+                /*'pagination' => $pages,*/
+                /*'prevPageLabel'=>'Назад',*/
+                /*'nextPageLabel'=>'Далее',*/
+            /*]);*/
+/*?>*/
+
+.news-frame:nth-child(2n-1) .news__date {
+	order: 1;
+}
+
+.news-frame:nth-child(2n-1) .news__item {
+	order: 2;
+}
+
+.news-frame:nth-child(2n-1) .news__pic {
+	order: 3;
+}
+
+.news-frame:nth-child(2n) .news__date {
+    order: 2;
+}
+
+.news-frame:nth-child(2n) .news__item {
+    order: 3;
+}
+
+.news-frame:nth-child(2n) .news__pic {
+    order: 1;
+}
+
 
 .newsbody__wrapper :first-child {
 	margin-top: 0;
@@ -1024,7 +1059,7 @@ label {
 	margin-top: 60px;
 }
 
-.nav-links>* {
+.nav-links > * {
 	display: block;
 	font-size: 12pt;
 	line-height: 30px;
@@ -1032,28 +1067,40 @@ label {
 	color: #ab1010;
 }
 
-.page-numbers {
+.nav-links > ul {
+	display: flex;
+}
+
+.nav-links > ul > li {
 	width: 30px;
 	margin: 0 2px;
 	text-align: center;
 	border-radius: 50%;
 }
 
-.current {
-	color: #ab7659;
+.nav-links > ul > li.active {
 	background-color: #ffca00;
 }
 
-.prev, .next {
+.nav-links > ul > li.active a {
+	color: #ab7659;
+}
+
+.nav-links > ul > li > a {
+	color: #ab1010;
+}
+
+.nav-links > ul > li.prev,
+.nav-links > ul > li.next {
 	width: 115px;
 	margin: 0 10px;
 }
 
-.prev {
+.nav-links > ul > li.prev {
 	background: url("../img/l-arrow.png") no-repeat left center;
 }
 
-.next {
+.nav-links > ul > li.next {
 	background: url("../img/r-arrow.png") no-repeat right center;
 }
 
