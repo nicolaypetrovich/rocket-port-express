@@ -88,20 +88,15 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                         <?php if (null != $model->media): ?>
                             <?php
-                            $newImageName=$model->media->name;
+                            $imgSrc=$model->media->getImageOfSize(358,176);
                             $newImageAlt=$model->media->alt;
-                            if(file_exists(Yii::getAlias('@web'). 'uploads/images/'.$newImageName) || file_exists(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName)){
-                                if(! file_exists(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName) ){
-                                    if (!is_dir(Yii::getAlias('@web'). 'uploads/images/358x176/')) {
-                                        mkdir(Yii::getAlias('@web'). 'uploads/images/358x176/', 0777, true);
-                                    }
-                                    (Image::getImagine()->open(Yii::getAlias('@web') . 'uploads/images/'.$newImageName)->thumbnail(new Box(358, 176))->save(Yii::getAlias('@web'). 'uploads/images/358x176/'.$newImageName , ['quality' => 90]));
-                                }
+                            if(null != $imgSrc && '' != $imgSrc ){
+
 
                                 echo '<div class="news__pic">';
                                 echo ' <a href="#">';
 
-                                echo '<img style="height:176px;" src="' . Yii::getAlias('@web/' . 'uploads/images/358x176/' . $newImageName) . '" alt="' . $model->media->alt . '">';
+                                echo '<img src="' .$model->media->getImageOfSize(358,176) . '" alt="' . $model->media->alt . '">';
 
                                 echo '</a>';
                                 echo '</div>';
