@@ -14,3 +14,8 @@ Thumbs.db
 
 # sublime
 sftp-config.json
+
+
+# ignore dev files
+web/uploads/images/
+

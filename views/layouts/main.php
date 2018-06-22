@@ -110,27 +110,16 @@ AppAsset::register($this);
                 </nav>
 
                 <div class="search">
-<!--                    <form action="/search" method="get">-->
-<!--                    <input type="text" placeholder="Поиск" class="search__input input" name="title" value="--><?php //echo htmlspecialchars($_GET['title']); ?><!--" >-->
-<!--                    <button type="submit" class="search__btn" onclick="">-->
-<!--                        <img src="img/search.png" alt="Поиск">-->
-<!--                    </button>-->
-<!--                    </form>-->
                     <?php
-
                     $model= new \app\models\NewsSearch();
                     $form = ActiveForm::begin([
                         'action' => ['search'],
                         'method' => 'get',
                     ]); ?>
 
-
-                    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
-
-
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
 
                     <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
-
 
                     <?php ActiveForm::end(); ?>
                 </div>

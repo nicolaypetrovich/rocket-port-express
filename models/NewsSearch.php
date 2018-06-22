@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-
+use app\models\News;
 
 /**
  * NewsSearch represents the model behind the search form of `app\models\News`.
@@ -19,7 +19,7 @@ class NewsSearch extends News
     {
         return [
             [['id', 'media_id'], 'integer'],
-            [['title', 'description', 'keywords', 'content', 'date', 'shortdesc', 'slug'], 'safe'],
+            [['title', 'keywords', 'description', 'name', 'content', 'date', 'shortdesc', 'slug'], 'safe'],
         ];
     }
 
@@ -50,11 +50,8 @@ class NewsSearch extends News
             'pagination' => [ 'pageSizeParam' => 'pageSize' ],
         ]);
 
-
-
         $this->load($params);
-//var_dump($this);
-//die();
+
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
@@ -69,8 +66,9 @@ class NewsSearch extends News
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'keywords', $this->keywords])
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'shortdesc', $this->shortdesc])
             ->andFilterWhere(['like', 'slug', $this->slug]);
