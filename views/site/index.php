@@ -15,19 +15,6 @@
 				</div>
 				<ul class="main-hat__list d-flex">
 
-                    <?php
-
-//                    var_dump($meta);
-                    foreach ($meta as $single){
-//    array(3) { ["key"]=> string(17) "index_block1_img1" ["value"]=> string(2) "11" ["media"]=> array(4) { ["id"]=> string(2) "11" ["name"]=> string(13) "calculate.png" ["title"]=> string(9) "calculate" ["alt"]=> string(9) "calculate" } }
-//                        var_dump(json_decode($single['value']));
-                        echo '<br>';
-                        echo '<br>';
-                    }
-//var_dump($meta);
-//                    var_dump($mediaTest);
-//                    echo '<img src="' . Yii::getAlias('@web/' . 'uploads/images/' . $mediaTest[10]['name']) . '" alt="' . 'som' . '">';
-                    ?>
 					<li class="main-hat__item">
 						<a href="calculate" class="main-hat__link d-flex align-items-center">
                             <?php if(null != $meta['index_block1_img1']->media):?>

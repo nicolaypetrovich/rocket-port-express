@@ -38,8 +38,11 @@ class Media extends ActiveRecord
 	}
 
 
-	public function getImageOfSize($height,$width,$quality=90){
+	public function getImageOfSize($height='',$width='',$quality=90){
 
+	    if(''==$height||''==$width){
+            return Yii::getAlias('@web/' . 'uploads/images/'. $this->name);
+        }
         if(file_exists(Yii::getAlias('@web'). 'uploads/images/'.$this->name) || file_exists(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name)){
             if(! file_exists(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/'.$this->name) ){
                 if (!is_dir(Yii::getAlias('@web'). 'uploads/images/'.$width.'x'.$height.'/')) {

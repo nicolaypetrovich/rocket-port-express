@@ -31,80 +31,80 @@ class m180619_131418_update_table_settings extends Migration
     {
         $i=1;
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'global_address',
             'value' => "Наш адрес:<br>г. Череповец, ул.<br>К.Маркса, д. 78",
         ]);
 
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'global_headertext1',
             'value' => 'БЫСТРАЯ И ЭКОНОМИЧНАЯ',
         ]);
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'global_headertext2',
             'value' => 'ДОСТАВКА ВАШИХ ДОКУМЕНТОВ И ГРУЗОВ',
         ]);
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'global_email',
             'value' => "info@port-express.net",
         ]);
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'global_phone',
             'value' => "8 (800) 511-98-11",
         ]);
-        $i++;
+
 
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_img1',
             'value' => 11,
         ]);
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_text1',
             'value' => 'РАСЧЕТ ТАРИФА ПЕРЕВОЗКИ',
         ]);
-        $i++;
+
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_img2',
             'value' => 12,
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_text2',
             'value' => 'ОТСЛЕЖИВАНИЕ ГРУЗА',
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_img3',
             'value' => 13,
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block1_text3',
             'value' => 'ЗАДАТЬ ВОПРОС СЛУЖБЕ ПОДДЕРЖКИ',
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block2',
             'value' => json_encode(
                 array(
@@ -116,17 +116,17 @@ class m180619_131418_update_table_settings extends Migration
                 )
             ),
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block2_img',
             'value' => 14
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block_about',
             'value' => json_encode(
                 array(
@@ -140,10 +140,10 @@ class m180619_131418_update_table_settings extends Migration
                 )
             ),
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i++,
             'key' => 'index_block_icons',
             'value' => json_encode(
                 array(
@@ -156,14 +156,22 @@ class m180619_131418_update_table_settings extends Migration
                 )
             ),
         ]);
-        $i++;
+
 
         $this->insert('settings', [
-            'id' => $i, //15
+            'id' => $i++, //15
             'key' => 'index_news_title',
             'value' => 'НОВОСТИ КОМПАНИИ'
         ]);
-        $i++;
+
+
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'global_logo',
+            'value' => 15,
+        ]);
+
+
         echo "Default settings created.\n";
 
         return true;
