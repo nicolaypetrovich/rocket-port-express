@@ -12,7 +12,7 @@
 				</div>
 				<ul class="main-hat__list d-flex">
 					<li class="main-hat__item">
-						<a href="calculate.html" class="main-hat__link d-flex align-items-center">
+						<a href="/calculate" class="main-hat__link d-flex align-items-center">
 							<img src="img/calculate.png" alt="">
 							<span class="red">
 								РАСЧЕТ ТАРИФА ПЕРЕВОЗКИ
@@ -20,7 +20,7 @@
 						</a>
 					</li>
 					<li class="main-hat__item">
-						<a href="search.html" class="main-hat__link d-flex align-items-center">
+						<a href="/tracking" class="main-hat__link d-flex align-items-center">
 							<img src="img/find.png" alt="">
 							<span class="red">
 								ОТСЛЕЖИВАНИЕ ГРУЗА
@@ -157,7 +157,7 @@
 				<h2 class="news__title section__title y-line red mt40">
 					НОВОСТИ КОМПАНИИ
 				</h2>
-				<a href="news.html" class="news__link ghost-btn red">
+				<a href="/news" class="news__link ghost-btn red">
 					Все новости
 				</a>
 			</div>

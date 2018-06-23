@@ -77,7 +77,7 @@ class SiteController extends Controller
 
         $page = Page::find()->where(['=', 'slug', $action])->one();
 
-        $this->view->title = $page['title'];
+        $this->view->title = $page['title'] . ' | Port Express';
 
         $this->view->registerMetaTag([
             'name' => 'description',
@@ -147,6 +147,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $page = $this->page;
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -155,6 +156,7 @@ class SiteController extends Controller
         }
         return $this->render('contact', [
             'model' => $model,
+            'page'  => $page,
         ]);
     }
 
@@ -178,7 +180,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $page = $this->page;
+        return $this->render('about', compact('page'));
     }
 
 
@@ -208,9 +211,10 @@ class SiteController extends Controller
 //            'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider,
 //        ]);
-
+        $page = $this->page;
         return $this->render('news', [
             'dataProvider' => $dataProvider,
+            'page' => $page,
 //            'pages' => $pages,
         ]);
     }
@@ -223,19 +227,64 @@ class SiteController extends Controller
      */
     public function actionSearch()
     {
-
+        $page = $this->page;
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('news', [
 
             'dataProvider' => $dataProvider,
+            'page' => $page,
 //            'model'=>$searchModel,
         ]);
 
 
     }
 
+    /**
+     * @return string
+     */
+    public function actionInvoice()
+    {
+        $page = $this->page;
+        return $this->render('invoice', compact('page'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionTracking()
+    {
+        $page = $this->page;
+        return $this->render('tracking', compact('page'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionServices()
+    {
+        $page = $this->page;
+        return $this->render('services', compact('page'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCalculate()
+    {
+        $page = $this->page;
+        return $this->render('calculate', compact('page'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionClient()
+    {
+        $page = $this->page;
+        return $this->render('client', compact('page'));
+    }
 
 
 
