@@ -38,6 +38,40 @@ class m180620_071143_update_media extends Migration
             ]);
         }
 
+
+        $this->insert('media',[
+           'id'=>11,
+           'name'=>'calculate.png',
+           'title'=>'calculate',
+           'alt'=>'calculate'
+        ]);
+
+        $this->insert('media',[
+            'id'=>12,
+            'name'=>'find.png',
+            'title'=>'find',
+            'alt'=>'find'
+        ]);
+
+        $this->insert('media',[
+            'id'=>13,
+            'name'=>'faq.png',
+            'title'=>'faq',
+            'alt'=>'faq'
+        ]);
+
+
+        $this->insert('media',[
+            'id'=>14,
+            'name'=>'main.png',
+            'title'=>'banner',
+            'alt'=>'banner'
+        ]);
+
+
+
+
+
         echo "Default images created\n";
 
         return true;
@@ -45,7 +79,7 @@ class m180620_071143_update_media extends Migration
 
     public function down()
     {
-        $this->delete('media', 'id<=10');
+        $this->delete('media', 'id<=14');
 
         echo "Default images deleted\n";
 
