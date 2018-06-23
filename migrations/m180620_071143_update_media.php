@@ -68,6 +68,12 @@ class m180620_071143_update_media extends Migration
             'alt'=>'banner'
         ]);
 
+        $this->insert('media',[
+            'id'=>15,
+            'name'=>'logo.png',
+            'title'=>'logo',
+            'alt'=>'Экспресс доставка'
+        ]);
 
 
 
@@ -79,7 +85,7 @@ class m180620_071143_update_media extends Migration
 
     public function down()
     {
-        $this->delete('media', 'id<=14');
+        $this->delete('media', 'id<=15');
 
         echo "Default images deleted\n";
 
