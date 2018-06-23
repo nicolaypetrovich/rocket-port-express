@@ -1,8 +1,7 @@
 <?php
 
 
-use Imagine\Image\Box;
-use yii\imagine\Image;
+
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 
@@ -67,22 +66,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li class="news-frame news__box big-frame">
                         <div class="news__date">
 						<span class="date__day">
-							<?php echo date('d', strtotime($model->date)); ?>
+							<?= date('d', strtotime($model->date)); ?>
 						</span>
                             <span class="date__month">
-							<?php echo date('m.y', strtotime($model->date)); ?>
+							<?= date('m.y', strtotime($model->date)); ?>
 						</span>
                         </div>
                         <div class="news__item">
                             <a href="#">
                                 <p class="news__subtitle red">
-                                    <?php echo $model->name; ?>
+                                    <?= $model->name; ?>
                                 </p>
                             </a>
                             <p class="news__text">
-                                <?php echo $model->shortdesc; ?>
+                                <?= $model->shortdesc; ?>
                             </p>
-                            <a href="#" class="news__link">
+                            <a href="news/<?=$model->slug; ?>" class="news__link">
                                 <img src="img/arrow-gray.png" alt="Читать">
                             </a>
                         </div>

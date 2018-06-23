@@ -46,4 +46,13 @@ class Settings extends ActiveRecord
             'value' => 'Value',
         ];
     }
+
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMedia()
+    {
+        return $this->hasOne(Media::className(), ['id' => 'value']);
+    }
 }

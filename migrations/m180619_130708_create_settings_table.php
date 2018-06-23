@@ -32,7 +32,7 @@ class m180619_130708_create_settings_table extends Migration
             $this->createTable('settings', [
                 'id' => $this->primaryKey(),
                 'key' => $this->string(50)->unique()->notNull(),
-                'value' => $this->string()->notNull()
+                'value' => $this->text()->notNull()
             ]);
         }
         return true;
