@@ -159,11 +159,11 @@ class m180619_131418_update_table_settings extends Migration
         $i++;
 
         $this->insert('settings', [
-            'id' => $i,
+            'id' => $i, //15
             'key' => 'index_news_title',
             'value' => 'НОВОСТИ КОМПАНИИ'
         ]);
-
+        $i++;
         echo "Default settings created.\n";
 
         return true;
