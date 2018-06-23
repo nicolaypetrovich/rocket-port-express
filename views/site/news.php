@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
 						</span>
                         </div>
                         <div class="news__item">
-                            <a href="#">
+                            <a href="news?slug=<?=$model->slug;?>">
                                 <p class="news__subtitle red">
                                     <?= $model->name; ?>
                                 </p>
@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <p class="news__text">
                                 <?= $model->shortdesc; ?>
                             </p>
-                            <a href="news/<?=$model->slug; ?>" class="news__link">
+                            <a href="news?slug=<?=$model->slug;?>" class="news__link">
                                 <img src="img/arrow-gray.png" alt="Читать">
                             </a>
                         </div>
@@ -131,10 +131,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 <section class="newsbuttons">
     <div class="newsbuttons__box">
-        <a href="search.html" class="newsbuttons__link">
+        <a href="tracking" class="newsbuttons__link">
             <img src="img/search-btn.jpg" alt="Отследить почтовое отправление">
         </a>
-        <a href="calculate.html" class="newsbuttons__link">
+        <a href="calculate" class="newsbuttons__link">
             <img src="img/calc-btn.jpg" alt="Расчитать тариф перевозки">
         </a>
     </div>

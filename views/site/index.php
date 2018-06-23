@@ -201,12 +201,12 @@
 						</span>
 					</div>
 					<div class="news__item">
-						<a href="#" class="news__subtitle red">
+						<a href="news?slug=<?=$item->slug;?>" class="news__subtitle red">
                             <?php echo mb_substr($item->name,0,27).'...'; ?>
 						</a>
 						<p class="news__text">
                             <?php echo mb_substr($item->shortdesc,0,80).'...'; ?>
-							<a href="#" class="news__link">
+							<a href="news?slug=<?=$item->slug;?>" class="news__link">
 								<img src="img/arrow-gray.png" alt="Читать">
 							</a>
 						</p>

@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use app\models\News;
 use app\models\NewsSearch;
 use app\models\Ordercall;
 use app\models\Settings;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
 /**** DELETE WITH IMAGE UPLOAD PAGE ****/
@@ -81,14 +83,13 @@ class SiteController extends Controller
             ->all();
 
 
-
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel::find()->orderBy(['date' => SORT_DESC])->limit(6)->all();
 
 
         return $this->render('index', [
             'meta' => $meta,
-            'news'=>$dataProvider
+            'news' => $dataProvider
         ]);
     }
 
@@ -159,16 +160,26 @@ class SiteController extends Controller
      * Displays news page.
      *
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionNews()
     {
 
-        $searchModel = new NewsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $slug = Yii::$app->request->get('slug');
 
-        return $this->render('news', [
-            'dataProvider' => $dataProvider,
-        ]);
+
+        if (isset($slug)) {
+            return $this->render('single-news', [
+                'model' => $this->findOneNewsModel($slug),
+            ]);
+        } else {
+            $searchModel = new NewsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('news', [
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
 
@@ -191,8 +202,6 @@ class SiteController extends Controller
 
 
     }
-
-
 
 
     /**
@@ -221,7 +230,21 @@ class SiteController extends Controller
     }
 
 
-
+    /**
+     * Finds the News model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $slug
+     * @return News the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findOneNewsModel($slug)
+    {
+        if (
+            ($model = News::findOne(['slug' => $slug])) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 
 
 
