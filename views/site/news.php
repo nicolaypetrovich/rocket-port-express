@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         value="<?php echo $item; ?>"><?php echo $item; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <?php if (isset(Yii::$app->getRequest()->get("NewsSearch")['name'])): ?>
+                        <?php if (null!=(Yii::$app->getRequest()->get("NewsSearch")['name'])): ?>
                             <input type="hidden" name="NewsSearch[name]"
                                    value="<?php echo Yii::$app->getRequest()->get("NewsSearch")['name']; ?>">
                         <?php endif; ?>
