@@ -31,12 +31,13 @@ class m180620_144926_create_table_news extends Migration
     {
         $this->createTable('news', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(50)->notNull(),
-            'description' => $this->string(500)->notNull(),
+            'title' => $this->string(70),
             'keywords' => $this->string(200),
-            'content' => $this->string(200)->notNull(),
+            'description' => $this->string(255),
+            'name' => $this->string(255)->notNull(),
+            'content' => $this->text()->notNull(),
             'date' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-            'shortdesc' => $this->string(200)->notNull(),
+            'shortdesc' => $this->string(255)->notNull(),
             'slug' => $this->string(20)->notNull()->unique(),
             'media_id' => $this->integer(),     //temp
         ]);

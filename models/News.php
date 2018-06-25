@@ -3,15 +3,15 @@
 namespace app\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "news".
  *
  * @property int $id
  * @property string $title
- * @property string $description
  * @property string $keywords
+ * @property string $description
+ * @property string $name
  * @property string $content
  * @property string $date
  * @property string $shortdesc
@@ -20,7 +20,7 @@ use yii\db\ActiveRecord;
  *
  * @property Media $media
  */
-class News extends ActiveRecord
+class News extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -36,11 +36,13 @@ class News extends ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description', 'content', 'shortdesc', 'slug'], 'required'],
+            [['name', 'content', 'shortdesc', 'slug'], 'required'],
+            [['content'], 'string'],
             [['date'], 'safe'],
             [['media_id'], 'integer'],
-            [['title'], 'string', 'max' => 50],
-            [['description', 'keywords', 'content', 'shortdesc'], 'string', 'max' => 200],
+            [['title'], 'string', 'max' => 70],
+            [['keywords'], 'string', 'max' => 200],
+            [['description', 'name', 'shortdesc'], 'string', 'max' => 255],
             [['slug'], 'string', 'max' => 20],
             [['slug'], 'unique'],
             [['media_id'], 'exist', 'skipOnError' => true, 'targetClass' => Media::className(), 'targetAttribute' => ['media_id' => 'id']],
@@ -55,8 +57,9 @@ class News extends ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'description' => 'Description',
             'keywords' => 'Keywords',
+            'description' => 'Description',
+            'name' => 'Name',
             'content' => 'Content',
             'date' => 'Date',
             'shortdesc' => 'Shortdesc',

@@ -30,13 +30,24 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
     <?php
-    $header_settings = Settings::find()->select('key,value')->where(['like', 'key', 'global'])->indexBy('key')->asArray()->all();
+    $header_settings = Settings::find()
+        ->select('key,value')
+        ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+        ->where(['like', 'key', 'global'])
+        ->indexBy('key')
+        ->all();
     ?>
     <header class="header" id="header">
         <div class="container">
             <div class="hat-up d-flex justify-content-between">
                 <div class="logo-box d-flex justify-content-end align-items-center">
-                    <a href="/" class="logo"><img src="img/logo.png" alt="Экспресс доставка"></a>
+
+                    <a href="/" class="logo">
+                    <?php if(null != $header_settings['global_logo']->media):?>
+                        <img src="<?=$header_settings['global_logo']->media->getImageOfSize();?>" alt="<?=$header_settings['global_logo']->media->alt;?>">
+                    <?php endif;?>
+                    </a>
+
                     <h1 class="logo-box__text">
                         <span class="red"><?php echo ($header_settings['global_headertext1']['value']); ?></span>
                         <?php echo ($header_settings['global_headertext2']['value']); ?>
@@ -95,7 +106,7 @@ AppAsset::register($this);
                             ['label' => 'УСЛУГИ И ТАРИФЫ', 'url' => ['/site/services']],
                             ['label' => 'КЛИЕНТАМ', 'url' => ['/site/client']],
                             ['label' => 'КОНТАКТНАЯ ИНФОРМАЦИЯ', 'url' => ['/site/contact']],
-//                            Yii::$app->user->isGuest ? ( might be needed later
+//                            Yii::$app->user->isGuest ? (                     might be needed later
 //                            ['label' => 'Login', 'url' => ['/site/login']]
 //                            ) : (
 //                                '<li>'
@@ -114,27 +125,16 @@ AppAsset::register($this);
                 </nav>
 
                 <div class="search">
-<!--                    <form action="/search" method="get">-->
-<!--                    <input type="text" placeholder="Поиск" class="search__input input" name="title" value="--><?php //echo htmlspecialchars($_GET['title']); ?><!--" >-->
-<!--                    <button type="submit" class="search__btn" onclick="">-->
-<!--                        <img src="img/search.png" alt="Поиск">-->
-<!--                    </button>-->
-<!--                    </form>-->
                     <?php
-
                     $model= new \app\models\NewsSearch();
                     $form = ActiveForm::begin([
                         'action' => ['search'],
                         'method' => 'get',
                     ]); ?>
 
-
-                    <?= $form->field($model, 'title')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
-
-
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
 
                     <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
-
 
                     <?php ActiveForm::end(); ?>
                 </div>

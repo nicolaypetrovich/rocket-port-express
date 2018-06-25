@@ -1,6 +1,7 @@
 <?php
 
-use yii\helpers\Html;
+
+
 use yii\widgets\Breadcrumbs;
 use yii\widgets\LinkPager;
 
@@ -8,7 +9,7 @@ use yii\widgets\LinkPager;
 /* @var $this yii\web\View */
 /* @var $dataProvider app\models\NewsSearch */
 
-$this->title =(isset(Yii::$app->getRequest()->get("NewsSearch")['title']))?'Поиск':'Новости';
+$this->title = (null != (Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'Поиск' : 'Новости';
 //$this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -26,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="section__title y-line red mt40">
-                <?php echo (isset(Yii::$app->getRequest()->get("NewsSearch")['title'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
+                <?php echo (null != (Yii::$app->getRequest()->get("NewsSearch")['name'])) ? 'ПОИСК' : ''; ?> НОВОСТИ
             </h2>
             <div class="newsbody__select">
 					<span>
@@ -41,9 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         value="<?php echo $item; ?>"><?php echo $item; ?></option>
                             <?php endforeach; ?>
                         </select>
-                        <?php if (isset(Yii::$app->getRequest()->get("NewsSearch")['title'])): ?>
-                            <input type="hidden" name="NewsSearch[title]"
-                                   value="<?php echo Yii::$app->getRequest()->get("NewsSearch")['title']; ?>">
+                        <?php if (null!=(Yii::$app->getRequest()->get("NewsSearch")['name'])): ?>
+                            <input type="hidden" name="NewsSearch[name]"
+                                   value="<?php echo Yii::$app->getRequest()->get("NewsSearch")['name']; ?>">
                         <?php endif; ?>
                     </form>
                 </div>
@@ -65,31 +66,43 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li class="news-frame news__box big-frame">
                         <div class="news__date">
 						<span class="date__day">
-							<?php echo date('d', strtotime($model->date)); ?>
+							<?= date('d', strtotime($model->date)); ?>
 						</span>
                             <span class="date__month">
-							<?php echo date('m.y', strtotime($model->date)); ?>
+							<?= date('m.y', strtotime($model->date)); ?>
 						</span>
                         </div>
                         <div class="news__item">
-                            <a href="#">
+                            <a href="news?slug=<?=$model->slug;?>">
                                 <p class="news__subtitle red">
-                                    <?php echo $model->title; ?>
+                                    <?= $model->name; ?>
                                 </p>
                             </a>
                             <p class="news__text">
-                                <?php echo $model->description; ?>
+                                <?= $model->shortdesc; ?>
                             </p>
-                            <a href="#" class="news__link">
+                            <a href="news?slug=<?=$model->slug;?>" class="news__link">
                                 <img src="img/arrow-gray.png" alt="Читать">
                             </a>
                         </div>
                         <?php if (null != $model->media): ?>
-                            <div class="news__pic">
-                                <a href="#">
-                                    <?php echo '<img style="height:176px;" src="' . Yii::getAlias('@web') . 'uploads/images/' . $model->media->name . '" alt="' . $model->media->alt . '">'; ?>
-                                </a>
-                            </div>
+                            <?php
+                            $imgSrc=$model->media->getImageOfSize(358,176);
+                            $newImageAlt=$model->media->alt;
+                            if(null != $imgSrc && '' != $imgSrc ){
+
+
+                                echo '<div class="news__pic">';
+                                echo ' <a href="#">';
+
+                                echo '<img src="' .$model->media->getImageOfSize(358,176) . '" alt="' . $model->media->alt . '">';
+
+                                echo '</a>';
+                                echo '</div>';
+                            }
+
+                            ?>
+
                         <?php endif; ?>
 
                     </li>
@@ -118,10 +131,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 <section class="newsbuttons">
     <div class="newsbuttons__box">
-        <a href="search.html" class="newsbuttons__link">
+        <a href="tracking" class="newsbuttons__link">
             <img src="img/search-btn.jpg" alt="Отследить почтовое отправление">
         </a>
-        <a href="calculate.html" class="newsbuttons__link">
+        <a href="calculate" class="newsbuttons__link">
             <img src="img/calc-btn.jpg" alt="Расчитать тариф перевозки">
         </a>
     </div>

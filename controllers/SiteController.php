@@ -5,12 +5,15 @@ namespace app\controllers;
 use app\models\News;
 use app\models\NewsSearch;
 use app\models\Ordercall;
+use app\models\Settings;
 use Yii;
-use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\UploadedFile; /**** DELETE WITH IMAGE UPLOAD PAGE ****/
+use yii\web\UploadedFile;
+/**** DELETE WITH IMAGE UPLOAD PAGE ****/
+
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
@@ -116,9 +119,26 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $content = $this->content;
+//        $meta = Settings::find()->select('key,value')
+//            ->where(['like', 'key', 'index'])
+//            ->indexBy('key')->asArray()->all();
+        $meta = Settings::find()->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'index'])
+//            ->where(['like', 'key', 'img'])
+            ->indexBy('key')
+//            ->asArray()
+            ->all();
 
-        return $this->render('index', compact('content'));
+
+        $searchModel = new NewsSearch();
+        $dataProvider = $searchModel::find()->orderBy(['date' => SORT_DESC])->limit(6)->all();
+
+
+        return $this->render('index', [
+            'meta' => $meta,
+            'news' => $dataProvider
+        ]);
     }
 
     /**
@@ -204,34 +224,26 @@ class SiteController extends Controller
      * Displays news page.
      *
      * @return string
+     * @throws NotFoundHttpException
      */
     public function actionNews()
     {
-//        $searchModel = new NewsSearch();
-//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $searchModel = new NewsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $slug = Yii::$app->request->get('slug');
 
-//        $query = News::find();
-//
-//        $countQuery = clone $query;
-//
-//        $pages = new Pagination(['totalCount' => $countQuery->count(),'pageSizeParam'=>'pageSize']);
-//
-//        $models = $query->offset($pages->offset)
-//            ->limit($pages->limit)
-//            ->all();
-//        return $this->render('news', [
-//            'searchModel' => $searchModel,
-//            'dataProvider' => $dataProvider,
-//        ]);
-        $content = $this->content;
-        return $this->render('news', [
-            'dataProvider' => $dataProvider,
-            'content' => $content,
-//            'pages' => $pages,
-        ]);
+
+        if (isset($slug)) {
+            return $this->render('single-news', [
+                'model' => $this->findOneNewsModel($slug),
+            ]);
+        } else {
+            $searchModel = new NewsSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+            return $this->render('news', [
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
 
@@ -318,10 +330,10 @@ class SiteController extends Controller
 
         $model = new Ordercall();
         $data = Yii::$app->request->post();
-        if(isset($data['call_name'])&&isset($data['call_phone'])){
-            $model->name=$_POST['call_name'];
-            $model->phone=$_POST['call_phone'];
-            if($model->validate()&&$model->save()){
+        if (isset($data['call_name']) && isset($data['call_phone']) && Yii::$app->request->isAjax) {
+            $model->name = $_POST['call_name'];
+            $model->phone = $_POST['call_phone'];
+            if ($model->validate() && $model->save()) {
                 return 'success';
             }
         }
@@ -329,7 +341,21 @@ class SiteController extends Controller
     }
 
 
-
+    /**
+     * Finds the News model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param string $slug
+     * @return News the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findOneNewsModel($slug)
+    {
+        if (
+            ($model = News::findOne(['slug' => $slug])) !== null) {
+            return $model;
+        }
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 
 
 
@@ -350,10 +376,9 @@ class SiteController extends Controller
 
         $model = new Media;
 
-        if(Yii::$app->request->isPost)
-        {
+        if (Yii::$app->request->isPost) {
             $file = UploadedFile::getInstance($model, 'image');
-            $model -> uploadImage($file);
+            $model->uploadImage($file);
         }
 
         return $this->render('media', [
