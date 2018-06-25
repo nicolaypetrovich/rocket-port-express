@@ -148,6 +148,7 @@ AppAsset::register($this);
             </div>
             <script>
                 var createcalllink='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
+                var createcus_message_link='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-customer-message'); ?>';
             </script>
         </div>
     </header>
@@ -292,10 +293,10 @@ AppAsset::register($this);
                         ЗАРЕГИСТРИРОВАТЬСЯ
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input">
                     </div>
                     <div>
-                        <input type="text" placeholder="E-mail" class="required email popup__input input">
+                        <input type="email" name="cm_email" placeholder="E-mail" class="required email popup__input input">
                     </div>
                     <div>
                         <input type="text" placeholder="Организация (не обязательно)" class="popup__input input">
@@ -347,17 +348,17 @@ AppAsset::register($this);
                         Задать вопрос службе поддержки
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="text" placeholder="Ваш E-mail" class="required popup__input input">
+                        <input type="email" name="cm_email" placeholder="Ваш E-mail" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <textarea rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
-                                  class="feed__input input"></textarea>
+                        <textarea name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
+                                  class="feed__input input" autocomplete="off"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox26" name="checkbox">
+                        <input type="checkbox" id="checkbox26" name="checkbox" autocomplete="off">
                         <label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
                             <span>
                                 Я согласен с
