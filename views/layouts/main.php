@@ -63,11 +63,15 @@ AppAsset::register($this);
                     <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
                         Личный кабинет
                     </a>
-                    <p class="contact-box__text" id="mail">
+                    <div class="contact-box__text">
+                    <span>Наш адрес:</span>
+                    <p>
                         <?php
                         //todo: id="mail"?? Is there a way to remove <br> without breaking code?
                         echo ($header_settings['global_address']['value']); ?>
                     </p>
+
+                    </div>
                 </div>
             </div>
 
