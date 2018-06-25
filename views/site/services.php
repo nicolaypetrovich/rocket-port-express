@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <p>Стоимость услуг:</p>
         <div class="d-flex justify-content-between">
-            <a href="delivery.html" class="services__block delivery__inside">
+            <a href="/delivery" class="services__block delivery__inside">
                 <img src="img/y-russia.png" alt="">
                 <div class="services__frame">
                     <h2 class="delivery__title section__title rect__title">
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <img src="img/inside.png" alt="">
                 </div>
             </a>
-            <a href="delivery.html" class="services__block delivery__outside">
+            <a href="/delivery" class="services__block delivery__outside">
                 <img src="img/y-russia.png" alt="">
                 <div class="services__frame">
                     <h2 class="delivery__title section__title rect__title">

@@ -15,12 +15,13 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Media;
-use app\models\Page;
+use app\models\Pages;
 
 class SiteController extends Controller
 {
 
-    public $page;
+    //переменная для передачи контента во вьюхи
+    public $content;
 
     /**
      * {@inheritdoc}
@@ -72,23 +73,37 @@ class SiteController extends Controller
      */
     public function beforeAction($action)
     {
-
+        //получаем слаг экшена
         $action = $this->action->id;
 
-        $page = Page::find()->where(['=', 'slug', $action])->one();
+        //берем запись из бд по слагу
+        $page = Pages::find()->where(['=', 'slug', $action])->one();
 
-        $this->view->title = $page['title'] . ' | Port Express';
+        //если запись сущевствует то формируем мета теги и контент
+        if($page) {
 
-        $this->view->registerMetaTag([
-            'name' => 'description',
-            'content' => $page['description']
-        ]);
-        $this->view->registerMetaTag([
-            'name' => 'keywords',
-            'content' => $page['keywords']
-        ]);
+            $this->view->title = $page['title'] . ' | Port Express';
 
-        $this->page = $page;
+            $this->view->registerMetaTag([
+                'name' => 'description',
+                'content' => $page['description']
+            ]);
+            $this->view->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $page['keywords']
+            ]);
+
+            //получаем декодированный json
+            $content = json_decode($page['content']);
+
+            //если нет ошибки json`a то записываем в переменную массив
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $this->content = $content;
+            } else {
+                //если ошибка json`a то записываем в переменную строку
+                $this->content = $page['content'];
+            }
+        }
 
         return parent::beforeAction($action);
     }
@@ -101,9 +116,9 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $page = $this->page;
+        $content = $this->content;
 
-        return $this->render('index', compact('page'));
+        return $this->render('index', compact('content'));
     }
 
     /**
@@ -147,7 +162,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
-        $page = $this->page;
+        $content = $this->content;
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -156,7 +171,7 @@ class SiteController extends Controller
         }
         return $this->render('contact', [
             'model' => $model,
-            'page'  => $page,
+            'content'  => $content,
         ]);
     }
 
@@ -168,9 +183,9 @@ class SiteController extends Controller
     public function actionDelivery()
     {
 
-        $page = $this->page;
+        $content = $this->content;
 
-        return $this->render('delivery', compact('page'));
+        return $this->render('delivery', compact('content'));
     }
 
     /**
@@ -180,8 +195,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        $page = $this->page;
-        return $this->render('about', compact('page'));
+        $content = $this->content;
+        return $this->render('about', compact('content'));
     }
 
 
@@ -211,10 +226,10 @@ class SiteController extends Controller
 //            'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider,
 //        ]);
-        $page = $this->page;
+        $content = $this->content;
         return $this->render('news', [
             'dataProvider' => $dataProvider,
-            'page' => $page,
+            'content' => $content,
 //            'pages' => $pages,
         ]);
     }
@@ -227,14 +242,14 @@ class SiteController extends Controller
      */
     public function actionSearch()
     {
-        $page = $this->page;
+        $content = $this->content;
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('news', [
 
             'dataProvider' => $dataProvider,
-            'page' => $page,
+            'content' => $content,
 //            'model'=>$searchModel,
         ]);
 
@@ -246,8 +261,8 @@ class SiteController extends Controller
      */
     public function actionInvoice()
     {
-        $page = $this->page;
-        return $this->render('invoice', compact('page'));
+        $content = $this->content;
+        return $this->render('invoice', compact('content'));
     }
 
     /**
@@ -255,8 +270,8 @@ class SiteController extends Controller
      */
     public function actionTracking()
     {
-        $page = $this->page;
-        return $this->render('tracking', compact('page'));
+        $content = $this->content;
+        return $this->render('tracking', compact('content'));
     }
 
     /**
@@ -264,8 +279,8 @@ class SiteController extends Controller
      */
     public function actionServices()
     {
-        $page = $this->page;
-        return $this->render('services', compact('page'));
+        $content = $this->content;
+        return $this->render('services', compact('content'));
     }
 
     /**
@@ -273,8 +288,8 @@ class SiteController extends Controller
      */
     public function actionCalculate()
     {
-        $page = $this->page;
-        return $this->render('calculate', compact('page'));
+        $content = $this->content;
+        return $this->render('calculate', compact('content'));
     }
 
     /**
@@ -282,8 +297,8 @@ class SiteController extends Controller
      */
     public function actionClient()
     {
-        $page = $this->page;
-        return $this->render('client', compact('page'));
+        $content = $this->content;
+        return $this->render('client', compact('content'));
     }
 
 

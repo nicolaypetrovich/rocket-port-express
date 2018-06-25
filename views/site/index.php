@@ -1,4 +1,3 @@
-
 	<section class="main" id="main">
 		<div class="container">
 			<div class="main-hat d-flex align-items-center">

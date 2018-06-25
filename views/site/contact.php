@@ -23,10 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </section>
 <?php
-
-$repeater = json_decode($page->content);
 $i=0;
-foreach ($repeater as $item) { $i++; ?>
+foreach ($content as $item) { $i++; ?>
     <section class="contact<?=$i?>" id="contact<?=$i?>">
          <div class="container">
              <h3 class="contact__title">

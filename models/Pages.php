@@ -14,15 +14,8 @@ use Yii;
  * @property string $description
  * @property string $content
  */
-class Page extends \yii\db\ActiveRecord
+class Pages extends \yii\db\ActiveRecord
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'pages';
-    }
 
     /**
      * @inheritdoc
