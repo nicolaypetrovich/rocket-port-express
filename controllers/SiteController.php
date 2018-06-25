@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\CustomerMessages;
 use app\models\News;
 use app\models\NewsSearch;
 use app\models\Ordercall;
@@ -326,19 +327,37 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionCreateOrderCall()
+{
+
+    $model = new Ordercall();
+    $data = Yii::$app->request->post();
+    if (isset($data['call_name']) && isset($data['call_phone']) && Yii::$app->request->isAjax) {
+        $model->name = $data['call_name'];
+        $model->phone = $data['call_phone'];
+        if ($model->validate() && $model->save()) {
+            return 'success';
+        }
+    }
+    return 'fail';
+}
+
+
+    public function actionCreateCustomerMessage()
     {
 
-        $model = new Ordercall();
+        $model = new CustomerMessages();
         $data = Yii::$app->request->post();
-        if (isset($data['call_name']) && isset($data['call_phone']) && Yii::$app->request->isAjax) {
-            $model->name = $_POST['call_name'];
-            $model->phone = $_POST['call_phone'];
+        if (isset($data['cm_name']) && isset($data['cm_email']) && isset($data['cm_message']) && Yii::$app->request->isAjax) {
+            $model->name = $data['cm_name'];
+            $model->email = $data['cm_email'];
+            $model->text = $data['cm_message'];
             if ($model->validate() && $model->save()) {
                 return 'success';
             }
         }
         return 'fail';
     }
+
 
 
     /**
