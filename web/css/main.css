@@ -339,13 +339,17 @@ label {
 	line-height: 27px;
 }
 
-#mail {
+.header .hat-up .address-box .contact-box__text {
 	background: url(../img/marker.png) no-repeat;
 	padding-left: 31px;
 }
 
 .contact-box__text {
 	margin-top: 14px;
+}
+
+.contact-box__text p {
+	width: 115px;
 }
 
 /*---menu---*/

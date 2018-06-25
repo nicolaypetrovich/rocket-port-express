@@ -18,9 +18,14 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Media;
+use app\models\Pages;
 
 class SiteController extends Controller
 {
+
+    //переменная для передачи контента во вьюхи
+    public $content;
+
     /**
      * {@inheritdoc}
      */
@@ -61,6 +66,49 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        //получаем слаг экшена
+        $action = $this->action->id;
+
+        //берем запись из бд по слагу
+        $page = Pages::find()->where(['=', 'slug', $action])->one();
+
+        //если запись сущевствует то формируем мета теги и контент
+        if($page) {
+
+            $this->view->title = $page['title'] . ' | Port Express';
+
+            $this->view->registerMetaTag([
+                'name' => 'description',
+                'content' => $page['description']
+            ]);
+            $this->view->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $page['keywords']
+            ]);
+
+            //получаем декодированный json
+            $content = json_decode($page['content']);
+
+            //если нет ошибки json`a то записываем в переменную массив
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $this->content = $content;
+            } else {
+                //если ошибка json`a то записываем в переменную строку
+                $this->content = $page['content'];
+            }
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -134,6 +182,7 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $content = $this->content;
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -142,7 +191,21 @@ class SiteController extends Controller
         }
         return $this->render('contact', [
             'model' => $model,
+            'content'  => $content,
         ]);
+    }
+
+    /**
+     * Display delivery page
+     *
+     * @return string
+     */
+    public function actionDelivery()
+    {
+
+        $content = $this->content;
+
+        return $this->render('delivery', compact('content'));
     }
 
     /**
@@ -152,7 +215,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $content = $this->content;
+        return $this->render('about', compact('content'));
     }
 
 
@@ -190,18 +254,65 @@ class SiteController extends Controller
      */
     public function actionSearch()
     {
-
+        $content = $this->content;
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('news', [
 
             'dataProvider' => $dataProvider,
+            'content' => $content,
 //            'model'=>$searchModel,
         ]);
 
 
     }
+
+    /**
+     * @return string
+     */
+    public function actionInvoice()
+    {
+        $content = $this->content;
+        return $this->render('invoice', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionTracking()
+    {
+        $content = $this->content;
+        return $this->render('tracking', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionServices()
+    {
+        $content = $this->content;
+        return $this->render('services', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCalculate()
+    {
+        $content = $this->content;
+        return $this->render('calculate', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionClient()
+    {
+        $content = $this->content;
+        return $this->render('client', compact('content'));
+    }
+
 
 
     /**
@@ -274,4 +385,5 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 }

@@ -74,11 +74,15 @@ AppAsset::register($this);
                     <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
                         Личный кабинет
                     </a>
-                    <p class="contact-box__text" id="mail">
+                    <div class="contact-box__text">
+                    <span>Наш адрес:</span>
+                    <p>
                         <?php
                         //todo: id="mail"?? Is there a way to remove <br> without breaking code?
                         echo ($header_settings['global_address']['value']); ?>
                     </p>
+
+                    </div>
                 </div>
             </div>
 
@@ -181,16 +185,16 @@ AppAsset::register($this);
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
-                        <a href="tel:+7(8202)202148" class="contact-box__tel">
-                            8 (800) 511-98-11
+                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>" class="contact-box__tel">
+                            <?php echo ($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <p class="contact-box__text">
-                            г. Череповец, ул. К.Маркса, д. 78
+                            <?php echo ($header_settings['global_address']['value']); ?>
                         </p>
-                        <a href="mailto:info@port-express.net" class="contact-box__link">
-                            info@port-express.net
+                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>" class="contact-box__link">
+                            <?php echo ($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
