@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\CustomerMessages;
 use app\models\News;
 use app\models\NewsSearch;
+use app\models\Offices;
 use app\models\Ordercall;
 use app\models\Settings;
 use Yii;
@@ -190,9 +191,14 @@ class SiteController extends Controller
 
             return $this->refresh();
         }
+
+        $offices = new Offices();
+        $offices_list = $offices::find()->asArray()->all();
+
         return $this->render('contact', [
             'model' => $model,
             'content'  => $content,
+            'offices_list' => $offices_list,
         ]);
     }
 

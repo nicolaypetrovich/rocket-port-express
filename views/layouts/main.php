@@ -192,7 +192,7 @@ AppAsset::register($this);
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <p class="contact-box__text">
-                            <?php echo ($header_settings['global_address']['value']); ?>
+                            Наш адрес: <?php echo ($header_settings['global_address']['value']); ?>
                         </p>
                         <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>" class="contact-box__link">
                             <?php echo ($header_settings['global_email']['value']); ?>
