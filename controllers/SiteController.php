@@ -205,7 +205,6 @@ class SiteController extends Controller
     {
 
         $content = $this->content;
-
         return $this->render('delivery', compact('content'));
     }
 
@@ -217,7 +216,16 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $content = $this->content;
-        return $this->render('about', compact('content'));
+        $meta = Settings::find()->select('value')
+            ->where(['or', ['key'=>'about_video'], ['key'=>'about_slider'] ])
+            ->asArray()
+            ->all();
+        $meta[0]['value'] = json_decode($meta[0]['value']);
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id'=>$meta[0]['value']])
+            ->asArray()
+            ->all();
+        return $this->render('about', compact('content', 'meta', 'media'));
     }
 
 
