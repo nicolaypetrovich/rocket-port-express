@@ -24,37 +24,37 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 <?php
 $i=0;
-foreach ($content as $item) { $i++; ?>
+foreach ($offices_list as $item) { $i++; ?>
     <section class="contact<?=$i?>" id="contact<?=$i?>">
          <div class="container">
              <h3 class="contact__title">
                  <span class="red">
                      Наш адрес в городе
-                 </span> <?=$item->city?>:
+                 </span> <?=$item['city']?>:
              </h3>
              <div class="d-flex">
                  <div class="contact__box_1">
                      <p class="contact__address">
-                         <?=$item->address?>
+                         <?=$item['address']?>
                      </p>
                      <div class="contact__phones d-flex align-items-center">
                          <div class="contact__phones_box d-flex flex-column">
-                             <a href="tel:<?=$item->phone?>" class="contact-box__tel">
-                                 <?=$item->phone?>
+                             <a href="tel:<?=$item['phone']?>" class="contact-box__tel">
+                                 <?=$item['phone']?>
                              </a>
                          </div>
                          <div class="contact__mode">
-                             <?=$item->working_hours?>
+                             <?=$item['working_hours']?>
                          </div>
                          <div>
                              <div class="contact__mail">
-                                 <a href="mailto:<?=$item->email?>" class="contact__link">
-                                     <?=$item->email?>
+                                 <a href="mailto:<?=$item['email']?>" class="contact__link">
+                                     <?=$item['email']?>
                                  </a>
                              </div>
                              <div class="contact__site">
-                                 <a href="<?=$item->link?>" class="contact__link">
-                                     <?=$item->link?>
+                                 <a href="<?=$item['url']?>" class="contact__link">
+                                     <?=$item['url']?>
                                  </a>
                              </div>
                          </div>
@@ -70,12 +70,12 @@ foreach ($content as $item) { $i++; ?>
     </section>
     <section class="map<?=$i?>">
         <div>
-            <script type="text/javascript" charset="utf-8" async src="<?=$item->map?>"></script>
+            <script type="text/javascript" charset="utf-8" async src="<?=$item['map']?>"></script>
         </div>
         <div class="container">
             <div class="footer__title red">
                 <p>
-                    <?=$item->city?>
+                    <?=$item['city']?>
                 </p>
             </div>
         </div>
