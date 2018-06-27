@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\CustomerMessages;
 use app\models\News;
 use app\models\NewsSearch;
+use app\models\Offices;
 use app\models\Ordercall;
 use app\models\Settings;
 use Yii;
@@ -18,9 +20,14 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Media;
+use app\models\Pages;
 
 class SiteController extends Controller
 {
+
+    //переменная для передачи контента во вьюхи
+    public $content;
+
     /**
      * {@inheritdoc}
      */
@@ -61,6 +68,49 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+
+    /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        //получаем слаг экшена
+        $action = $this->action->id;
+
+        //берем запись из бд по слагу
+        $page = Pages::find()->where(['=', 'slug', $action])->one();
+
+        //если запись сущевствует то формируем мета теги и контент
+        if($page) {
+
+            $this->view->title = $page['title'] . ' | Port Express';
+
+            $this->view->registerMetaTag([
+                'name' => 'description',
+                'content' => $page['description']
+            ]);
+            $this->view->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $page['keywords']
+            ]);
+
+            //получаем декодированный json
+            $content = json_decode($page['content']);
+
+            //если нет ошибки json`a то записываем в переменную массив
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $this->content = $content;
+            } else {
+                //если ошибка json`a то записываем в переменную строку
+                $this->content = $page['content'];
+            }
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -134,15 +184,35 @@ class SiteController extends Controller
      */
     public function actionContact()
     {
+        $content = $this->content;
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
 
             return $this->refresh();
         }
+
+        $offices = new Offices();
+        $offices_list = $offices::find()->asArray()->all();
+
         return $this->render('contact', [
             'model' => $model,
+            'content'  => $content,
+            'offices_list' => $offices_list,
         ]);
+    }
+
+    /**
+     * Display delivery page
+     *
+     * @return string
+     */
+    public function actionDelivery()
+    {
+
+        $content = $this->content;
+
+        return $this->render('delivery', compact('content'));
     }
 
     /**
@@ -152,7 +222,8 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $content = $this->content;
+        return $this->render('about', compact('content'));
     }
 
 
@@ -190,18 +261,65 @@ class SiteController extends Controller
      */
     public function actionSearch()
     {
-
+        $content = $this->content;
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('news', [
 
             'dataProvider' => $dataProvider,
+            'content' => $content,
 //            'model'=>$searchModel,
         ]);
 
 
     }
+
+    /**
+     * @return string
+     */
+    public function actionInvoice()
+    {
+        $content = $this->content;
+        return $this->render('invoice', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionTracking()
+    {
+        $content = $this->content;
+        return $this->render('tracking', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionServices()
+    {
+        $content = $this->content;
+        return $this->render('services', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionCalculate()
+    {
+        $content = $this->content;
+        return $this->render('calculate', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionClient()
+    {
+        $content = $this->content;
+        return $this->render('client', compact('content'));
+    }
+
 
 
     /**
@@ -215,19 +333,37 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionCreateOrderCall()
+{
+
+    $model = new Ordercall();
+    $data = Yii::$app->request->post();
+    if (isset($data['call_name']) && isset($data['call_phone']) && Yii::$app->request->isAjax) {
+        $model->name = $data['call_name'];
+        $model->phone = $data['call_phone'];
+        if ($model->validate() && $model->save()) {
+            return 'success';
+        }
+    }
+    return 'fail';
+}
+
+
+    public function actionCreateCustomerMessage()
     {
 
-        $model = new Ordercall();
+        $model = new CustomerMessages();
         $data = Yii::$app->request->post();
-        if (isset($data['call_name']) && isset($data['call_phone']) && Yii::$app->request->isAjax) {
-            $model->name = $_POST['call_name'];
-            $model->phone = $_POST['call_phone'];
+        if (isset($data['cm_name']) && isset($data['cm_email']) && isset($data['cm_message']) && Yii::$app->request->isAjax) {
+            $model->name = $data['cm_name'];
+            $model->email = $data['cm_email'];
+            $model->text = $data['cm_message'];
             if ($model->validate() && $model->save()) {
                 return 'success';
             }
         }
         return 'fail';
     }
+
 
 
     /**
@@ -274,4 +410,5 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 }

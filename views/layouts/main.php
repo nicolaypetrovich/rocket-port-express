@@ -74,11 +74,15 @@ AppAsset::register($this);
                     <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
                         Личный кабинет
                     </a>
-                    <p class="contact-box__text" id="mail">
+                    <div class="contact-box__text">
+                    <span>Наш адрес:</span>
+                    <p>
                         <?php
                         //todo: id="mail"?? Is there a way to remove <br> without breaking code?
                         echo ($header_settings['global_address']['value']); ?>
                     </p>
+
+                    </div>
                 </div>
             </div>
 
@@ -144,6 +148,7 @@ AppAsset::register($this);
             </div>
             <script>
                 var createcalllink='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
+                var createcus_message_link='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-customer-message'); ?>';
             </script>
         </div>
     </header>
@@ -181,16 +186,16 @@ AppAsset::register($this);
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
-                        <a href="tel:+7(8202)202148" class="contact-box__tel">
-                            8 (800) 511-98-11
+                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>" class="contact-box__tel">
+                            <?php echo ($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <p class="contact-box__text">
-                            г. Череповец, ул. К.Маркса, д. 78
+                            Наш адрес: <?php echo ($header_settings['global_address']['value']); ?>
                         </p>
-                        <a href="mailto:info@port-express.net" class="contact-box__link">
-                            info@port-express.net
+                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>" class="contact-box__link">
+                            <?php echo ($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
@@ -288,10 +293,10 @@ AppAsset::register($this);
                         ЗАРЕГИСТРИРОВАТЬСЯ
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input">
                     </div>
                     <div>
-                        <input type="text" placeholder="E-mail" class="required email popup__input input">
+                        <input type="email" name="cm_email" placeholder="E-mail" class="required email popup__input input">
                     </div>
                     <div>
                         <input type="text" placeholder="Организация (не обязательно)" class="popup__input input">
@@ -343,17 +348,17 @@ AppAsset::register($this);
                         Задать вопрос службе поддержки
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" class="required popup__input input">
+                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="text" placeholder="Ваш E-mail" class="required popup__input input">
+                        <input type="email" name="cm_email" placeholder="Ваш E-mail" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <textarea rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
-                                  class="feed__input input"></textarea>
+                        <textarea name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
+                                  class="feed__input input" autocomplete="off"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox26" name="checkbox">
+                        <input type="checkbox" id="checkbox26" name="checkbox" autocomplete="off">
                         <label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
                             <span>
                                 Я согласен с

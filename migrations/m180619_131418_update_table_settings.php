@@ -33,7 +33,7 @@ class m180619_131418_update_table_settings extends Migration
         $this->insert('settings', [
             'id' => $i++,
             'key' => 'global_address',
-            'value' => "Наш адрес:<br>г. Череповец, ул.<br>К.Маркса, д. 78",
+            'value' => "г. Череповец, ул. К.Маркса, д. 78",
         ]);
 
 
