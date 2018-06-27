@@ -35,13 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php break; } ?>
                 <?php } ?>
             </div>
-            <?php echo $meta[1]['value']; ?>
+
             <div class="videoframe">
-                <div id="player"></div>
-                <div id="thumbnail_container" class="thumbnail_container">
-                    <img class="thumbnail" id="thumbnail" src="img/video-bg.jpg" />
-                    <a class="start-video"><img width="113" src="img/play-button.png"></a>
-                </div>
+                <?php  echo $meta[1]['value']; ?>
             </div>
         </div>
     </div>
