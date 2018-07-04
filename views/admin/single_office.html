@@ -253,12 +253,12 @@ desired effect
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="about.html">О компании</a></li>
-            <li><a href="services.html">Услуги и тарифы</a></li>
-            <li><a href="clients.html">Клиентам</a></li>
-            <li><a href="delivery.html">Доставка</a></li>
-         </ul>
+           <ul class="treeview-menu">
+              <li><a href="about.html">О компании</a></li>
+              <li><a href="services.html">Услуги и тарифы</a></li>
+              <li><a href="clients.html">Клиентам</a></li>
+              <li><a href="delivery.html">Доставка</a></li>
+           </ul>
         </li>
         <li><a href="offices.html"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
         <li><a href="news.html"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
@@ -289,69 +289,44 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-      <div class="box-item">
-        <div class="table-responsive">
-                <table class="table news_tb">
-                  <thead>
-                  <tr>
-                    <th>Город</th>
-                    <th>Адрес</th>
-                    <th>Телефон</th>
-                    <th>E-mail</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>  
-                       Череповец
-                      </td>
-                      <td> 162600, Вологодская область, г. Череповец, ул. К.Маркса, д. 78 </td>
-                      <td>8(800) 511-98-11</td>
-                      <td>
-                        info@port-express.net
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
-
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>  
-                       Череповец
-                      </td>
-                      <td> 162600, Вологодская область, г. Череповец, ул. К.Маркса, д. 78 </td>
-                      <td>8(800) 511-98-11</td>
-                      <td>
-                        info@port-express.net
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
-
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>  
-                       Череповец
-                      </td>
-                      <td> 162600, Вологодская область, г. Череповец, ул. К.Маркса, д. 78 </td>
-                      <td>8(800) 511-98-11</td>
-                      <td>
-                        info@port-express.net
-                      </td>
-                      <td>
-                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
-
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-      </div>
-  
-  </section>
+      <div class="box-bl">
+        <form>
+          <div class="box-item">
+            <div class="box-item-inner">
+              <label>Город</label>
+              <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+              <label>Адрес</label>
+              <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+                <label>Телефон</label>
+                <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+                <label>Время работы</label>
+                <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+                <label>Почта</label>
+                <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+              <label>Сайт</label>
+              <input type="text" name="" class="form-control">
+            </div>
+            <div class="box-item-inner">
+              <label>Карта</label>
+              <div id="map" class="offices-map"></div>
+              <input type="hidden" id="maps_cords" name="map" value="">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-block btn-warning btn-save">Сохранить</button>
+        </form>
+     </div>
+     
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -457,6 +432,59 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+<script type="text/javascript">
 
+  /*------map-----------*/
+    ymaps.ready(init);
+    function init() {
+       var myPlacemark,
+       myMap = new ymaps.Map('map', {
+           center: [55.753994, 37.622093],
+           zoom: 9
+       }, {
+           searchControlProvider: 'yandex#search'
+       });
+      myMap.events.add('click', function (e) {
+         var coords = e.get('coords');
+         if (myPlacemark) {
+             myPlacemark.geometry.setCoordinates(coords);
+         }
+         else {
+             myPlacemark = createPlacemark(coords);
+             myMap.geoObjects.add(myPlacemark);
+             myPlacemark.events.add('dragend', function () {
+                 getAddress(myPlacemark.geometry.getCoordinates());
+             });
+         }
+         getAddress(coords);
+      });
+      function createPlacemark(coords) {
+         return new ymaps.Placemark(coords, {
+             iconCaption: 'поиск...'
+         }, {
+             preset: 'islands#violetDotIconWithCaption',
+             draggable: true
+         });
+      }
+      function getAddress(coords) {
+       document.getElementById('maps_cords').value = coords;
+       //console.dir(coords);
+         myPlacemark.properties.set('iconCaption', 'поиск...');
+         ymaps.geocode(coords).then(function (res) {
+             var firstGeoObject = res.geoObjects.get(0);
+
+             myPlacemark.properties
+                 .set({
+                     iconCaption: [
+                         firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
+                         firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+                     ].filter(Boolean).join(', '),
+                     balloonContent: firstGeoObject.getAddressLine()
+                 });
+         });
+      }
+   }
+
+</script>
 </body>
 </html>

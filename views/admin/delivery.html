@@ -242,20 +242,7 @@ desired effect
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-
-      <!-- Sidebar Menu -->
+    <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
@@ -302,8 +289,33 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-      <div class="box-item">
-          <div class="box-textarea"><textarea class="form-control" placeholder="Введите текст"></textarea></div>
+      <div class="box-bl">
+        <form>
+          <div class="box-item">
+              <div class="box-textarea"><textarea class="form-control" placeholder="Введите текст"></textarea></div>
+              
+              <div class="box-item-del">
+                <h3>Здесь лежат какие-то настройки доставки</h3>
+                <div class="box-item-del-inner">
+                  <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i></button>
+                  <input type="text" placeholder="Введите данные" class="form-control">
+                  <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Выбор чего-то
+                      </label>
+                    </div>
+                    <div class="box-item-del-data">
+                      <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i></button>
+                      <input type="text" placeholder="Введите данные" class="form-control first">
+                      <input type="text" placeholder="Введите данные" class="form-control second">
+                    </div>
+                    <button type="button" class="btn btn-plus-second" data-widget="collapse">Добавить</button>
+                  </div>
+                  <button type="button" class="btn btn-plus-first" data-widget="collapse">Добавить</button>
+              </div>
+           </div>
+          <button type="submit" class="btn btn-block btn-warning btn-save">Сохранить</button>
+       </form>
       </div>
  
      
@@ -414,15 +426,19 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. -->
 <script type="text/javascript">
-  $('.btn-plus').on('click', function(){
-    var f = $(this).parents('.box-item');
-    console.log(f);
-    $(this).parents('.box-item').clone(true).insertAfter(f);
-  });
-   $('.btn-close').on('click', function(){
-    var f = $(this).parents('.box-item');
-    console.log(f);
-    $(this).parents('.box-item').remove();
+  $(document).ready(function(){
+    $('.btn-plus-first').on('click', function(){
+      var b = $(this).parent().find('.box-item-del-inner:not(.active)');
+      b.clone(true).insertBefore($(this)).addClass('active');
+    });
+    $('.btn-plus-second').on('click', function(){
+      var b = $(this).prev('.box-item-del-data');
+      $(this).prev('.box-item-del-data').clone(true).insertAfter(b).addClass('active');
+      $(this).prev('.box-item-del-data').find("input:text").val("");
+    });
+     $('.btn-close').on('click', function(){
+     $(this).parent().remove();
+    });
   });
 </script>
 </body>
