@@ -2399,3 +2399,6 @@ img.thumbnail {
 	background: #999;
 }
 
+.map-init{
+	height: 450px;
+}

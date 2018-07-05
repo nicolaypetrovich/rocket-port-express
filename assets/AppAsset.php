@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
 //        'js/jquery-3.3.1.js',
+        '//api-maps.yandex.ru/2.1/?lang=ru_RU',
         'js/forms.js',
         'js/jquery.maskedinput.min.js',
         'js/jquery.magnific-popup.min.js',

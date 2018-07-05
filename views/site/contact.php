@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 <?php
 $i=0;
-foreach ($offices_list as $item) { $i++; ?>
+foreach ($offices_list as $item) { ?>
     <section class="contact<?=$i?>" id="contact<?=$i?>">
          <div class="container">
              <h3 class="contact__title">
@@ -68,10 +68,8 @@ foreach ($offices_list as $item) { $i++; ?>
              </div>
          </div>
     </section>
-    <section class="map<?=$i?>">
-        <div>
-            <script type="text/javascript" charset="utf-8" async src="<?=$item['map']?>"></script>
-        </div>
+    <section class="map">
+        <div class="map-init" id="map<?=$i?>"></div>
         <div class="container">
             <div class="footer__title red">
                 <p>
@@ -80,7 +78,49 @@ foreach ($offices_list as $item) { $i++; ?>
             </div>
         </div>
     </section>
-<?php } ?>
+<?php $i++; } ?>
+<script type="text/javascript">
+    window.onload = function(){
+        ymaps.ready(init);
+        function init() {
+            //$i - максимальное количество елементов с картой на странице
+            //$s - текущий обрабатываемые елемент
+            <?php for($s=0;$s<$i;$s++){ ?>
+                //формируем список всех координат и карт (карты стразу рендерим)
+                var myPlacemark<?=$s?>,
+                    coords<?=$s;?> = '<?=$offices_list[$s]['map']?>',
+                    myMap<?=$s?> = new ymaps.Map('map<?=$s?>', {
+                    center: coords<?=$s?>.split(","),
+                    zoom: 17
+                }, {
+                    searchControlProvider: 'yandex#search'
+                });
+
+                //создаем из полученных координат метки на карту
+                myPlacemark<?=$s?> = createPlacemark(coords<?=$s?>.split(","));
+                //добавляем на карту метку
+                myMap<?=$s?>.geoObjects.add(myPlacemark<?=$s?>);
+                //получаем данные для надписи возле метки
+                getAddress(coords<?=$s?>, myPlacemark<?=$s?>);
+            <?php } ?>
+            function createPlacemark(coords) {
+                return new ymaps.Placemark(coords, {
+                    iconCaption: 'поиск...'
+                }, {
+                    preset: 'islands#redDotIconWithCaption',
+                    draggable: true
+                });
+            }
+            function getAddress(coords, s) {
+                s.properties.set('iconCaption', 'поиск...');
+                ymaps.geocode(coords).then(function (res) {
+                    var firstGeoObject = res.geoObjects.get(0);
+                    s.properties.set({iconCaption:[firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()].filter(Boolean).join(', '),balloonContent: firstGeoObject.getAddressLine()});
+                });
+            }
+        }
+    }
+</script>
 <section class="contact__feedback d-flex">
     <div class="feed__leftside">
         <form class="feed__form" name="feed__form" id="feed__form">
