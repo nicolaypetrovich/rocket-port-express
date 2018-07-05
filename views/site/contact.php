@@ -80,45 +80,27 @@ foreach ($offices_list as $item) { ?>
     </section>
 <?php $i++; } ?>
 <script type="text/javascript">
-    window.onload = function(){
-        ymaps.ready(init);
-        function init() {
-            //$i - максимальное количество елементов с картой на странице
-            //$s - текущий обрабатываемые елемент
-            <?php for($s=0;$s<$i;$s++){ ?>
-                //формируем список всех координат и карт (карты стразу рендерим)
-                var myPlacemark<?=$s?>,
-                    coords<?=$s;?> = '<?=$offices_list[$s]['map']?>',
-                    myMap<?=$s?> = new ymaps.Map('map<?=$s?>', {
-                    center: coords<?=$s?>.split(","),
-                    zoom: 17
-                }, {
-                    searchControlProvider: 'yandex#search'
-                });
+    function initCmap(){
+        //$i - максимальное количество елементов с картой на странице
+        //$s - текущий обрабатываемые елемент
+        <?php for($s=0;$s<$i;$s++){ ?>
+            //формируем список всех координат и карт (карты стразу рендерим)
+            var Placemark<?=$s?>,
+                coords<?=$s;?> = '<?=$offices_list[$s]['map']?>',
+                yMap<?=$s?> = new ymaps.Map('map<?=$s?>', {
+                center: coords<?=$s?>.split(","),
+                zoom: 17
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
 
-                //создаем из полученных координат метки на карту
-                myPlacemark<?=$s?> = createPlacemark(coords<?=$s?>.split(","));
-                //добавляем на карту метку
-                myMap<?=$s?>.geoObjects.add(myPlacemark<?=$s?>);
-                //получаем данные для надписи возле метки
-                getAddress(coords<?=$s?>, myPlacemark<?=$s?>);
-            <?php } ?>
-            function createPlacemark(coords) {
-                return new ymaps.Placemark(coords, {
-                    iconCaption: 'поиск...'
-                }, {
-                    preset: 'islands#redDotIconWithCaption',
-                    draggable: true
-                });
-            }
-            function getAddress(coords, s) {
-                s.properties.set('iconCaption', 'поиск...');
-                ymaps.geocode(coords).then(function (res) {
-                    var firstGeoObject = res.geoObjects.get(0);
-                    s.properties.set({iconCaption:[firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()].filter(Boolean).join(', '),balloonContent: firstGeoObject.getAddressLine()});
-                });
-            }
-        }
+            //создаем из полученных координат метки на карту
+            Placemark<?=$s?> = createPlacemark(coords<?=$s?>.split(","));
+            //добавляем на карту метку
+            yMap<?=$s?>.geoObjects.add(Placemark<?=$s?>);
+            //получаем данные для надписи возле метки
+            getAddress(coords<?=$s?>, Placemark<?=$s?>);
+        <?php } ?>
     }
 </script>
 <section class="contact__feedback d-flex">

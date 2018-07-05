@@ -2400,5 +2400,9 @@ img.thumbnail {
 }
 
 .map-init{
-	height: 450px;
+	height: 260px;
+}
+
+#mainMap{
+	height: 260px;
 }

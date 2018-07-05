@@ -156,10 +156,24 @@ AppAsset::register($this);
     <?= $content ?>
 
     <footer class="footer" id="footer">
-        <div>
-            <script type="text/javascript" charset="utf-8" async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&amp;width=100%25&amp;height=260&amp;lang=ru_UA&amp;scroll=false"></script>
-        </div>
+        <div id="mainMap"></div>
+            <script>
+                window.onload = function(){
+                    var mainMapPlacemark,
+                        mainMapCoords = '<?=$header_settings['global_mainMap']['value']?>',
+                        mainMap = new ymaps.Map('mainMap', {
+                            center: mainMapCoords.split(","),
+                            zoom: 17
+                        }, {
+                            searchControlProvider: 'yandex#search'
+                        });
+                    mainMapPlacemark = createPlacemark(mainMapCoords.split(","));
+                    mainMap.geoObjects.add(mainMapPlacemark);
+                    getAddress(mainMapCoords, mainMapPlacemark);
+                    //check for contact page (render contact page maps if render function exists)
+                    if(typeof initCmap === "function"){initCmap();}
+                }
+            </script>
         <div class="container">
             <div class="footer__title red">
                 <p>
@@ -385,6 +399,6 @@ AppAsset::register($this);
         </div>
     </section>
     <?php $this->endBody() ?>
-    </body>
-    </html>
+</body>
+</html>
 <?php $this->endPage() ?>
