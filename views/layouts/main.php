@@ -71,9 +71,13 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <div class="address-box">
-                    <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
-                        Личный кабинет
-                    </a>
+                    <?php if(Yii::$app->user->isGuest){ ?>
+                        <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
+                            Личный кабинет
+                        </a>
+                    <?php }else{?>
+                        <a href="/private" class="contact-box__link">Личный кабинет</a> <a id="logout_link" class="contact-box__link">Выйти</a>
+                    <?php };?>
                     <div class="contact-box__text">
                     <span>Наш адрес:</span>
                     <p>
@@ -261,15 +265,45 @@ AppAsset::register($this);
         </div>
         <div id="entry__popup" class="white-popup-block mfp-hide">
             <div class="popup__entry popup">
+                <?php
+                $model= new \app\models\LoginForm();
+                $form = ActiveForm::begin([
+                    'action' => ['login'],
+                    'method' => 'post',
+                    'options' => [
+                            'class' => 'form__ordercall d-flex flex-column align-items-center',
+                            'id' => 'entry__form'
+                    ],
+                ]); ?>
+                <h2 class="section__title rect__title red">
+                    ВХОД В ЛИЧНЫЙ КАБИНЕТ
+                </h2>
+                <span id="login__entry_error"></span>
+                <?= $form->field($model, 'email')->textInput(['placeholder'=>'Логин','class'=>'popup__input input'])->label(false)->error();?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль','class'=>'popup__input input'])->label(false);?>
+                <?= $form->field($model, 'checkbox')->checkBox(array(
+                        'label'=>'<span>Я согласен с <a href="#"> Политикой конфиденциальности </a> и даю согласие на обработку моих данных </span>',
+                        'labelOptions'=>array('class'=>'pt15 d-flex justify-content-center align-items-center','id'=>'checkboxLabel23'),
+                        'disabled'=>false
+                    ));?>
+
+                <div class="d-flex">
+                    <?= Html::submitButton('Войти', ['class' => 'contact-box__btn', 'name' => 'login-button']) ?>
+                    <a href="#reg__popup" class="contact-box__btn popup-with-form">
+                        ЗАРЕГЕСТРИРОВАТЬСЯ
+                    </a>
+                </div>
+                <?php $form = ActiveForm::end(); ?>
+
                 <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
                     <h2 class="section__title rect__title red">
                         ВХОД В ЛИЧНЫЙ КАБИНЕТ
                     </h2>
                     <div>
-                        <input type="text" placeholder="Логин" class="required popup__input input">
+                        <input type="text" placeholder="Логин" name="username" class="required popup__input input">
                     </div>
                     <div>
-                        <input type="password" placeholder="Пароль" class="required popup__input input">
+                        <input type="password" placeholder="Пароль" name="password" class="required popup__input input">
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox23" name="checkbox">

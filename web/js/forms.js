@@ -21,7 +21,7 @@ $(document).ready(function () {
         };
 
         var showValidateError = function (html, text) {
-            html.classList.add('invalid');
+            //html.classList.add('invalid');
             var error = generateError(text);
             html.parentElement.appendChild(error);
         };
@@ -148,8 +148,6 @@ $(document).ready(function () {
                                 success.classList.add('showTab');
                                 setTimeout(function () {
                                     success.classList.remove('showTab');
-                                    // console.log('end');
-                                    // self.submit();
                                     $.magnificPopup.close();
                                     form.reset();
                                 }, 1000);
@@ -175,8 +173,56 @@ $(document).ready(function () {
         }
     }
 
+    // $('#entry__form').on('submit', function(e){
+    //     e.preventDefault();
+    //     var username = $(this)[0].elements[0].value,
+    //         password = $(this)[0].elements[1].value,
+    //         rememberMe = $(this)[0].elements[2].value;
+    //
+    //     $.ajax({
+    //         method:'POST',
+    //         url:'login',
+    //         data:{
+    //             username:username,
+    //             password:password,
+    //             rememberMe:rememberMe
+    //         },
+    //         success:function(r){if(r=='fine'){location.reload();}else{console.log(r)}},
+    //         error:function(r){console.log(r)}
+    //     })
+    // });
+    $('#logout_link').on('click', function(e){
+        e.preventDefault();
+        $.ajax({
+            method:"POST",
+            url:"logout",
+            data:'logout',
+            success:function(r){location.reload();},
+            error:function(r){console.log('error')}
+        })
+    });
+
     window.addEventListener('load', function () {
         validateForm()
     })
 
+
+
+});
+
+$('body').on('beforeSubmit', 'form#entry__form', function () {
+    var form = $(this);
+    $('#login__entry_error')[0].innerHTML = '';
+    if (form.find('.has-error').length) {
+        return false;
+    }
+    $.ajax({
+        url: form.attr('action'),
+        type: 'post',
+        data: form.serialize(),
+        success: function (response) {
+            $('#login__entry_error')[0].innerHTML = response.error[0];
+        }
+    });
+    return false;
 });

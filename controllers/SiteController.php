@@ -8,6 +8,7 @@ use app\models\NewsSearch;
 use app\models\Offices;
 use app\models\Ordercall;
 use app\models\Settings;
+use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -132,14 +133,13 @@ class SiteController extends Controller
 //            ->asArray()
             ->all();
 
-
         $searchModel = new NewsSearch();
         $dataProvider = $searchModel::find()->orderBy(['date' => SORT_DESC])->limit(6)->all();
 
 
         return $this->render('index', [
             'meta' => $meta,
-            'news' => $dataProvider
+            'news' => $dataProvider,
         ]);
     }
 
@@ -150,31 +150,24 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if($model->load(Yii::$app->request->post()) && $model->login())
+        {
             return $this->goBack();
         }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $model->errors;
     }
 
     /**
-     * Logout action.
-     *
-     * @return Response
+     * Logout action
      */
     public function actionLogout()
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        $this->goHome();
+
     }
 
     /**
@@ -318,6 +311,18 @@ class SiteController extends Controller
     {
         $content = $this->content;
         return $this->render('client', compact('content'));
+    }
+
+    /**
+     * @return string
+     */
+    public function actionPrivate()
+    {
+        if(Yii::$app->user->isGuest){
+            $this->goHome();
+        }
+        $content = $this->content;
+        return $this->render('private', compact('content'));
     }
 
 
