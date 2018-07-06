@@ -37,7 +37,7 @@ class m180627_083350_update_offices extends Migration
             'working_hours'   => '<p>Пн.-пт.: с 09.00 до 18.00;без обеда;</p><p>сб.: с 10:00 до 16:00; вс.: выходной</p>',
             'email'           => 'info@port-express.net',
             'url'             => 'www.port-express.net',
-            'map'             => 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&width=100%25&height=260&lang=ru_UA&scroll=false',
+            'map'             => '59.129558886776465,37.91835403282891',
         ]);
         $this->insert('offices', [
             'id'              => 2,
@@ -47,7 +47,7 @@ class m180627_083350_update_offices extends Migration
             'working_hours'   => '<p>Пн.-пт.: с 09.00 до 18.00; без обеда;</p><p>сб.: с 10:00 до 16:00; вс.: выходной</p>',
             'email'           => 'info@port-express.net',
             'url'             => 'www.port-express.net',
-            'map'             => 'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A60874d5b8862268cc9d7933536a60e20b3914eba38d4f2672275ad85f9afa596&width=100%25&height=260&lang=ru_UA&scroll=false',
+            'map'             => '55.75,37.61835403282891',
         ]);
     }
 

@@ -71,9 +71,13 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <div class="address-box">
-                    <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
-                        Личный кабинет
-                    </a>
+                    <?php if(Yii::$app->user->isGuest){ ?>
+                        <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
+                            Личный кабинет
+                        </a>
+                    <?php }else{?>
+                        <a href="/private" class="contact-box__link">Личный кабинет</a> <a id="logout_link" class="contact-box__link">Выйти</a>
+                    <?php };?>
                     <div class="contact-box__text">
                     <span>Наш адрес:</span>
                     <p>
@@ -156,10 +160,24 @@ AppAsset::register($this);
     <?= $content ?>
 
     <footer class="footer" id="footer">
-        <div>
-            <script type="text/javascript" charset="utf-8" async
-                    src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Af68ca9a36edb8070f34f9fae7474370442386ee41851b8f7267328754b6fbb40&amp;width=100%25&amp;height=260&amp;lang=ru_UA&amp;scroll=false"></script>
-        </div>
+        <div id="mainMap"></div>
+            <script>
+                window.onload = function(){
+                    var mainMapPlacemark,
+                        mainMapCoords = '<?=$header_settings['global_mainMap']['value']?>',
+                        mainMap = new ymaps.Map('mainMap', {
+                            center: mainMapCoords.split(","),
+                            zoom: 17
+                        }, {
+                            searchControlProvider: 'yandex#search'
+                        });
+                    mainMapPlacemark = createPlacemark(mainMapCoords.split(","));
+                    mainMap.geoObjects.add(mainMapPlacemark);
+                    getAddress(mainMapCoords, mainMapPlacemark);
+                    //check for contact page (render contact page maps if render function exists)
+                    if(typeof initCmap === "function"){initCmap();}
+                }
+            </script>
         <div class="container">
             <div class="footer__title red">
                 <p>
@@ -248,15 +266,53 @@ AppAsset::register($this);
         </div>
         <div id="entry__popup" class="white-popup-block mfp-hide">
             <div class="popup__entry popup">
-                <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
+                <?php
+                $model= new \app\models\LoginForm();
+                $form = ActiveForm::begin([
+                    'action' => ['login'],
+                    'method' => 'post',
+                    'options' => [
+                            'class' => 'form__ordercall d-flex flex-column align-items-center',
+                            'id' => 'entry__form'
+                    ],
+                ]); ?>
+                <h2 class="section__title rect__title red">
+                    ВХОД В ЛИЧНЫЙ КАБИНЕТ
+                </h2>
+                <span id="login__entry_error"></span>
+                <?= $form->field($model, 'email')->textInput(['placeholder'=>'Логин','class'=>'popup__input input'])->label(false)->error();?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль','class'=>'popup__input input'])->label(false);?>
+                <div class="checkbox-group group-required">
+                        <input type="checkbox" id="checkbox23" name="checkbox">
+                        <label for="checkbox23" id="checkboxLabel23"
+                               class="pt15 d-flex justify-content-center align-items-center">
+                            <span>
+                                Я согласен с
+                                <a href="#">
+                                    Политикой конфиденциальности
+                                </a>
+                                и даю согласие на обработку моих данных
+                            </span>
+                        </label>
+                    </div>
+
+                <div class="d-flex">
+                    <?= Html::submitButton('Войти', ['class' => 'contact-box__btn', 'name' => 'login-button']) ?>
+                    <a href="#reg__popup" class="contact-box__btn popup-with-form">
+                        ЗАРЕГЕСТРИРОВАТЬСЯ
+                    </a>
+                </div>
+                <?php $form = ActiveForm::end(); ?>
+
+<!--                 <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
                     <h2 class="section__title rect__title red">
                         ВХОД В ЛИЧНЫЙ КАБИНЕТ
                     </h2>
                     <div>
-                        <input type="text" placeholder="Логин" class="required popup__input input">
+                        <input type="text" placeholder="Логин" name="username" class="required popup__input input">
                     </div>
                     <div>
-                        <input type="password" placeholder="Пароль" class="required popup__input input">
+                        <input type="password" placeholder="Пароль" name="password" class="required popup__input input">
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox23" name="checkbox">
@@ -279,7 +335,7 @@ AppAsset::register($this);
                             ЗАРЕГЕСТРИРОВАТЬСЯ
                         </a>
                     </div>
-                </form>
+                </form> -->
                 <button type="submit" class="popup-modal-dismiss close-btn">
                     <span class="yui1"></span>
                     <span class="yui2"></span>
@@ -386,6 +442,6 @@ AppAsset::register($this);
         </div>
     </section>
     <?php $this->endBody() ?>
-    </body>
-    </html>
+</body>
+</html>
 <?php $this->endPage() ?>

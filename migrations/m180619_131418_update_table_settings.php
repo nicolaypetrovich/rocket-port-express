@@ -171,6 +171,12 @@ class m180619_131418_update_table_settings extends Migration
             'value' => 15,
         ]);
 
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'global_mainMap',
+            'value' => '10,10',
+        ]);
+
 
         echo "Default settings created.\n";
 

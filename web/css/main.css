@@ -2399,3 +2399,14 @@ img.thumbnail {
 	background: #999;
 }
 
+.map-init{
+	height: 260px;
+}
+
+#mainMap{
+	height: 260px;
+}
+
+.help-block {
+	max-width: 300px;
+}
