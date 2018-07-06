@@ -91,7 +91,7 @@
 									Фамилия Имя Отчество
 								</p>
 								<p class="private__text">
-                                    <?php echo $user['username']?>
+                                    <?php echo $user['name']?>
 								</p>
 							</div>
 							<div class="private__item d-flex align-items-center">

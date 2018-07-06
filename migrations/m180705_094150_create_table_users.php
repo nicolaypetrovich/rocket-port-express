@@ -31,6 +31,7 @@ class m180705_094150_create_table_users extends Migration
     {
        $this->createTable('users', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(50),
             'gender' => $this->integer(),
             'photo' => $this->integer(),
             'address' => $this->string(70),
