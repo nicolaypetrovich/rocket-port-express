@@ -2406,3 +2406,7 @@ img.thumbnail {
 #mainMap{
 	height: 260px;
 }
+
+.help-block {
+	max-width: 300px;
+}

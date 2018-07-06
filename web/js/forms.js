@@ -100,6 +100,8 @@ $(document).ready(function () {
                         }
 
                     }
+
+
                 }
 
                 if (this.querySelector('input[type=radio]')) {
@@ -191,28 +193,32 @@ $(document).ready(function () {
     //         error:function(r){console.log(r)}
     //     })
     // });
-    $('#logout_link').on('click', function(e){
-        e.preventDefault();
-        $.ajax({
-            method:"POST",
-            url:"logout",
-            data:'logout',
-            success:function(r){location.reload();},
-            error:function(r){console.log('error')}
-        })
-    });
+
 
     window.addEventListener('load', function () {
         validateForm()
     })
 
+});
 
-
+$('#logout_link').on('click', function(e){
+    e.preventDefault();
+    $.ajax({
+        method:"POST",
+        url:"logout",
+        data:'logout',
+        success:function(r){location.reload();},
+        error:function(r){console.log('error')}
+    })
 });
 
 $('body').on('beforeSubmit', 'form#entry__form', function () {
     var form = $(this);
     $('#login__entry_error')[0].innerHTML = '';
+    if ($('#checkbox23').prop('checked') == false){
+        $("#checkbox23").parent().addClass("invalid");
+        return false;
+    }
     if (form.find('.has-error').length) {
         return false;
     }

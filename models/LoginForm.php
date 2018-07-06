@@ -17,7 +17,6 @@ class LoginForm extends Model
 
     public $email;
     public $password;
-    public $checkbox;
     public $rememberMe = true;
 
     private $_user = false;
@@ -26,9 +25,8 @@ class LoginForm extends Model
     {
 
         return [
-            [['email', 'password', 'checkbox'], 'required'],
+            [['email', 'password'], 'required'],
             ['email', 'email'],
-            ['checkbox', 'boolean'],
             ['password', 'validatePassword']
         ];
 
@@ -47,10 +45,6 @@ class LoginForm extends Model
             if($user && !$user->validatePassword($this->password))
             {
                 $this->addError('error', 'Неверный пароль.');
-            }
-            if($this->checkbox == false)
-            {
-                $this->addError('error', 'Не отмечена галочка');
             }
         }
     }
