@@ -57,7 +57,7 @@ class m180627_083350_update_offices extends Migration
 
         echo "Default offices deleted\n";
 
-        return false;
+//        return false;
     }
 
 }
