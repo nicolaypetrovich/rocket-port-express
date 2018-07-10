@@ -43,8 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header'=>'Краткий текст'
             ],
             [
-                'attribute'=>'date',
-                'header'=>'Дата'
+                'attribute' => 'date',
+                'label' => 'Дата',
+                'value' => function ($data) {
+                    return date('Y-m-d', strtotime($data->date));
+                },
+                'header' => 'Дата',
             ],
 
             ['class' => 'yii\grid\ActionColumn',

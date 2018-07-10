@@ -1,12 +1,14 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\modules\admin\assets\AdminAsset;
 
@@ -70,7 +72,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="dist/img/user2-160x160.jpg" class="img-circle"
+                                                     alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -135,7 +138,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <!-- The progress bar -->
                                             <div class="progress xs">
                                                 <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar"
                                                      aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
@@ -220,6 +224,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
+            <?php $base= Url::base(true);?>
+            <?php var_dump($base);?>
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
@@ -233,18 +239,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="about">О компании</a></li>
-                        <li><a href="services">Услуги и тарифы</a></li>
-                        <li><a href="clients">Клиентам</a></li>
-                        <li><a href="delivery">Доставка</a></li>
+                        <li><a href="<?=$base?>/admin/admin/about">О компании</a></li>
+                        <li><a href="<?=$base?>/admin/admin/services">Услуги и тарифы</a></li>
+                        <li><a href="<?=$base?>/admin/admin/clients">Клиентам</a></li>
+                        <li><a href="<?=$base?>/admin/admin/delivery">Доставка</a></li>
                     </ul>
                 </li>
-                <li><a href="offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
-                <li><a href="news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
-                <li><a href="media"><i class="fa fa-photo"></i> <span>Изображения</span></a></li>
-                <li><a href="call"><i class="fa fa-phone"></i> <span>Заказ звонка</span></a></li>
-                <li><a href="message"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
-                <li><a href="settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
+                <li><a href="<?=$base?>/admin/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
+                <li><a href="<?=$base?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
+                <li><a href="<?=$base?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a></li>
+                <li><a href="<?=$base?>/admin/admin/call"><i class="fa fa-phone"></i> <span>Заказ звонка</span></a></li>
+                <li><a href="<?=$base?>/admin/admin/message"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
+                <li><a href="<?=$base?>/admin/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
 
             </ul>
             <!-- /.sidebar-menu -->
@@ -268,7 +274,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content container-fluid">
-            <?= $content;?>
+            <?= $content; ?>
         </section>
         <!-- /.content -->
     </div>
@@ -364,20 +370,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <?php $this->endBody() ?>
-<script type="text/javascript">
-    $(document).ready(function(){
 
-        $('.btn-plus').on('click', function(){
-            var f = $(this).prev('.box-item-repeat');
-            $(this).prev('.box-item-repeat').clone(true).insertAfter(f);
-            $(this).prev('.box-item-repeat').find("input:text").val("");
-            $(this).prev('.box-item-repeat').find("textarea").val("");
-        });
-        $('.btn-close').on('click', function(){
-            $(this).parent().remove();
-        });
-    });
-</script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -6,6 +6,9 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
 /* @var $form yii\widgets\ActiveForm */
+$model->date= date('Y-m-d', strtotime($model->date));
+
+
 ?>
 
 <div class="news-form">

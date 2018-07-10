@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\AdminLoginForm;
+use app\models\Settings;
 use Yii;
 use yii\web\Controller;
 
@@ -22,7 +23,14 @@ class AdminController extends Controller
     {
         return $this->render('index');
     }
-
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionHome()
+    {
+        return $this->render('home');
+    }
     /**
      * Renders the index view for the module
      * @return string
@@ -128,7 +136,15 @@ class AdminController extends Controller
      */
     public function actionSettings()
     {
-        return $this->render('settings');
+        $meta = Settings::find()
+            ->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'global'])
+            ->indexBy('key')
+            ->all();
+        return $this->render('settings',[
+            'meta' => $meta
+        ]);
     }
     /**
      * Renders the index view for the module

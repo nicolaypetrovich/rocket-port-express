@@ -31,7 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'name',
             'content:ntext',
-            'date',
+            [
+                'attribute' => 'date',
+                'label' => 'Дата',
+                'value' => function ($data) {
+                    return date('Y-m-d', strtotime($data->date));
+                },
+                'header' => 'Дата',
+            ],
             'shortdesc',
             'slug',
             'title',
@@ -44,7 +51,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     return Html::img($data->media->getImageOfSize());
                 },
-                'header' => 'Фото',
             ],
         ],
     ]) ?>

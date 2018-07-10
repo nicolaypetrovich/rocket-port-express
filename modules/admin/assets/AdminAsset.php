@@ -25,12 +25,17 @@ class AdminAsset extends AssetBundle
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/skin-blue.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
+        'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
 
     ];
     public $js = [
 //        'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'dist/js/adminlte.min.js',
+        'plugins/timepicker/bootstrap-timepicker.min.js',
+        'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+        '//api-maps.yandex.ru/2.1/?lang=ru_RU',
+        'js/admincustom.js',
 //        '/js/twitter-text.js',
 //        '/js/twitter_count.js',
 //        '/js/status-counter.js',

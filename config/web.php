@@ -28,7 +28,7 @@ $config = [
                 'yii\bootstrap\BootstrapPluginAsset' => ['js'=>[]], //removing bootstrap JS
                 'yii\bootstrap\BootstrapAsset' => ['css' => []] //removing bootstrap CSS
             ],
-            'forceCopy'=>false
+//            'forceCopy'=>true
         ],
         'request' => [
             'cookieValidationKey' => 'j72L44Gu8GzPRxQO',
