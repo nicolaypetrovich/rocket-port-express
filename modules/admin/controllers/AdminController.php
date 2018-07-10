@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\AdminLoginForm;
 use app\models\Settings;
+use app\models\Ordercall;
 use Yii;
 use yii\web\Controller;
 
@@ -29,7 +30,16 @@ class AdminController extends Controller
      */
     public function actionHome()
     {
-        return $this->render('home');
+        $meta = Settings::find()->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'index'])
+//            ->where(['like', 'key', 'img'])
+            ->indexBy('key')
+//            ->asArray()
+            ->all();
+        return $this->render('home',[
+            'meta'=>$meta
+            ]);
     }
     /**
      * Renders the index view for the module
@@ -127,6 +137,8 @@ class AdminController extends Controller
      */
     public function actionCall()
     {
+        $dataProvider = Ordercall::find()
+            ->all();
         return $this->render('call');
     }
 

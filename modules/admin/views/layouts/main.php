@@ -231,7 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="home"><i class="fa fa-flag"></i> <span>Главная</span></a></li>
+                <li class="active"><a href="<?=$base?>/admin/admin/home"><i class="fa fa-flag"></i> <span>Главная</span></a></li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-folder"></i> <span>Страницы</span>
                         <span class="pull-right-container">
@@ -248,8 +248,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="<?=$base?>/admin/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
                 <li><a href="<?=$base?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
                 <li><a href="<?=$base?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a></li>
-                <li><a href="<?=$base?>/admin/admin/call"><i class="fa fa-phone"></i> <span>Заказ звонка</span></a></li>
-                <li><a href="<?=$base?>/admin/admin/message"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
+                <li><a href="<?=$base?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a></li>
+                <li><a href="<?=$base?>/admin/customer-messages"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
                 <li><a href="<?=$base?>/admin/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
 
             </ul>

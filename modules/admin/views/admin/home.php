@@ -7,7 +7,7 @@
               <h5>заголовок</h5>
               <input type="text" name="" placeholder="Заполните текст" class="form-control">
             </div>
-            <div class="box-item-inner" placeholder="Заполните текст" class="form-control">
+            <div class="box-item-inner" >
               <h5>заголовок</h5>
               <input type="text" name="" placeholder="Заполните текст" class="form-control">
             </div>
