@@ -61,7 +61,7 @@ class AdminLoginForm extends Model
 //            var_dump($this->getUser());
 //            die();
 
-            return Yii::$app->userAdmin->login($this->getUser(),  3600*24*30 );
+            return Yii::$app->user->login($this->getUser(),  3600*24*30 );
         }
         return false;
     }

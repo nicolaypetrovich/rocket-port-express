@@ -117,6 +117,15 @@ class AdminController extends Controller
      * Renders the index view for the module
      * @return string
      */
+    public function actionCall()
+    {
+        return $this->render('call');
+    }
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionSettings()
     {
         return $this->render('settings');

@@ -27,7 +27,8 @@ $config = [
             'bundles' => [
                 'yii\bootstrap\BootstrapPluginAsset' => ['js'=>[]], //removing bootstrap JS
                 'yii\bootstrap\BootstrapAsset' => ['css' => []] //removing bootstrap CSS
-            ]
+            ],
+            'forceCopy'=>false
         ],
         'request' => [
             'cookieValidationKey' => 'j72L44Gu8GzPRxQO',
@@ -39,22 +40,23 @@ $config = [
 
 
 
-        'userAdmin' => [
+        'user' => [
             'class'=>'yii\web\User',
-            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
+            'identityClass' => 'app\models\UserIdentity',
+//            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
             'enableAutoLogin' => true,
             'identityCookie' => [
                 'name' => '_regularUser',
             ]
         ],
-//        'user' => [
-//            'class'=>'yii\web\User',
-//            'identityClass' => 'app\models\UserIdentity',
-//            'enableAutoLogin' => true,
-//            'identityCookie' => [
-//                'name' => '_regularUser',
-//            ]
-//        ],
+        'user2' => [
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
+            'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_adminUser',
+            ]
+        ],
 //        'userAdmin' => [
 //            'class' => 'yii\base\BaseObject',
 //            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',

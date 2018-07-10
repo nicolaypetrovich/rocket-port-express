@@ -28,7 +28,7 @@ class AdminAsset extends AssetBundle
 
     ];
     public $js = [
-        'bower_components/jquery/dist/jquery.min.js',
+//        'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
         'dist/js/adminlte.min.js',
 //        '/js/twitter-text.js',
@@ -36,7 +36,7 @@ class AdminAsset extends AssetBundle
 //        '/js/status-counter.js',
     ];
     public $depends = [
-//        'yii\web\YiiAsset',
+        'yii\web\JqueryAsset'
 //        'yii\bootstrap\BootstrapAsset',
     ];
 }

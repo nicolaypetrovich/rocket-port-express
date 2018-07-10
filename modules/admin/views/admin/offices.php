@@ -22,7 +22,7 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
+                        <a href="single-office" type="button" class="btn btn-block btn-warning">Редактировать</a>
 
                       </td>
                     </tr>
@@ -37,7 +37,7 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
+                        <a href="single-office" type="button" class="btn btn-block btn-warning">Редактировать</a>
 
                       </td>
                     </tr>
@@ -52,7 +52,7 @@
                       </td>
                       <td>
                         <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <a href="single_office.html" type="button" class="btn btn-block btn-warning">Редактировать</a>
+                        <a href="single-office" type="button" class="btn btn-block btn-warning">Редактировать</a>
 
                       </td>
                     </tr>
