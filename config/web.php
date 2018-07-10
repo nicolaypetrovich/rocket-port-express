@@ -36,10 +36,34 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\UserIdentity',
+
+
+
+        'userAdmin' => [
+            'class'=>'yii\web\User',
+            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
             'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_regularUser',
+            ]
         ],
+//        'user' => [
+//            'class'=>'yii\web\User',
+//            'identityClass' => 'app\models\UserIdentity',
+//            'enableAutoLogin' => true,
+//            'identityCookie' => [
+//                'name' => '_regularUser',
+//            ]
+//        ],
+//        'userAdmin' => [
+//            'class' => 'yii\base\BaseObject',
+//            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
+//            'enableAutoLogin' => true,
+//            'identityCookie' => [
+//                'name' => '_adminUser',
+//            ]
+////            'identityCookie' => ['name' => '_fidentity-frontend', 'httpOnly' => true],
+//        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -65,6 +89,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '<action>' => 'site/<action>',
+//                '<controller>/<action>' => 'admin/<controller>/<action>',
             ],
         ],
     ],

@@ -5,18 +5,12 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace app\modules\admin\assets;
 
+namespace app\modules\admin\assets;
 use yii\web\AssetBundle;
 
-/**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
-class AdminAsset extends AssetBundle
+class LoginAsset extends AssetBundle
 {
-
-
     public $sourcePath = '@app/modules/admin/';
     public $css = [
         'bower_components/bootstrap/dist/css/bootstrap.min.css',
@@ -28,9 +22,9 @@ class AdminAsset extends AssetBundle
 
     ];
     public $js = [
-        'bower_components/jquery/dist/jquery.min.js',
+//        'bower_components/jquery/dist/jquery.min.js',
         'bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'dist/js/adminlte.min.js',
+        'plugins/iCheck/icheck.min.js',
 //        '/js/twitter-text.js',
 //        '/js/twitter_count.js',
 //        '/js/status-counter.js',
