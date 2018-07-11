@@ -29,7 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
 
-            'name',
+            [
+                'attribute'=>'name',
+                'label'=>'Заголовок',
+            ],
             'content:ntext',
             [
                 'attribute' => 'date',
@@ -37,10 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     return date('Y-m-d', strtotime($data->date));
                 },
-                'header' => 'Дата',
             ],
-            'shortdesc',
-            'slug',
+            [
+                'attribute'=>'shortdesc',
+                'label'=>'Краткое описание',
+            ],
+            [
+                'attribute'=>'slug',
+                'label'=>'Slug',
+            ],
             'title',
             'keywords',
             'description',
