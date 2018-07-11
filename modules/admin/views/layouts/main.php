@@ -35,12 +35,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
-
+    <?php $base= Url::base(true);?>
     <!-- Main Header -->
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2" class="logo">
+        <a href="<?=$base?>/admin/admin/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
@@ -224,8 +224,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <?php $base= Url::base(true);?>
-            <?php var_dump($base);?>
+
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
