@@ -15,6 +15,24 @@ class AdminController extends Controller
 {
 
 
+    public function beforeAction($action)
+    {
+        $session = Yii::$app->session;
+
+        if($action->id!='login') {
+
+            if($session->get('admin')!=='yes'){
+
+                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
+            }
+        }else{
+            if($session->get('admin')==='yes'){
+                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
+            }
+
+        }
+        return parent::beforeAction($action);
+    }
 
     /**
      * Renders the index view for the module
@@ -105,6 +123,7 @@ class AdminController extends Controller
     public function actionLogin()
     {
         $this->layout='login-layout.php';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -112,7 +131,7 @@ class AdminController extends Controller
         $model = new AdminLoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
         }
 
         $model->password = '';

@@ -10,13 +10,14 @@ $config = [
     'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'modules' => [
 
         'admin' => [
 
             'class' => 'app\modules\admin\Admin',
+
 
         ],
 
@@ -25,7 +26,7 @@ $config = [
     'components' => [
         'assetManager' => [
             'bundles' => [
-                'yii\bootstrap\BootstrapPluginAsset' => ['js'=>[]], //removing bootstrap JS
+                'yii\bootstrap\BootstrapPluginAsset' => ['js' => []], //removing bootstrap JS
                 'yii\bootstrap\BootstrapAsset' => ['css' => []] //removing bootstrap CSS
             ],
 //            'forceCopy'=>true
@@ -39,33 +40,16 @@ $config = [
         ],
 
 
-
         'user' => [
-            'class'=>'yii\web\User',
+            'class' => 'yii\web\User',
             'identityClass' => 'app\models\UserIdentity',
-//            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
             'enableAutoLogin' => true,
             'identityCookie' => [
-                'name' => '_regularUser',
-            ]
+                'name' => '_regularUser', 'httpOnly' => true
+            ],
+            'loginUrl' => ['site/login']
         ],
-        'user2' => [
-            'class'=>'yii\web\User',
-            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
-            'enableAutoLogin' => true,
-            'identityCookie' => [
-                'name' => '_adminUser',
-            ]
-        ],
-//        'userAdmin' => [
-//            'class' => 'yii\base\BaseObject',
-//            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
-//            'enableAutoLogin' => true,
-//            'identityCookie' => [
-//                'name' => '_adminUser',
-//            ]
-////            'identityCookie' => ['name' => '_fidentity-frontend', 'httpOnly' => true],
-//        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

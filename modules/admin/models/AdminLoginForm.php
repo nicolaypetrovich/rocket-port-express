@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\models;
 
+use app\models\Settings;
 use Yii;
 use yii\base\Model;
 
@@ -32,6 +33,7 @@ class AdminLoginForm extends Model
         ];
     }
 
+
     /**
      * Validates the password.
      * This method serves as the inline validation for password.
@@ -44,7 +46,7 @@ class AdminLoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
-            if (!$user || !$user->validatePassword($this->password)) {
+            if (!$user || $this->username != $user['admin_username']->value || md5($this->password) != $user['admin_password']->value) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -56,25 +58,36 @@ class AdminLoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-//            var_dump(Yii::$app->userAdmin->login($this->getUser(),  3600*24*30 ));
-//            var_dump($this->getUser());
-//            die();
+//        var_dump($this->getUser());
+//        die();
 
-            return Yii::$app->user->login($this->getUser(),  3600*24*30 );
+        if ($this->validate()) {
+            $session = Yii::$app->session;
+            if (!$session->isActive)
+                $session->open();
+            $session->set('admin', 'yes');
+            return true;
+//            $session = Yii::$app->session;
+//            return Yii::$app->user->login($this->getUser(),  3600*24*30 );
         }
+//        die();
         return false;
     }
 
     /**
      * Finds user by [[username]]
      *
-     * @return UserAdminIdentity|null
+     * @return array|bool
      */
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = UserAdminIdentity::findByUsername($this->username);
+            $admin = Settings::find()->select('key,value')
+                ->where(['like', 'key', 'admin'])
+                ->indexBy('key')
+                ->all();
+            $this->_user = $admin;
+//            $this->_user = UserAdminIdentity::findByUsername($this->username);
         }
 
         return $this->_user;

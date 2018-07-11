@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\admin;
+use Yii;
 
 
 /**
@@ -22,15 +23,7 @@ class Admin extends \yii\base\Module
 
         $this->layout = 'main';
 
-//        \Yii::$app->set('user3', [
-//            'class' => 'yii\web\User',
-////            'identityClass' => 'app\models\UserIdentity',
-//            'identityClass' => 'app\modules\admin\models\UserAdminIdentity',
-//            'enableAutoLogin' => false,
-//            'loginUrl' => ['admin/admin/login'],
-//            'identityCookie' => ['name' => '_admin'],
-//            'idParam' => 'admin_id', //this is important !
-//        ]);
         // custom initialization code goes here
     }
+
 }

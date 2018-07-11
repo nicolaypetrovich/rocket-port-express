@@ -182,7 +182,17 @@ class m180619_131418_update_table_settings extends Migration
             'key' => 'global_mainMap',
             'value' => '10,10',
         ]);
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'admin_username',
+            'value' => 'admin',
+        ]);
 
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'admin_password',
+            'value' => md5('7BLwC29j'),
+        ]);
 
         echo "Default settings created.\n";
 
