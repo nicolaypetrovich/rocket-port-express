@@ -194,6 +194,22 @@ class m180619_131418_update_table_settings extends Migration
             'value' => md5('7BLwC29j'),
         ]);
 
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'about_video',
+            'value' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/FM7MFYoylVs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+        ]);
+
+
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'about_slider',
+            'value' => json_encode(
+                array(16,17,18,17)
+            ),
+        ]);
+
+
         echo "Default settings created.\n";
 
         return true;

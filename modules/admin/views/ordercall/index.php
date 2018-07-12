@@ -27,15 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'name',
-                'header'=>'Имя'
+                'label'=>'Имя'
             ],
             [
                 'attribute'=>'phone',
-                'header'=>'Телефон'
+                'label'=>'Телефон'
             ],
             [
                 'attribute'=>'date',
-                'header'=>'Дата'
+                'label'=>'Дата'
             ],
 
             [

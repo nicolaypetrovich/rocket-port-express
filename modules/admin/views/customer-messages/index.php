@@ -24,12 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute'=>'name',
-                'header'=>'Имя'
+                'label'=>'Имя'
             ],
 
             [
                 'attribute'=>'email',
-                'header'=>'Почта',
+                'label'=>'Почта',
                 'format' => 'raw',
                 'value'=>function ($model) {
                     return Html::mailto($model->email, $model->email);
@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute'=>'text',
-                'header'=>'Сообщение'
+                'label'=>'Сообщение'
             ],
             [
                 'attribute'=>'date',
-                'header'=>'Дата'
+                'label'=>'Дата'
             ],
             [
                 'class' => 'yii\grid\ActionColumn',

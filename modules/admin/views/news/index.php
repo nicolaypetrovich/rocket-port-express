@@ -22,25 +22,30 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
             [
                     'attribute' => 'img',
                     'format' => 'html',
-                    'label' => 'Img',
+                    'label' => 'Фото',
                     'value'=>function($data){
                         return   Html::img($data->media->getImageOfSize() ,['width' => '60px']);
                     },
-                    'header'=>'Фото'
+
+
             ],
             [
                 'attribute'=>'name',
-                'header'=>'Заголовок',
+                'label'=>'Заголовок',
                 'headerOptions' => ['style' => 'width:20%']
             ],
             [
                 'attribute'=>'shortdesc',
-                'header'=>'Краткий текст'
+                'label'=>'Краткий текст',
+//                'header'=>'Краткий текст',
+
             ],
             [
                 'attribute' => 'date',
@@ -48,7 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     return date('Y-m-d', strtotime($data->date));
                 },
-                'header' => 'Дата',
             ],
 
             ['class' => 'yii\grid\ActionColumn',
