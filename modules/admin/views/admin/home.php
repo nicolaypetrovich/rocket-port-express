@@ -32,10 +32,11 @@
             <div class="box-item-inner">
               <div class="box-img">
                 <img src="dist/img/user1-128x128.jpg" alt="User Image">
+                  <input type="hidden" value="">
                 <div class="s-boxbtn">
                   <button type="button" class="btn btn-block btn-success">Загрузить</button>
                   <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                  <button type="button" class="btn btn-block bg-purple">Изменить</button>
+                  <button type="button" class="btn btn-block bg-purple media-open-button">Изменить</button>
                </div>
               </div>
               <div class="box-text"><textarea class="form-control" placeholder="Заполните текст"></textarea></div>
@@ -46,7 +47,7 @@
                 <div class="s-boxbtn">
                   <button type="button" class="btn btn-block btn-success">Загрузить</button>
                   <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                  <button type="button" class="btn btn-block bg-purple">Изменить</button>
+                  <button type="button" class="btn btn-block bg-purple media-open-button">Изменить</button>
                </div>
               </div>
               <div class="box-text"><textarea class="form-control" placeholder="Заполните текст"></textarea></div>

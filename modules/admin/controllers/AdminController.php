@@ -2,10 +2,13 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Media;
 use app\modules\admin\models\AdminLoginForm;
 use app\models\Settings;
 use app\models\Ordercall;
 use Yii;
+use yii\data\ActiveDataProvider;
+use yii\web\Response;
 use yii\web\Controller;
 
 /**
@@ -192,5 +195,11 @@ class AdminController extends Controller
     public function actionSingleOffice()
     {
         return $this->render('single_office');
+    }
+
+    public function actionMediaLibrary(){
+        $data = yii::$app->request->post();
+        $counter = $data['counter'];
+        return Media::getImagesLibrary($counter);
     }
 }

@@ -31,8 +31,17 @@ $model->date= date('Y-m-d', strtotime($model->date));
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'media_id')->textInput() ?>
-
+    <div class="box-item-inner">
+        <div class="box-img">
+            <img src="<?php echo $model->media->getImageOfSize(); ?>" alt="User Image">
+                <?= $form->field($model, 'media_id')->hiddenInput(['class' => 'test'])->label(false) ?>
+                <div class="s-boxbtn">
+                    <button type="button" class="btn btn-block btn-success">Загрузить</button>
+                    <button type="button" class="btn btn-block btn-danger">Удалить</button>
+                    <button type="button" class="btn btn-block bg-purple media-open-button">Изменить</button>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
