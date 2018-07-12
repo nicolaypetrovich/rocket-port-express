@@ -173,10 +173,26 @@ class m180619_131418_update_table_settings extends Migration
 
         $this->insert('settings', [
             'id' => $i++,
+            'key' => 'global_copyright',
+            'value' => 'Copyright 2017 Все права защищены',
+        ]);
+
+        $this->insert('settings', [
+            'id' => $i++,
             'key' => 'global_mainMap',
             'value' => '10,10',
         ]);
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'admin_username',
+            'value' => 'admin',
+        ]);
 
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'admin_password',
+            'value' => md5('7BLwC29j'),
+        ]);
 
         $this->insert('settings', [
             'id' => $i++,
@@ -202,7 +218,7 @@ class m180619_131418_update_table_settings extends Migration
     public function down()
     {
 
-        $this->delete('settings', ['id' => '<=19']);
+        $this->delete('settings', ['id' => '<=20']);
 
         echo "m180619_131418_update_table_settings cannot be reverted.\n";
 

@@ -44,8 +44,8 @@ class m180627_083130_create_table_offices extends Migration
     public function down()
     {
         echo "m180627_083130_create_table_offices cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('offices');
+//        return false;
     }
 
 }

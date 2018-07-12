@@ -199,7 +199,7 @@ AppAsset::register($this);
                         </li>
                     </ul>
                     <p class="credits__text">
-                        Copyright 2017 Все права защищены
+                        <?=($header_settings['global_copyright']['value']); ?>
                     </p>
                 </div>
                 <div class="contact-box">
@@ -219,7 +219,7 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <a href="/" class="logo">
-                    <img src="img/logo.png" alt="Экспресс доставка">
+                    <img src="<?=$header_settings['global_logo']->media->getImageOfSize();?>" alt="Экспресс доставка">
                 </a>
             </div>
         </div>
