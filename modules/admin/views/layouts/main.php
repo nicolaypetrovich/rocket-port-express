@@ -30,6 +30,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script>
+        var HomeUrl = "<?php echo Url::base(true);?>";
+        var MediaCsrf = "<?php echo Yii::$app->request->getCsrfToken()?>";
+    </script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -366,6 +370,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Add the sidebar's background. This div must be placed
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
+</div>
+<div id="MediaLibrary" class="modalMediaLibrary">
+
+    <!-- Modal content -->
+    <div class="media-content">
+        <span class="close-media">&times;</span>
+        <h4>Библиотека изображений</h4>
+        <div class="inner-media"></div>
+        <div id="medialoadmore" class="media-loadmore" data-page="0">Загрузить еще</div>
+    </div>
+
 </div>
 
 

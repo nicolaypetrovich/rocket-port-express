@@ -6,6 +6,7 @@ use Imagine\Image\Box;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\imagine\Image;
+use yii\web\Response;
 use yii\web\UploadedFile;
 
 /**
@@ -54,6 +55,25 @@ class Media extends ActiveRecord
             return Yii::getAlias('@web/' . 'uploads/images/'.$width.'x'.$height.'/' . $this->name);
         }
         return null;
+    }
+
+    public static function getImagesLibrary($counter){
+	    $result = array();
+        $query = Media::find()->offset($counter*12)->limit(12)->all();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        foreach ($query as $image){
+            $result[0] .= '<div class="media-image"><img class="media-selected" src="/uploads/images/'.$image['name'].'" data-imageid="'.$image['id'].'"><span>'.$image['title'].'</span></div>';
+        }
+        if(count($query)==12)
+        {
+            $result[1] = true;
+            $counter++;
+        } else {
+            $result[1] = false;
+            $counter = false;
+        }
+        $result[2] =  $counter;
+        return $result;
     }
 
 }

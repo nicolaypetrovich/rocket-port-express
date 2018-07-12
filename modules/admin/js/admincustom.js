@@ -44,6 +44,27 @@ $(document).ready(function () {
 
 });
 
+window.onload = function(){
+
+    "use strict";
+    // Get the modal
+    var modal = $("#MediaLibrary");
+    // Get the button that opens the modal
+    var MediaBtnList = $(".media-open-button");
+    $.each( MediaBtnList, function(){
+        console.dir(this);
+        $(this).on('click',  function() {
+            modal[0].style.display = "block";
+        })
+    });
+
+    // Get the <span> element that closes the modal
+    var span = $(".close-media")[0];
+    span.onclick = function() {
+        modal[0].style.display = "none";
+    };
+};
+
 function createPlacemark(coords) {
     return new ymaps.Placemark(coords, {
         iconCaption: 'поиск...'
