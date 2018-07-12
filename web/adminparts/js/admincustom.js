@@ -45,7 +45,6 @@ $(document).ready(function () {
 });
 
 window.onload = function(){
-
     "use strict";
     var modal = $("#MediaLibrary"),
         MediaBtnList = $(".media-open-button"),
@@ -104,8 +103,65 @@ window.onload = function(){
         modal[0].style.display = "none";
     };
 
+    tinymce.init({
+        selector: "textarea",
+        language : 'ru',
+        browser_spellcheck: true,
+        branding: false,
+        statusbar: false,
+        extended_valid_elements : "i",
+        custom_elements: "i",
+        width: '100%',
+        height: 400,
+        autoresize_min_height: 400,
+        autoresize_max_height: 800,
+        plugins: [
+            'advlist autolink link image lists charmap print preview autoresize',
+            'searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking',
+            'table contextmenu emoticons paste textcolor code'
+        ],
+        toolbar1: "styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify  | table | subscript superscript | charmap | ltr rtl | visualchars visualblocks",
+        toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image code | insertdatetime preview | forecolor backcolor | mybutton mybutton1 mybutton2",
+        setup: function(editor) {
+            editor.addButton('mybutton', {
+                text: 'Текст с желтой полосой',
+                icon: false,
+                onclick: function () {
+                    editor.insertContent('<div class="yellow_border">paste your code here!</div>');
+                }
+            });
+            editor.addButton('mybutton1', {
+                text: 'Вставляем блок услуг',
+                icon: false,
+                onclick:function () {
+                    editor.insertContent('<div id="value">INSERTVALUE</div>');
+                }
+            });
+            editor.addButton('mybutton2', {
+                text: 'Вставляем блок услуг',
+                icon: false,
+                onclick:function () {
+                    displayMediaLibrary();
+                }
+            });
+        }
+    });
+
+    function displayMediaLibrary(){
+        $('#media').show();
+    }
+
+    $('#test').on('click', function(e){
+        e.preventDefault();
+        var test = tinyMCE.activeEditor.getContent();
+        console.dir(test);
+    });
 };
 
+
+
+
+//yandex map functions
 function createPlacemark(coords) {
     return new ymaps.Placemark(coords, {
         iconCaption: 'поиск...'
