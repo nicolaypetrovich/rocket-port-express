@@ -681,6 +681,11 @@ label {
 	padding-bottom: 30px;
 }
 
+.aboutus .videoframe iframe {
+	margin: 0 auto;
+	display: block;
+}
+
 /*---ABOUT SECTION END---*/
 
 /*---SERVICES SECTION---*/

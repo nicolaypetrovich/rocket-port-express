@@ -49,8 +49,8 @@ class m180705_094150_create_table_users extends Migration
     public function down()
     {
         echo "m180705_094150_create_table_users cannot be reverted.\n";
-
-        return false;
+        $this->dropTable('users');
+//        return false;
     }
     
 }

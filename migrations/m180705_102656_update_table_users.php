@@ -63,9 +63,9 @@ class m180705_102656_update_table_users extends Migration
 
      public function down()
      {
-         $this->delete('user', 'id<=2');
+         $this->delete('users', 'id<=2');
 
-         return false;
+//         return false;
      }
     
 }

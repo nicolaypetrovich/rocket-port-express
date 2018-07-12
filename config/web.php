@@ -10,14 +10,26 @@ $config = [
     'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
+    'modules' => [
+
+        'admin' => [
+
+            'class' => 'app\modules\admin\Admin',
+
+
+        ],
+
+    ],
+
     'components' => [
         'assetManager' => [
             'bundles' => [
-                'yii\bootstrap\BootstrapPluginAsset' => ['js'=>[]], //removing bootstrap JS
+                'yii\bootstrap\BootstrapPluginAsset' => ['js' => []], //removing bootstrap JS
                 'yii\bootstrap\BootstrapAsset' => ['css' => []] //removing bootstrap CSS
-            ]
+            ],
+//            'forceCopy'=>true
         ],
         'request' => [
             'cookieValidationKey' => 'j72L44Gu8GzPRxQO',
@@ -26,10 +38,18 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+
+
         'user' => [
+            'class' => 'yii\web\User',
             'identityClass' => 'app\models\UserIdentity',
             'enableAutoLogin' => true,
+            'identityCookie' => [
+                'name' => '_regularUser', 'httpOnly' => true
+            ],
+            'loginUrl' => ['site/login']
         ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -55,6 +75,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '<action>' => 'site/<action>',
+//                '<controller>/<action>' => 'admin/<controller>/<action>',
             ],
         ],
     ],
