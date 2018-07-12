@@ -38,7 +38,6 @@ class m180620_071143_update_media extends Migration
             ]);
         }
 
-
         $this->insert('media',[
            'id'=>11,
            'name'=>'calculate.png',
@@ -60,7 +59,6 @@ class m180620_071143_update_media extends Migration
             'alt'=>'faq'
         ]);
 
-
         $this->insert('media',[
             'id'=>14,
             'name'=>'main.png',
@@ -75,6 +73,17 @@ class m180620_071143_update_media extends Migration
             'alt'=>'Экспресс доставка'
         ]);
 
+        $id_counter = 16;
+        for ($i=1; $i < 4; $i++) {
+            $this->insert('media', [
+                'id' => $id_counter,
+                'name' => 'slide'.$i.'.jpg',
+                'title' => 'Slide Title #'.$i,
+                'alt' => 'Slide Alt #'.$i,
+            ]);
+            $id_counter++;
+        }
+
 
 
 
@@ -85,7 +94,7 @@ class m180620_071143_update_media extends Migration
 
     public function down()
     {
-        $this->delete('media', 'id<=15');
+        $this->delete('media', 'id<=18');
 
         echo "Default images deleted\n";
 
