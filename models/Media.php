@@ -62,7 +62,7 @@ class Media extends ActiveRecord
         $query = Media::find()->offset($counter*12)->limit(12)->all();
         Yii::$app->response->format = Response::FORMAT_JSON;
         foreach ($query as $image){
-            $result[0] .= '<div class="media-image"><img class="media-selected" src="/uploads/images/'.$image['name'].'" data-imageid="'.$image['id'].'"><span>'.$image['title'].'</span></div>';
+            $result[0] .= '<div class="media-image"><img class="media-selected" src="/uploads/images/'.$image['name'].'" data-imageid="'.$image['id'].'"></div>';
         }
         if(count($query)==12)
         {
