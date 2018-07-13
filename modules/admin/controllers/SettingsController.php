@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\News;
-use app\modules\admin\models\NewsSearch;
+use app\models\Settings;
+use app\modules\admin\models\SettingsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * NewsController implements the CRUD actions for News model.
+ * SettingsController implements the CRUD actions for Settings model.
  */
-class NewsController extends Controller
+class SettingsController extends Controller
 {
     /**
      * @inheritdoc
@@ -29,42 +29,29 @@ class NewsController extends Controller
         ];
     }
 
-    public function beforeAction($action)
-    {
-        $session = Yii::$app->session;
-
-        if($action->id!='login') {
-
-            if($session->get('admin')!=='yes'){
-
-                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
-            }
-        }else{
-            if($session->get('admin')==='yes'){
-                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
-            }
-
-        }
-        return parent::beforeAction($action);
-    }
-
     /**
-     * Lists all News models.
+     * Lists all Settings models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new NewsSearch();
+        $searchModel = new SettingsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $meta = Settings::find()
+            ->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'global'])
+            ->indexBy('key')
+            ->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'meta'=>$meta
         ]);
     }
 
     /**
-     * Displays a single News model.
+     * Displays a single Settings model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -77,13 +64,13 @@ class NewsController extends Controller
     }
 
     /**
-     * Creates a new News model.
+     * Creates a new Settings model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new News();
+        $model = new Settings();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -95,7 +82,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Updates an existing News model.
+     * Updates an existing Settings model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -115,14 +102,11 @@ class NewsController extends Controller
     }
 
     /**
-     * Deletes an existing News model.
+     * Deletes an existing Settings model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
-     * @throws \Exception
-     * @throws \Throwable
-     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
@@ -132,15 +116,15 @@ class NewsController extends Controller
     }
 
     /**
-     * Finds the News model based on its primary key value.
+     * Finds the Settings model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return News the loaded model
+     * @return Settings the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = News::findOne($id)) !== null) {
+        if (($model = Settings::findOne($id)) !== null) {
             return $model;
         }
 

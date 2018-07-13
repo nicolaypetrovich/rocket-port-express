@@ -25,7 +25,7 @@ class AdminAsset extends AssetBundle
         'adminparts/dist/css/AdminLTE.min.css',
         'adminparts/dist/css/skins/skin-blue.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
-        'bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
+        'adminparts/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
         'adminparts/css/admincss.css',
     ];
     public $js = [
