@@ -326,11 +326,49 @@ class SiteController extends Controller
      */
     public function actionPrivate()
     {
+
+
+
         if(Yii::$app->user->isGuest){
             $this->goHome();
         }
+        $data = Yii::$app->request->post();
+        $data = $data['Users'];
+        if(Yii::$app->request->post()){
+
+            $user = Yii::$app->user->identity;
+            $user_id = $user->id;
+
+            $modelUser = Users::findOne($user_id);
+
+            if ((Yii::$app->request->isPost) && ($modelUser != NULL)) {
+
+                $file = UploadedFile::getInstance($modelUser, 'photo');
+                if($file) {
+                    $modelUser->uploadUserImage($file);
+                }
+            }
+
+            $modelUser->name = $data['name'];
+            $modelUser->gender = $data['gender'];
+            $modelUser->address = $data['address'];
+            $modelUser->organization = $data['organization'];
+            $modelUser->position = $data['position'];
+            $modelUser->email = $data['email'];
+            $modelUser->mobile_phone = $data['mobile_phone'];
+            $modelUser->working_phone = $data['working_phone'];
+            $modelUser->password = $data['password'];
+
+            $modelUser->save();
+
+            $user = $modelUser;
+
+        } else {
+            $user = Yii::$app->user->identity;
+        }
+
         $content = $this->content;
-        return $this->render('private', compact('content'));
+        return $this->render('private', compact('content', 'user'));
     }
 
 

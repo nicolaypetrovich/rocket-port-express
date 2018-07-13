@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "users".
@@ -23,7 +24,7 @@ use Yii;
  * @property string $auth_key
  * @property string $access_token
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -39,8 +40,9 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'password'], 'required'],
-            [['gender', 'photo'], 'integer'],
+            [['name', 'email'], 'required'],
+            ['photo', 'string'],
+            ['gender', 'integer'],
             [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
@@ -71,5 +73,16 @@ class Users extends \yii\db\ActiveRecord
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
         ];
+    }
+
+    public function uploadUserImage($file)
+    {
+        $name = md5(time()) . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+
+        if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
+        {
+            $this->photo = $name;
+
+        }
     }
 }
