@@ -7,8 +7,10 @@ use app\models\News;
 use app\models\NewsSearch;
 use app\models\Offices;
 use app\models\Ordercall;
+use app\models\RegistrationForm;
 use app\models\Settings;
 use app\models\UpdateUser;
+use app\models\UserIdentity;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
@@ -168,6 +170,41 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         $this->goHome();
+
+    }
+
+    /**
+     *  Registration action
+     */
+    public function actionRegisterUser()
+    {
+        $model = new RegistrationForm();
+        if($model->load(Yii::$app->request->post())){
+            $data = Yii::$app->request->post('RegistrationForm');
+            $result = RegistrationForm::findByEmail($data['email']);
+            if($result) {
+                return $result;
+            }
+            $user = new Users();
+            $user->name = $data['name'];
+            $user->login = $data['email'];
+            $user->email = $data['email'];
+            if($data['organization']){
+                $user->organization = $data['organization'];
+            }
+            $user->password = md5($data['password']);
+            $user->save();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $user = UserIdentity::findByEmail($user->email);
+        if($user)
+        {
+            Yii::$app->user->login($user, 3600*24*60);
+        }
+
+        return Yii::$app->response->redirect(['site/private']);
 
     }
 
@@ -369,9 +406,9 @@ class SiteController extends Controller
             if(md5($data['password'])==$user->password){
                 $modelUser->password = md5($data['new_password']);
                 $modelUser->save();
-                $pass_error = false;
+                $pass_error = 'no';
             }else{
-                $pass_error = true;
+                $pass_error = 'yes';
             }
         }
 

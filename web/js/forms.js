@@ -232,3 +232,23 @@ $('body').on('beforeSubmit', 'form#entry__form', function () {
     });
     return false;
 });
+
+$('body').on('beforeSubmit', 'form#registerUser', function () {
+    var form = $(this);
+    if ($('#checkbox24').prop('checked') == false){
+        $("#checkbox24").parent().addClass("invalid");
+        return false;
+    }
+    if (form.find('.has-error').length) {
+        return false;
+    }
+    $.ajax({
+        url: form.attr('action'),
+        type: 'post',
+        data: form.serialize(),
+        success: function (response) {
+            console.dir(response);
+        }
+    });
+    return false;
+});
