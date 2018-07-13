@@ -344,26 +344,49 @@ AppAsset::register($this);
         </div>
         <div id="reg__popup" class="white-popup-block mfp-hide">
             <div class="popup__reg popup">
-                <form class="form__ordercall d-flex flex-column align-items-center" name="reg__form" id="reg__form">
+                <?php
+                $modelRegister = new \app\models\RegistrationForm();
+                $formRegister = ActiveForm::begin([
+                    'id' => 'registerUser',
+                    'action' => ['register-user'],
+                    'method' => 'post',
+                    'options' => [
+                            'class' => 'form__ordercall d-flex flex-column align-items-center'
+                    ]
+                ]); ?>
                     <img src="img/russia.png" alt="">
                     <h2 class="section__title rect__title red">
                         ЗАРЕГИСТРИРОВАТЬСЯ
                     </h2>
                     <div>
-                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input">
+                        <?= $formRegister->field($modelRegister, 'name')
+                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'ФИО'])
+                            ->label(false);
+                        ?>
                     </div>
                     <div>
-                        <input type="email" name="cm_email" placeholder="E-mail" class="required email popup__input input">
+                        <?= $formRegister->field($modelRegister, 'email')
+                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Email'])
+                            ->label(false);
+                        ?>
                     </div>
                     <div>
-                        <input type="text" placeholder="Организация (не обязательно)" class="popup__input input">
+                        <?= $formRegister->field($modelRegister, 'organization')
+                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Организация (не обязательно)'])
+                            ->label(false);
+                        ?>
                     </div>
                     <div>
-                        <input type="password" placeholder="Пароль" class="required password popup__input input">
+                        <?= $formRegister->field($modelRegister, 'password')
+                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
+                            ->label(false);
+                        ?>
                     </div>
                     <div>
-                        <input type="password" placeholder="Повторите пароль"
-                               class="required passwordConfirmation popup__input input">
+                        <?= $formRegister->field($modelRegister, 'password_repeat')
+                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
+                            ->label(false);
+                        ?>
                     </div>
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox24">
@@ -378,9 +401,7 @@ AppAsset::register($this);
                             </span>
                         </label>
                     </div>
-                    <button type="submit" class="contact-box__btn">
-                        ОТПРАВИТЬ
-                    </button>
+                <?= Html::submitButton('ОТПРАВИТЬ', ['class' => 'contact-box__btn']) ?>
                     <div>
                         <input type="checkbox" id="checkbox25">
                         <label for="checkbox25" id="checkboxLabel25"
@@ -390,7 +411,7 @@ AppAsset::register($this);
                             </span>
                         </label>
                     </div>
-                </form>
+                <?php ActiveForm::end(); ?>
                 <button class="popup-modal-dismiss close-btn">
                     <span class="yui1"></span>
                     <span class="yui2"></span>

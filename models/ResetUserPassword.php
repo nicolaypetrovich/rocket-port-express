@@ -25,7 +25,8 @@ class ResetUserPassword extends Model
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
             [['new_password', 'new_password_repeat'], 'required'],
-            ['new_password', 'compare', 'compareAttribute'=>'new_password_repeat', 'message'=>"Пароли не совпадают" ],
+            [['new_password', 'new_password_repeat'], 'string'],
+            ['new_password', 'compare', 'compareAttribute'=>'new_password_repeat', 'message'=>"Пароли не совпадают", 'type' => 'string' ],
         ];
 
     }

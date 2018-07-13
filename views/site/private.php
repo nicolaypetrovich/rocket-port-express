@@ -219,11 +219,12 @@ use yii\widgets\ActiveForm;
                             ]
 
                         ]); ?>
-                        <?php if($pass_error){
-                            echo 'Вы ввели неправильный пароль';
-                        }else{
-                            echo 'Пароль был успешно изменен';
-                        }?>
+                        <?php
+                            if($pass_error=='no'){
+                                echo 'Вы ввели неправильный пароль';
+                            }else if($pass_error=='yes'){
+                                echo 'Пароль был успешно изменен';
+                            }?>
                         <?= $formReset->field($modelReset, 'password')
                             ->textInput(['id' => 'input35', 'class' => 'private__input input', 'placeholder' => 'Текущий пароль'])
                             ->label(false);
