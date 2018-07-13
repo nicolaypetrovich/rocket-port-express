@@ -9,11 +9,10 @@ use yii\db\ActiveRecord;
  * This is the model class for table "users".
  *
  * @property int $id
- * @property string $username
- * @property string $first_name
- * @property string $last_name
+ * @property string $name
+ * @property string $login
  * @property int $gender
- * @property int $photo
+ * @property string $photo
  * @property string $address
  * @property string $organization
  * @property string $position
@@ -85,4 +84,5 @@ class Users extends ActiveRecord
 
         }
     }
+
 }

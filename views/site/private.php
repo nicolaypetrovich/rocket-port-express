@@ -3,6 +3,7 @@
 use app\models\Media;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+
 ?>
 	<section class="private-hat">
 		<div class="container">
@@ -84,15 +85,6 @@ use yii\helpers\Html;
 						ИСТОРИЯ ОТПРАВЛЕНИЙ
 					</h2>
 				</div>
-                <?php
-                $model= new \app\models\Users();
-                $form = ActiveForm::begin([
-                    'method' => 'post',
-                    'options' => [
-                            'encrypt' => 'multipart/form-data',
-                    ]
-
-                ]); ?>
                 <div class="private__rightside privat__ld">
                     <img src="img/russia.png" alt="">
                     <div class="d-flex">
@@ -100,6 +92,17 @@ use yii\helpers\Html;
                             <h2 class="section__title y-line red">
                                 ЛИЧНЫЕ ДАННЫЕ
                             </h2>
+                            <?php
+                            $modelUpdate = new \app\models\UpdateUser();
+                            $formUpdate = ActiveForm::begin([
+                                    'id' => 'updateUser',
+                                    'method' => 'post',
+                                    'options' => [
+//                                        'encrypt' => 'multipart/form-data',
+
+                                ]
+
+                            ]); ?>
                             <div class="private__item d-flex align-items-center">
                                 <p class="private__title red">
                                     Ваш уникальный Id
@@ -110,7 +113,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Фамилия Имя Отчество
                                 </p>
-                                    <?= $form->field($model, 'name')
+                                    <?= $formUpdate->field($modelUpdate, 'name')
                                         ->textInput(['maxlength' => 70, 'value'=>$user['name'], 'class' => 'private__input input', 'placeholder' => 'ФИО'])
                                         ->label(false);
                                     ?>
@@ -120,10 +123,10 @@ use yii\helpers\Html;
                                     Пол
                                 </p>
                                 <?php $items = ['0'=>'Не выбран', '1'=>'Мужской', '2'=>'женский'];?>
-                                <?php $model->gender = $user['gender'] ?>
+                                <?php $modelUpdate->gender = $user['gender'] ?>
                                 <div class="select-wrapper body__select">
                                     <div class="select-wrapper body__select">
-                                        <?= $form->field($model, 'gender')
+                                        <?= $formUpdate->field($modelUpdate, 'gender')
                                             ->dropDownList($items)
                                             ->label( false);
                                         ?>
@@ -134,7 +137,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Адрес для доставки
                                 </p>
-                                <?= $form->field($model, 'address')
+                                <?= $formUpdate->field($modelUpdate, 'address')
                                     ->textInput(['maxlength' => 70, 'value'=>$user['address'], 'class' => 'private__input input', 'placeholder' => 'Адрес'])
                                     ->label(false);
                                 ?>
@@ -143,7 +146,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Организация
                                 </p>
-                                <?= $form->field($model, 'organization')
+                                <?= $formUpdate->field($modelUpdate, 'organization')
                                     ->textInput(['maxlength' => 50, 'value'=>$user['organization'], 'class' => 'private__input input', 'placeholder' => 'Организация'])
                                     ->label(false);
                                 ?>
@@ -152,7 +155,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Должность
                                 </p>
-                                <?= $form->field($model, 'position')
+                                <?= $formUpdate->field($modelUpdate, 'position')
                                     ->textInput(['maxlength' => 25, 'value'=>$user['position'], 'class' => 'private__input input', 'placeholder' => 'Должность'])
                                     ->label(false);
                                 ?>
@@ -161,7 +164,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     E-mail
                                 </p>
-                                <?= $form->field($model, 'email')
+                                <?= $formUpdate->field($modelUpdate, 'email')
                                     ->textInput(['maxlength' => 35, 'value'=>$user['email'], 'class' => 'private__input input', 'placeholder' => 'Email'])
                                     ->label(false);
                                 ?>
@@ -170,7 +173,7 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Моб. телефон
                                 </p>
-                                <?= $form->field($model, 'mobile_phone')
+                                <?= $formUpdate->field($modelUpdate, 'mobile_phone')
                                     ->textInput(['maxlength' => 14, 'value'=>$user['mobile_phone'], 'class' => 'private__input input', 'placeholder' => 'Мобильный телефон'])
                                     ->label(false);
                                 ?>
@@ -179,50 +182,69 @@ use yii\helpers\Html;
                                 <p class="private__title red">
                                     Раб. телефон
                                 </p>
-                                <?= $form->field($model, 'working_phone')
+                                <?= $formUpdate->field($modelUpdate, 'working_phone')
                                     ->textInput(['maxlength' => 14, 'value'=>$user['working_phone'], 'class' => 'private__input input', 'placeholder' => 'Рабочий телефон'])
                                     ->label(false);
                                 ?>
                             </div>
-                        </div>
-                        <div style="display: none">
-                            <?= $form->field($model, 'photo')->fileInput()->label(false); ?>
-                        </div>
-                        <label for="users-photo" id="openfileLabel" class="private__avatar d-flex flex-column align-items-center">
-
-
-                            <div class="avatar__wrap">
-                                <img src="uploads/user_images/<?php echo $user['photo']; ?>" alt="Фото">
+                            <div style="display: none">
+                                <?= $formUpdate->field($modelUpdate, 'photo')->fileInput() ?>
                             </div>
-                            <p>
-                                Сменить фото
-                            </p>
-                        </label>
-                    </div>
+                            <label for="updateuser-photo" id="openfileLabel" class="private__avatar d-flex flex-column align-items-center">
+
+
+                                <div class="avatar__wrap">
+                                    <img src="uploads/user_images/<?php echo $user['photo']; ?>" alt="Фото">
+                                </div>
+                                <p>
+                                    Сменить фото
+                                </p>
+                            </label>
+                        </div>
+                        </div>
+
+
+                    <?= Html::submitButton('Сохранить', ['class' => 'contact-box__btn']) ?>
+
+                    <?php ActiveForm::end(); ?>
+
+
                     <div class="private__footer">
                         <p class="private__footer_title">
                             СМЕНА ПАРОЛЯ
                         </p>
                         <div class="private__pass d-flex justify-content-between" name="ch_pass__form" id="ch_pass__form">
+                            <?php
+                            $modelReset = new \app\models\ResetUserPassword();
+                            $formReset = ActiveForm::begin([
+                                'method' => 'post',
+                                'options' => [
+                                    'encrypt' => 'multipart/form-data',
+                                    'id' => 'resetPassword'
+                                ]
 
-                            <?= $form->field($model, 'password')
-                                ->textInput(['id'=>'input35', 'class' => 'private__input input', 'placeholder' => 'Текущий пароль'])
-                                ->label(false);
-                            ?>
-                            <?= $form->field($model, 'password')
-                                ->textInput(['id'=>'input36', 'class' => 'private__input input', 'placeholder' => 'Новый пароль'])
-                                ->label(false);
-                            ?>
-                            <?= $form->field($model, 'password')
-                                ->textInput(['id'=>'input37', 'class' => 'private__input input', 'placeholder' => 'Повторите пароль'])
-                                ->label(false);
-                            ?>
+                            ]); ?>
 
-                            <?= Html::submitButton('Сохранить', ['class' => 'contact-box__btn']) ?>
+                                <?= $formReset->field($modelReset, 'password')
+                                    ->textInput(['id'=>'input35', 'class' => 'private__input input', 'placeholder' => 'Текущий пароль'])
+                                    ->label(false);
+                                ?>
+                                <?= $formReset->field($modelReset, 'new_password')
+                                    ->textInput(['id'=>'input36', 'class' => 'private__input input', 'placeholder' => 'Новый пароль'])
+                                    ->label(false);
+                                ?>
+                                <?= $formReset->field($modelReset, 'new_password_repeat')
+                                    ->textInput(['id'=>'input37', 'class' => 'private__input input', 'placeholder' => 'Повторите пароль'])
+                                    ->label(false);
+                                ?>
+
+                                <?= Html::submitButton('Сохранить', ['class' => 'contact-box__btn']) ?>
+
+                            <?php ActiveForm::end(); ?>
                         </div>
                     </div>
                 </div>
-                <?php ActiveForm::end(); ?>
+
 		</div>
 	</section>
 	<section class="newsbuttons">
