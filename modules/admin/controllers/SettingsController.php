@@ -2,6 +2,8 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Media;
+use app\models\Pages;
 use Yii;
 use app\models\Settings;
 use app\modules\admin\models\SettingsSearch;
@@ -14,29 +16,28 @@ use yii\filters\VerbFilter;
  */
 class SettingsController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
 
     /**
      * Lists all Settings models.
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionIndex()
     {
-        $searchModel = new SettingsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $fieldsArray=array('global_headertext1','global_headertext2','global_phone','global_email','global_address','global_copyright','global_mainMap');
+        $data=Yii::$app->request->post();
+
+        if ($data) {
+            foreach ($fieldsArray as $field){
+                $tempModel=$this->findModel($field);
+                if(null != $tempModel){
+                    $tempModel->value=$data[$field];
+                    $tempModel->save();
+                }
+            }
+        }
         $meta = Settings::find()
             ->select('key,value')
             ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
@@ -44,87 +45,51 @@ class SettingsController extends Controller
             ->indexBy('key')
             ->all();
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'meta'=>$meta
+            'meta' => $meta
         ]);
     }
 
-    /**
-     * Displays a single Settings model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
+
+    public function actionAbout()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
+
+
+        $meta = Settings::find()->select(['key','value'])
+            ->where(['or', ['key'=>'about_video'], ['key'=>'about_slider'] ])
+            ->asArray()
+            ->indexBy('key')
+            ->all();
+
+
+
+        $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
+
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id'=>$meta['about_slider']['value']])
+            ->asArray()
+            ->all();
+
+        $page = Pages::find()->where(['=', 'slug', 'about'])->one();
+
+
+        return $this->render('about', [
+            'meta' =>$meta,
+            'media'=>$media,
+            'page'=>$page
         ]);
     }
 
-    /**
-     * Creates a new Settings model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Settings();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Settings model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Settings model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
 
     /**
      * Finds the Settings model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param $val
      * @return Settings the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($val)
     {
-        if (($model = Settings::findOne($id)) !== null) {
+        if (($model = Settings::findOne(['key'=>$val])) !== null) {
             return $model;
         }
 

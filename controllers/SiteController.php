@@ -215,15 +215,21 @@ class SiteController extends Controller
     public function actionAbout()
     {
         $content = $this->content;
-        $meta = Settings::find()->select('value')
+        $meta = Settings::find()->select(['key','value'])
             ->where(['or', ['key'=>'about_video'], ['key'=>'about_slider'] ])
             ->asArray()
+            ->indexBy('key')
             ->all();
-        $meta[0]['value'] = json_decode($meta[0]['value']);
+
+
+
+        $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
+
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['id'=>$meta[0]['value']])
+            ->where(['id'=>$meta['about_slider']['value']])
             ->asArray()
             ->all();
+
         return $this->render('about', compact('content', 'meta', 'media'));
     }
 

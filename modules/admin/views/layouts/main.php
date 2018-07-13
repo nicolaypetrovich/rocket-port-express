@@ -253,7 +253,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="<?=$base?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a></li>
                 <li><a href="<?=$base?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a></li>
                 <li><a href="<?=$base?>/admin/customer-messages"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
-                <li><a href="<?=$base?>/admin/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
+                <li><a href="<?=$base?>/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
 
             </ul>
             <!-- /.sidebar-menu -->

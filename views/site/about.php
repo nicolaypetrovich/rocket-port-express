@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="aboutus__wrapper verylarge-frame news__box">
             <?php echo $content; ?>
             <div class="aboutus__slider">
-                <?php foreach ($meta[0]['value'] as $id) { ?>
+                <?php foreach ($meta['about_slider']['value'] as $id) { ?>
                     <?php foreach ($media as $value) if($value['id']==$id) { ?>
                         <div class="aboutus__slide">
                             <img src="img/<?php echo $value['name']; ?>" alt="<?php echo $value['alt']; ?>">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
 
             <div class="videoframe">
-                <?php  echo $meta[1]['value']; ?>
+                <?php  echo $meta['about_video']['value']; ?>
             </div>
         </div>
     </div>
