@@ -30,6 +30,7 @@ class m180705_102656_update_table_users extends Migration
      {
          $this->insert('users', [
              'id' => '1',
+             'login' => 'user1@user1.com',
              'name' => 'Иванов Иван Иванович',
              'gender' => '1',
              'photo' => '',
@@ -39,13 +40,14 @@ class m180705_102656_update_table_users extends Migration
              'email' => 'test1@test1.com',
              'mobile_phone' => '0 000 00 00 00',
              'working_phone' => '1 111 11 11 11',
-             'password' => md5('user1'),
+             'password' => md5('user111'),
              'auth_key' => '',
              'access_token' => ''
          ]);
 
          $this->insert('users', [
              'id' => '2',
+             'login' => 'test2@test2.com',
              'name' => 'Петров Петр Петрович',
              'gender' => '1',
              'photo' => '',
@@ -55,7 +57,7 @@ class m180705_102656_update_table_users extends Migration
              'email' => 'test2@test2.com',
              'mobile_phone' => '2 222 22 22 22',
              'working_phone' => '3 333 33 33 33',
-             'password' => md5('user2'),
+             'password' => md5('user222'),
              'auth_key' => '',
              'access_token' => ''
          ]);
