@@ -8,6 +8,7 @@ use app\models\NewsSearch;
 use app\models\Offices;
 use app\models\Ordercall;
 use app\models\Settings;
+use app\models\UpdateUser;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
@@ -337,15 +338,14 @@ class SiteController extends Controller
             $user = Yii::$app->user->identity;
             $user_id = $user->id;
             $modelUser = Users::findOne($user_id);
+            $modelFile = new UpdateUser();
 
             if ((Yii::$app->request->isPost) && ($modelUser != NULL)) {
-                $file = UploadedFile::getInstance($modelUser, 'photo');
-
+                $file = UploadedFile::getInstance($modelFile, 'photo');
                 if($file) {
                     $modelUser->uploadUserImage($file);
                 }
             }
-//            var_dump($modelUser);
             $modelUser->name = $data['name'];
             $modelUser->gender = $data['gender'];
             $modelUser->address = $data['address'];
@@ -354,29 +354,29 @@ class SiteController extends Controller
             $modelUser->email = $data['email'];
             $modelUser->mobile_phone = $data['mobile_phone'];
             $modelUser->working_phone = $data['working_phone'];
-//            var_dump($modelUser);
-//            die();
+
             $modelUser->save();
             $user = $modelUser;
 
         } else { $user = Yii::$app->user->identity; }
 
-        $data = Yii::$app->request->post('resetPassword');
+        $data = Yii::$app->request->post('ResetUserPassword');
         if($data){
-
             $user = Yii::$app->user->identity;
             $user_id = $user->id;
             $modelUser = Users::findOne($user_id);
-
             $user = Yii::$app->user->identity;
             if(md5($data['password'])==$user->password){
-                $modelUser->password = md5($data['password']);
+                $modelUser->password = md5($data['new_password']);
                 $modelUser->save();
+                $pass_error = false;
+            }else{
+                $pass_error = true;
             }
         }
 
         $content = $this->content;
-        return $this->render('private', compact('content', 'user'));
+        return $this->render('private', compact('content', 'user', 'pass_error'));
     }
 
 

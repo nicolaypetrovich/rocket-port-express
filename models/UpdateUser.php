@@ -29,8 +29,8 @@ class UpdateUser extends Model
 
         return [
             [['name', 'email'], 'required'],
-            ['photo', 'string'],
-            ['gender', 'integer'],
+            [['photo'], 'file'],
+            [['gender'], 'integer'],
             [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
