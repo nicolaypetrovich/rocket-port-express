@@ -36,11 +36,11 @@
     cursor: pointer;
 }
 
-.media-image {
+.media-image, .media-image-tiny {
     display: inline-block;
 }
 
-.media-image img{
+.media-image img, .media-image-tiny img{
     height: 250px;
     width: auto;
     padding: 15px 5px;
