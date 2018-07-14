@@ -50,4 +50,17 @@
     width: 350px;
     height: auto;
 }
+
+.inner-media {
+    padding-bottom: 25px;
+}
+
+.media-loadmore {
+    font-size: 18px;
+    font-weight: 700;
+    color: green;
+    cursor: pointer;
+    margin: auto;
+    width: 150px;
+}
 /* media libraty popup end */
