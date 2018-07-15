@@ -36,11 +36,11 @@
     cursor: pointer;
 }
 
-.media-image {
+.media-image, .media-image-tiny {
     display: inline-block;
 }
 
-.media-image img{
+.media-image img, .media-image-tiny img{
     height: 250px;
     width: auto;
     padding: 15px 5px;
@@ -49,5 +49,18 @@
 .box-img img{
     width: 350px;
     height: auto;
+}
+
+.inner-media {
+    padding-bottom: 25px;
+}
+
+.media-loadmore {
+    font-size: 18px;
+    font-weight: 700;
+    color: green;
+    cursor: pointer;
+    margin: auto;
+    width: 150px;
 }
 /* media libraty popup end */

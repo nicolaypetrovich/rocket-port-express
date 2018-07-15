@@ -197,9 +197,17 @@ class AdminController extends Controller
         return $this->render('single_office');
     }
 
-    public function actionMediaLibrary(){
+    public function actionMediaLibrary()
+    {
         $data = yii::$app->request->post();
         $counter = $data['counter'];
         return Media::getImagesLibrary($counter);
+    }
+
+    public function actionMediaLibraryTiny()
+    {
+        $data = yii::$app->request->post();
+        $counter = $data['counter'];
+        return Media::getTinyImages($counter);
     }
 }

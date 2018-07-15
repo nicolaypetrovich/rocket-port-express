@@ -7,7 +7,10 @@ use app\models\News;
 use app\models\NewsSearch;
 use app\models\Offices;
 use app\models\Ordercall;
+use app\models\RegistrationForm;
 use app\models\Settings;
+use app\models\UpdateUser;
+use app\models\UserIdentity;
 use app\models\Users;
 use Yii;
 use yii\filters\AccessControl;
@@ -167,6 +170,41 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         $this->goHome();
+
+    }
+
+    /**
+     *  Registration action
+     */
+    public function actionRegisterUser()
+    {
+        $model = new RegistrationForm();
+        if($model->load(Yii::$app->request->post())){
+            $data = Yii::$app->request->post('RegistrationForm');
+            $result = RegistrationForm::findByEmail($data['email']);
+            if($result) {
+                return $result;
+            }
+            $user = new Users();
+            $user->name = $data['name'];
+            $user->login = $data['email'];
+            $user->email = $data['email'];
+            if($data['organization']){
+                $user->organization = $data['organization'];
+            }
+            $user->password = md5($data['password']);
+            $user->save();
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $user = UserIdentity::findByEmail($user->email);
+        if($user)
+        {
+            Yii::$app->user->login($user, 3600*24*60);
+        }
+
+        return Yii::$app->response->redirect(['site/private']);
 
     }
 
@@ -335,8 +373,53 @@ class SiteController extends Controller
         if(Yii::$app->user->isGuest){
             $this->goHome();
         }
+
+        $data = Yii::$app->request->post('UpdateUser');
+
+        if($data){
+
+            $user = Yii::$app->user->identity;
+            $user_id = $user->id;
+            $modelUser = Users::findOne($user_id);
+            $modelFile = new UpdateUser();
+
+            if ((Yii::$app->request->isPost) && ($modelUser != NULL)) {
+                $file = UploadedFile::getInstance($modelFile, 'photo');
+                if($file) {
+                    $modelUser->uploadUserImage($file);
+                }
+            }
+            $modelUser->name = $data['name'];
+            $modelUser->gender = $data['gender'];
+            $modelUser->address = $data['address'];
+            $modelUser->organization = $data['organization'];
+            $modelUser->position = $data['position'];
+            $modelUser->email = $data['email'];
+            $modelUser->mobile_phone = $data['mobile_phone'];
+            $modelUser->working_phone = $data['working_phone'];
+
+            $modelUser->save();
+            $user = $modelUser;
+
+        } else { $user = Yii::$app->user->identity; }
+
+        $data = Yii::$app->request->post('ResetUserPassword');
+        if($data){
+            $user = Yii::$app->user->identity;
+            $user_id = $user->id;
+            $modelUser = Users::findOne($user_id);
+            $user = Yii::$app->user->identity;
+            if(md5($data['password'])==$user->password){
+                $modelUser->password = md5($data['new_password']);
+                $modelUser->save();
+                $pass_error = 'no';
+            }else{
+                $pass_error = 'yes';
+            }
+        }
+
         $content = $this->content;
-        return $this->render('private', compact('content'));
+        return $this->render('private', compact('content', 'user', 'pass_error'));
     }
 
 

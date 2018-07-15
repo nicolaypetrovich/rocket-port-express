@@ -3,16 +3,16 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "users".
  *
  * @property int $id
- * @property string $username
- * @property string $first_name
- * @property string $last_name
+ * @property string $name
+ * @property string $login
  * @property int $gender
- * @property int $photo
+ * @property string $photo
  * @property string $address
  * @property string $organization
  * @property string $position
@@ -23,7 +23,7 @@ use Yii;
  * @property string $auth_key
  * @property string $access_token
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -39,10 +39,10 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'first_name', 'last_name', 'email', 'password', 'auth_key', 'access_token'], 'required'],
-            [['gender', 'photo'], 'integer'],
-            [['username'], 'string', 'max' => 255],
-            [['first_name', 'last_name'], 'string', 'max' => 45],
+            [['name', 'email'], 'required'],
+            ['photo', 'string'],
+            ['gender', 'integer'],
+            [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
             [['position'], 'string', 'max' => 25],
@@ -59,9 +59,7 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
+            'name' => 'Username',
             'gender' => 'Gender',
             'photo' => 'Photo',
             'address' => 'Address',
@@ -75,4 +73,16 @@ class Users extends \yii\db\ActiveRecord
             'access_token' => 'Access Token',
         ];
     }
+
+    public function uploadUserImage($file)
+    {
+        $name = md5(time()) . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+
+        if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
+        {
+            $this->photo = $name;
+
+        }
+    }
+
 }
