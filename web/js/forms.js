@@ -247,7 +247,10 @@ $('body').on('beforeSubmit', 'form#registerUser', function () {
         type: 'post',
         data: form.serialize(),
         success: function (response) {
-            console.dir(response);
+            if(response==1){
+                $("#reg_result").text("Такая почта уже зарегестрирована!");
+            }
+            // console.dir(response);
         }
     });
     return false;

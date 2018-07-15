@@ -358,6 +358,7 @@ AppAsset::register($this);
                     <h2 class="section__title rect__title red">
                         ЗАРЕГИСТРИРОВАТЬСЯ
                     </h2>
+                    <div id="reg_result"></div>
                     <div>
                         <?= $formRegister->field($modelRegister, 'name')
                             ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'ФИО'])
