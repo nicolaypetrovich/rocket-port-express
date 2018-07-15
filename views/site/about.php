@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php foreach ($meta['about_slider']['value'] as $id) { ?>
                     <?php foreach ($media as $value) if($value['id']==$id) { ?>
                         <div class="aboutus__slide">
-                            <img src="img/<?php echo $value['name']; ?>" alt="<?php echo $value['alt']; ?>">
+                            <img src="<?php echo $value->getImageOfSize(); ?>" alt="<?php echo $value->alt; ?>">
                         </div>
                     <?php break; } ?>
                 <?php } ?>
