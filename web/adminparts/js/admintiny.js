@@ -11,6 +11,7 @@ $(document).ready(function(){
         height: 400,
         autoresize_min_height: 400,
         autoresize_max_height: 800,
+        keep_styles : false,
         plugins: [
             'advlist autolink link image lists charmap print preview autoresize',
             'searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking',
@@ -23,7 +24,7 @@ $(document).ready(function(){
                 text: 'Текст с желтой полосой',
                 icon: false,
                 onclick: function () {
-                    editor.insertContent('<div class="aboutus__y-linebox d-flex align-items-center"></div>');
+                    editor.insertContent('<p class="aboutus__y-linebox d-flex align-items-center"></p>');
                 }
             });
             editor.addButton('custom_media', {
