@@ -35,7 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="client wrapperbody" id="client">
     <div class="container">
         <div class="client__wrapper d-flex justify-content-between">
+            <div class="client__leftside">
             <?=$model->content;?>
+            </div>
         </div>
     </div>
 </section>

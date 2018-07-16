@@ -59,12 +59,12 @@ class News extends \yii\db\ActiveRecord
             'title' => 'Title',
             'keywords' => 'Keywords',
             'description' => 'Description',
-            'name' => 'Name',
-            'content' => 'Content',
-            'date' => 'Date',
-            'shortdesc' => 'Shortdesc',
+            'name' => 'Заголовок',
+            'content' => 'Контент',
+            'date' => 'Дата',
+            'shortdesc' => 'Краткий текст',
             'slug' => 'Slug',
-            'media_id' => 'Media ID',
+            'media_id' => 'Фото',
         ];
     }
 

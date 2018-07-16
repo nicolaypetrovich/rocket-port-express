@@ -132,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 'tag' => 'ol',
                 'itemTemplate' => "<li>{link}</li>",
                 'homeLink' => [
-                    'label' => '<i class="fa fa-dashboard"></i> ' . Yii::t('yii', 'Админи'),
+                    'label' => '<i class="fa fa-dashboard"></i> ' . Yii::t('yii', 'Админ'),
                     'encode' => false,
                     'url' => Yii::$app->homeUrl . 'admin/admin/home',
                 ],
