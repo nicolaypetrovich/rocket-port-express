@@ -76,10 +76,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 'activateParents' => true,
                 'submenuTemplate' => "\n<ul class='treeview-menu'>\n{items}\n</ul>\n",
                 'items' => [
-                    ['label' => '<i class="fa fa-flag"></i>Главная', 'url' => ['/admin/admin/home'],'encode' => false],
+                    ['label' => '<i class="fa fa-flag"></i><span>Главная</span>', 'url' => ['/admin/admin/home'],'encode' => false],
                     [
                         'options' => ['class' => 'treeview'],
-                        'label' => '<i class="fa fa-folder"></i>Страницы<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+                        'label' => '<i class="fa fa-folder"></i><span>Страницы</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
                         'url' => ['#'],
                         'template' => '<a href="javascript:void(0);" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                         'items'=>[
