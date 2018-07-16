@@ -41,6 +41,6 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\web\YiiAsset'
+        'yii\web\YiiAsset',
     ];
 }

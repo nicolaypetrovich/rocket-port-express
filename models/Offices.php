@@ -47,13 +47,13 @@ class Offices extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'city' => 'City',
-            'address' => 'Address',
-            'phone' => 'Phone',
+            'city' => 'Город',
+            'address' => 'Адрес',
+            'phone' => 'Телефон',
             'email' => 'Email',
-            'working_hours' => 'Working Hours',
+            'working_hours' => 'Рабочие часы',
             'url' => 'Url',
-            'map' => 'Map',
+            'map' => 'Карта',
         ];
     }
 }
