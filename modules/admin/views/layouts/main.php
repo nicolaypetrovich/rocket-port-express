@@ -112,40 +112,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 ],
                 'options' => ['class' => 'sidebar-menu','data'=>['widget'=>'tree']],
             ]); ?>
-
-<<<<<<< Updated upstream
-=======
-            <!-- Sidebar Menu -->
-            <ul class="sidebar-menu" data-widget="tree">
-
-                <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="<?= $base ?>/admin/admin/home"><i class="fa fa-flag"></i>
-                        <span>Главная</span></a></li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-folder"></i> <span>Страницы</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="<?= $base ?>/admin/settings/about">О компании</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/services">Услуги и тарифы</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/clients">Клиентам</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/delivery">Доставка</a></li>
-                    </ul>
-                </li>
-                <li><a href="<?= $base ?>/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
-                <li><a href="<?= $base ?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
-                <li><a href="<?= $base ?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a>
-                </li>
-                <li><a href="<?= $base ?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a>
-                </li>
-                <li><a href="<?= $base ?>/admin/customer-messages"><i class="fa fa-envelope-o"></i>
-                        <span>Сообщения</span></a></li>
-                <li><a href="<?= $base ?>/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
-
-            </ul>
->>>>>>> Stashed changes
             <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
