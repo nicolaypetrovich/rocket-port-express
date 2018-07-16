@@ -181,6 +181,7 @@ use yii\widgets\ActiveForm;
                                 ->label(false);
                             ?>
                         </div>
+                        <?= Html::submitButton('Сохранить', ['class' => 'contact-box__btn']) ?>
                         <div style="display: none">
                             <?= $formUpdate->field($modelUpdate, 'photo')->fileInput() ?>
                         </div>
@@ -199,7 +200,7 @@ use yii\widgets\ActiveForm;
                 </div>
 
 
-                <?= Html::submitButton('Сохранить', ['class' => 'contact-box__btn']) ?>
+
 
                 <?php ActiveForm::end(); ?>
 

@@ -1791,6 +1791,9 @@ label {
 
 .private__avatar {
 	padding: 70px 15px;
+	position: absolute;
+	top: 0;
+	left: 550px;
 }
 
 .avatar__wrap {
@@ -2415,4 +2418,12 @@ img.thumbnail {
 
 .help-block {
 	max-width: 300px;
+}
+
+#resetPassword {
+	display: inherit;
+}
+
+#updateUser {
+	margin-bottom: 20px;
 }
