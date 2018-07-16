@@ -140,9 +140,20 @@ class SiteController extends Controller
         $dataProvider = $searchModel::find()->orderBy(['date' => SORT_DESC])->limit(6)->all();
 
 
+        $images=array();
+        foreach (json_decode($meta['index_block_icons_images']->value,true) as $item){
+                $images[]=$item;
+        }
+
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+
         return $this->render('index', [
             'meta' => $meta,
             'news' => $dataProvider,
+            'icons_media'=>$media,
+
         ]);
     }
 

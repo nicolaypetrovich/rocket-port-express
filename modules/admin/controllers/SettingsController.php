@@ -19,6 +19,49 @@ class SettingsController extends Controller
 
 
     /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionHome()
+    {
+        $meta = Settings::find()->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'index'])
+//            ->where(['like', 'key', 'img'])
+            ->indexBy('key')
+//            ->asArray()
+            ->all();
+
+
+        $fieldsArray = array('index_block2','index_block_about' );
+        $data = Yii::$app->request->post();
+
+        if ($data) {
+            foreach ($fieldsArray as $field) {
+                $tempModel = $this->findModel($field);
+                if (null != $tempModel) {
+                    $tempModel->value = json_encode($data[$field]);
+                    $tempModel->save();
+                }
+            }
+        }
+
+        $images=array();
+        foreach (json_decode($meta['index_block_icons_images']->value,true) as $item){
+            $images[]=$item;
+        }
+
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+        return $this->render('home',[
+            'meta'=>$meta,
+            'icons_media'=>$media,
+        ]);
+    }
+
+
+    /**
      * Lists all Settings models.
      * @return mixed
      * @throws NotFoundHttpException

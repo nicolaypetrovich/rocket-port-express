@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="<?= $base ?>/admin/admin/home" class="logo">
+        <a href="<?= $base ?>/admin/settings/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>P</b>E</span>
             <!-- logo for regular state and mobile devices -->
@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 'activateParents' => true,
                 'submenuTemplate' => "\n<ul class='treeview-menu'>\n{items}\n</ul>\n",
                 'items' => [
-                    ['label' => '<i class="fa fa-flag"></i><span>Главная</span>', 'url' => ['/admin/admin/home'],'encode' => false],
+                    ['label' => '<i class="fa fa-flag"></i><span>Главная</span>', 'url' => ['/admin/settings/home'],'encode' => false],
                     [
                         'options' => ['class' => 'treeview'],
                         'label' => '<i class="fa fa-folder"></i><span>Страницы</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
@@ -90,12 +90,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         ],
                     ],
 
-                    ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/offices'],'encode' => false],
+                    ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/offices/index'],'encode' => false],
                     ['label' => '<i class="fa fa-newspaper-o"></i> <span>Новости</span>', 'url' => ['/admin/news/index'],'encode' => false],
                     ['label' => '<i class="fa fa-photo"></i> <span>Изображения</span>', 'url' => ['/admin/admin/media'],'encode' => false],
                     ['label' => '<i class="fa fa-phone"></i> <span>Запросы звонков</span>', 'url' => ['/admin/ordercall/index'],'encode' => false],
                     ['label' => '<i class="fa fa-envelope-o"></i><span>Сообщения</span>', 'url' => ['/admin/customer-messages/index'],'encode' => false],
-                    ['label' => '<i class="fa fa-user"></i><span>Пользователи</span>', 'url' => ['/admin/users'],'encode' => false],
+                    ['label' => '<i class="fa fa-user"></i><span>Пользователи</span>', 'url' => ['/admin/users/index'],'encode' => false],
                     ['label' => '<i class="fa fa-gears"></i> <span>Глобальные Настройки</span>', 'url' => ['/admin/settings/global'],'encode' => false],
                 ],
                 'options' => ['class' => 'sidebar-menu','data'=>['widget'=>'tree']],

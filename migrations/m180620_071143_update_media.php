@@ -84,6 +84,16 @@ class m180620_071143_update_media extends Migration
             $id_counter++;
         }
 
+        for ($i=1; $i <= 6; $i++) {
+            $this->insert('media', [
+                'id' => $id_counter,
+                'name' => 'icon'.$i.'.png',
+                'title' => 'icon#'.$i,
+                'alt' => 'Доставка'.$i,
+            ]);
+            $id_counter++;
+        }
+
 
 
 
@@ -94,7 +104,7 @@ class m180620_071143_update_media extends Migration
 
     public function down()
     {
-        $this->delete('media', 'id<=18');
+        $this->delete('media', 'id<=25');
 
         echo "Default images deleted\n";
 
