@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\models\SettingsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Settings';
+$this->title = 'Глобальные настройки';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -1,3 +1,6 @@
+<?php
+$this->title = 'О компании';
+$this->params['breadcrumbs'][] = $this->title; ;?>
 <div class="box-bl">
   <form>
     <div class="box-item">
