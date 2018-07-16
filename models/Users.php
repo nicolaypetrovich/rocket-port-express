@@ -59,16 +59,17 @@ class Users extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Username',
-            'gender' => 'Gender',
-            'photo' => 'Photo',
-            'address' => 'Address',
-            'organization' => 'Organization',
-            'position' => 'Position',
+            'name' => 'ФИО',
+            'login' => 'Идентифицирующий логин',
+            'gender' => 'ПОЛ',
+            'photo' => 'Фотография',
+            'address' => 'Адрес',
+            'organization' => 'Организация',
+            'position' => 'Должность',
             'email' => 'Email',
-            'mobile_phone' => 'Mobile Phone',
-            'working_phone' => 'Working Phone',
-            'password' => 'Password',
+            'mobile_phone' => 'Мобильный телефон',
+            'working_phone' => 'Рабочий телефон',
+            'password' => 'Пароль',
             'auth_key' => 'Auth Key',
             'access_token' => 'Access Token',
         ];
@@ -77,12 +78,15 @@ class Users extends ActiveRecord
     public function uploadUserImage($file)
     {
         $name = md5(time()) . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+        if (!is_dir(Yii::getAlias('@web'). 'uploads/user_images/')) {
+            mkdir(Yii::getAlias('@web'). 'uploads/user_images/', 0777, true);
+            if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
+            {
+                $this->photo = $name;
 
-        if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
-        {
-            $this->photo = $name;
-
+            }
         }
+
     }
 
 }
