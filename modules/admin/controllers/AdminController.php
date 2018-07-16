@@ -81,30 +81,8 @@ class AdminController extends Controller
     {
         return $this->render('media');
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionMessage()
-    {
-        return $this->render('message');
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionNews()
-    {
-        return $this->render('news');
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionOffices()
-    {
-        return $this->render('offices');
-    }
+
+
     /**
      * Renders the index view for the module
      * @return string
@@ -139,49 +117,8 @@ class AdminController extends Controller
     {
         return $this->render('services');
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionCall()
-    {
-        $dataProvider = Ordercall::find()
-            ->all();
-        return $this->render('call');
-    }
 
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionSettings()
-    {
-        $meta = Settings::find()
-            ->select('key,value')
-            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
-            ->where(['like', 'key', 'global'])
-            ->indexBy('key')
-            ->all();
-        return $this->render('settings',[
-            'meta' => $meta
-        ]);
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionSingleNew()
-    {
-        return $this->render('single_new');
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionSingleOffice()
-    {
-        return $this->render('single_office');
-    }
+
 
     public function actionMediaLibrary()
     {

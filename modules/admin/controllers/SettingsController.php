@@ -23,10 +23,10 @@ class SettingsController extends Controller
      * @return mixed
      * @throws NotFoundHttpException
      */
-    public function actionIndex()
+    public function actionGlobal()
     {
 
-        $fieldsArray = array('global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
+        $fieldsArray = array('global_logo','global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
         $data = Yii::$app->request->post();
 
         if ($data) {
@@ -44,7 +44,7 @@ class SettingsController extends Controller
             ->where(['like', 'key', 'global'])
             ->indexBy('key')
             ->all();
-        return $this->render('index', [
+        return $this->render('global', [
             'meta' => $meta
         ]);
     }
