@@ -50,35 +50,46 @@ class SettingsController extends Controller
     }
 
 
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionAbout()
     {
+        $currPage=Pages::findBySlug('about');
 
+        $data=Yii::$app->request->post();
+        if(!empty($data)){
+            if(!empty($data['video'])){
+                $aboutVideo=Settings::findOne(['key'=>'about_video']);
+                $aboutVideo->value=$data['video'];
+                $aboutVideo->save();
+            }
+            if(!empty($data['slider'])){
+                $aboutSlider=Settings::findOne(['key'=>'about_slider']);
+                $aboutSlider->value=json_encode($data['slider']);
+                $aboutSlider->save();
+            }
+            if(!empty($data['content'])){
+                $currPage->content=json_encode($data['content']);
+                $currPage->save();
+            }
 
+        }
+
+        $content=json_decode($currPage->content);
         $meta = Settings::find()->select(['key','value'])
             ->where(['or', ['key'=>'about_video'], ['key'=>'about_slider'] ])
-            ->asArray()
             ->indexBy('key')
             ->all();
-
-
 
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
 
         $media = Media::find()->select('id, name, title, alt')
             ->where(['id'=>$meta['about_slider']['value']])
-            ->asArray()
             ->all();
-
-        $page = Pages::find()->where(['=', 'slug', 'about'])->one();
-
-
-        return $this->render('about', [
-            'meta' =>$meta,
-            'media'=>$media,
-            'page'=>$page
-        ]);
+        return $this->render('about',compact('content', 'meta', 'media'));
     }
-
 
     /**
      * Finds the Settings model based on its primary key value.

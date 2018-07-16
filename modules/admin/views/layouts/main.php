@@ -39,12 +39,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
-    <?php $base= Url::base(true);?>
+    <?php $base = Url::base(true); ?>
     <!-- Main Header -->
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="<?=$base?>/admin/admin/home" class="logo">
+        <a href="<?= $base ?>/admin/admin/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>N</span>
             <!-- logo for regular state and mobile devices -->
@@ -79,11 +79,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
 
 
+            <?php
+//            echo Nav::widget([
+//
+//
+//
+//                'items' => [
+//                    ['label' => '<i class="fa fa-flag"></i>Главная', 'url' => ['/site/index'],'encode' => false],
+//                    ['label' => 'About', 'url' => ['/site/about']],
+//                ],
+//                'options' => ['class' => 'sidebar-menu','data'=>['widget'=>'tree']],
+//            ]); ?>
+
+
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
 
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="<?=$base?>/admin/admin/home"><i class="fa fa-flag"></i> <span>Главная</span></a></li>
+                <li class="active"><a href="<?= $base ?>/admin/admin/home"><i class="fa fa-flag"></i>
+                        <span>Главная</span></a></li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-folder"></i> <span>Страницы</span>
                         <span class="pull-right-container">
@@ -91,18 +105,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="<?=$base?>/admin/admin/about">О компании</a></li>
-                        <li><a href="<?=$base?>/admin/admin/services">Услуги и тарифы</a></li>
-                        <li><a href="<?=$base?>/admin/admin/clients">Клиентам</a></li>
-                        <li><a href="<?=$base?>/admin/admin/delivery">Доставка</a></li>
+                        <li><a href="<?= $base ?>/admin/settings/about">О компании</a></li>
+                        <li><a href="<?= $base ?>/admin/admin/services">Услуги и тарифы</a></li>
+                        <li><a href="<?= $base ?>/admin/admin/clients">Клиентам</a></li>
+                        <li><a href="<?= $base ?>/admin/admin/delivery">Доставка</a></li>
                     </ul>
                 </li>
-                <li><a href="<?=$base?>/admin/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
-                <li><a href="<?=$base?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
-                <li><a href="<?=$base?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a></li>
-                <li><a href="<?=$base?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a></li>
-                <li><a href="<?=$base?>/admin/customer-messages"><i class="fa fa-envelope-o"></i> <span>Сообщения</span></a></li>
-                <li><a href="<?=$base?>/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
+                <li><a href="<?= $base ?>/admin/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
+                <li><a href="<?= $base ?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
+                <li><a href="<?= $base ?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a>
+                </li>
+                <li><a href="<?= $base ?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a>
+                </li>
+                <li><a href="<?= $base ?>/admin/customer-messages"><i class="fa fa-envelope-o"></i>
+                        <span>Сообщения</span></a></li>
+                <li><a href="<?= $base ?>/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
 
             </ul>
             <!-- /.sidebar-menu -->
@@ -117,24 +134,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
             <h1>
                 Администрирование
-                <small><?=$this->title;?></small>
+                <small><?= $this->title; ?></small>
             </h1>
-	        <?=
-	        Breadcrumbs::widget([
-		        'tag'		=>'ol',
-		        'itemTemplate' => "<li>{link}</li>",
-		        'homeLink' => [
-			        'label' => '<i class="fa fa-dashboard"></i> '.Yii::t('yii', 'Админ'),
-			        'encode' => false,
-			        'url' => Yii::$app->homeUrl.'admin/admin/home',
-		        ],
-		        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-	        ])
-	        ?>
-<!--            <ol class="breadcrumb">-->
-<!--                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>-->
-<!--                <li class="active">Here</li>-->
-<!--            </ol>-->
+            <?=
+            Breadcrumbs::widget([
+                'tag' => 'ol',
+                'itemTemplate' => "<li>{link}</li>",
+                'homeLink' => [
+                    'label' => '<i class="fa fa-dashboard"></i> ' . Yii::t('yii', 'Админи'),
+                    'encode' => false,
+                    'url' => Yii::$app->homeUrl . 'admin/admin/home',
+                ],
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ])
+            ?>
+            <!--            <ol class="breadcrumb">-->
+            <!--                <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>-->
+            <!--                <li class="active">Here</li>-->
+            <!--            </ol>-->
         </section>
 
         <!-- Main content -->

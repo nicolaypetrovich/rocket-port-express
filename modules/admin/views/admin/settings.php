@@ -47,7 +47,7 @@
               <input type="hidden" id="maps_cords" name="map" value="<?php echo ($meta['global_mainMap']['value']); ?>">
             </div>
           </div>
-          <button type="sibmit" class="btn btn-block btn-warning btn-save">Сохранить</button>
+          <button type="submit" class="btn btn-block btn-warning btn-save">Сохранить</button>
         </form>
       </div>
       <script type="text/javascript">

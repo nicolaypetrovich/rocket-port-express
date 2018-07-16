@@ -46,4 +46,9 @@ class Pages extends \yii\db\ActiveRecord
             'content' => 'Content',
         ];
     }
+
+    public static function findBySlug($slug)
+    {
+        return static::findOne(['slug' => $slug]);
+    }
 }
