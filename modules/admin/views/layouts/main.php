@@ -45,9 +45,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Logo -->
         <a href="<?= $base ?>/admin/admin/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>N</span>
+            <span class="logo-mini"><b>P</b>E</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b></span>
+            <span class="logo-lg"><b>Port-Express</b></span>
         </a>
 
         <!-- Header Navbar -->
@@ -64,15 +64,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
-
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
-                <div class="pull-left info" style="height: 50px;">
-                    <p>Port-Express</p>
-                    <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            </div>
 
             <!-- Sidebar Menu -->
             <?php
