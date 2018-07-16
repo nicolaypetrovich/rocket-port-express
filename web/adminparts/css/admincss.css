@@ -64,3 +64,8 @@
     width: 150px;
 }
 /* media libraty popup end */
+
+.admin_user_image {
+    width: auto;
+    height: 150px;
+}
