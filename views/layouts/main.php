@@ -171,7 +171,10 @@ AppAsset::register($this);
                         }, {
                             searchControlProvider: 'yandex#search'
                         });
-                    mainMapPlacemark = createPlacemark(mainMapCoords.split(","));
+                    mainMapPlacemark = new ymaps.Placemark(mainMapCoords.split(","), {}, {
+                        draggable : false,
+                        preset: 'islands#redDotIconWithCaption',
+                    });
                     mainMap.geoObjects.add(mainMapPlacemark);
                     getAddress(mainMapCoords, mainMapPlacemark);
                     //check for contact page (render contact page maps if render function exists)

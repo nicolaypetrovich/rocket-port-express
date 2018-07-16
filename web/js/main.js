@@ -228,7 +228,7 @@ function createPlacemark(coords) {
         iconCaption: 'поиск...'
     }, {
         preset: 'islands#redDotIconWithCaption',
-        draggable: true
+        draggable: false
     });
 }
 function getAddress(coords, element) {
