@@ -40,6 +40,7 @@ class AdminAsset extends AssetBundle
         'adminparts/js/admintiny.js',
     ];
     public $depends = [
-        'yii\web\JqueryAsset'
+        'yii\web\JqueryAsset',
+        'yii\web\YiiAsset'
     ];
 }

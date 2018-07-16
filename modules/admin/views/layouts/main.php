@@ -6,11 +6,10 @@
 
 use app\widgets\Alert;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
 use app\modules\admin\assets\AdminAsset;
+use yii\widgets\Menu;
 
 AdminAsset::register($this);
 ?>
@@ -78,50 +77,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </div>
 
-
-            <?php
-//            echo Nav::widget([
-//
-//
-//
-//                'items' => [
-//                    ['label' => '<i class="fa fa-flag"></i>Главная', 'url' => ['/site/index'],'encode' => false],
-//                    ['label' => 'About', 'url' => ['/site/about']],
-//                ],
-//                'options' => ['class' => 'sidebar-menu','data'=>['widget'=>'tree']],
-//            ]); ?>
-
-
             <!-- Sidebar Menu -->
-            <ul class="sidebar-menu" data-widget="tree">
+            <?php
+            echo Menu::widget([
 
-                <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="<?= $base ?>/admin/admin/home"><i class="fa fa-flag"></i>
-                        <span>Главная</span></a></li>
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-folder"></i> <span>Страницы</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="<?= $base ?>/admin/settings/about">О компании</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/services">Услуги и тарифы</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/clients">Клиентам</a></li>
-                        <li><a href="<?= $base ?>/admin/admin/delivery">Доставка</a></li>
-                    </ul>
-                </li>
-                <li><a href="<?= $base ?>/admin/admin/offices"><i class="fa fa-bank"></i> <span>Офисы</span></a></li>
-                <li><a href="<?= $base ?>/admin/news"><i class="fa fa-newspaper-o"></i> <span>Новости</span></a></li>
-                <li><a href="<?= $base ?>/admin/admin/media"><i class="fa fa-photo"></i> <span>Изображения</span></a>
-                </li>
-                <li><a href="<?= $base ?>/admin/ordercall"><i class="fa fa-phone"></i> <span>Запросы звонков</span></a>
-                </li>
-                <li><a href="<?= $base ?>/admin/customer-messages"><i class="fa fa-envelope-o"></i>
-                        <span>Сообщения</span></a></li>
-                <li><a href="<?= $base ?>/admin/settings"><i class="fa fa-gears"></i> <span>Настройки</span></a></li>
+//                'innerContainerOptions' => [
+//                    'class' => 'navbar-header',
+//                ],
+                'encodeLabels' => false,
+                'activateParents' => true,
+                'submenuTemplate' => "\n<ul class='treeview-menu'>\n{items}\n</ul>\n",
+                'items' => [
+                    ['label' => '<i class="fa fa-flag"></i>Главная', 'url' => ['/admin/admin/home'],'encode' => false],
+                    [
+                        'options' => ['class' => 'treeview'],
+                        'label' => '<i class="fa fa-folder"></i>Страницы<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
+                        'url' => ['#'],
+                        'template' => '<a href="javascript:void(0);" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
+                        'items'=>[
+                            ['label' => 'О компании', 'url' => ['/admin/settings/about']],
+                            ['label' => 'Услуги и тарифы', 'url' => ['/admin/admin/services']],
+                            ['label' => 'Клиентам', 'url' => ['/admin/admin/clients']],
+                            ['label' => 'Доставка', 'url' => ['/admin/admin/delivery'],],
+                        ],
+                    ],
 
-            </ul>
+                    ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/admin/offices'],'encode' => false],
+                    ['label' => '<i class="fa fa-newspaper-o"></i> <span>Новости</span>', 'url' => ['/admin/news/index'],'encode' => false],
+                    ['label' => '<i class="fa fa-photo"></i> <span>Изображения</span>', 'url' => ['/admin/admin/media'],'encode' => false],
+                    ['label' => '<i class="fa fa-phone"></i> <span>Запросы звонков</span>', 'url' => ['/admin/ordercall/index'],'encode' => false],
+                    ['label' => '<i class="fa fa-envelope-o"></i><span>Сообщения</span>', 'url' => ['/admin/customer-messages/index'],'encode' => false],
+                    ['label' => '<i class="fa fa-gears"></i> <span>Настройки</span>', 'url' => ['/admin/settings/index'],'encode' => false],
+
+                ],
+                'options' => ['class' => 'sidebar-menu','data'=>['widget'=>'tree']],
+            ]); ?>
+
             <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
