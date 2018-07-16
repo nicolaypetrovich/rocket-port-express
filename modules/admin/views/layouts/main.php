@@ -67,10 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
+                <div class="pull-left info" style="height: 50px;">
                     <p>Port-Express</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -102,7 +99,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         ],
                     ],
 
-                    ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/admin/offices'],'encode' => false],
+                    ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/offices'],'encode' => false],
                     ['label' => '<i class="fa fa-newspaper-o"></i> <span>Новости</span>', 'url' => ['/admin/news/index'],'encode' => false],
                     ['label' => '<i class="fa fa-photo"></i> <span>Изображения</span>', 'url' => ['/admin/admin/media'],'encode' => false],
                     ['label' => '<i class="fa fa-phone"></i> <span>Запросы звонков</span>', 'url' => ['/admin/ordercall/index'],'encode' => false],
