@@ -1,4 +1,6 @@
-
+<?php
+$this->title = 'Клиентам';
+$this->params['breadcrumbs'][] = $this->title; ;?>
       <div class="box-bl">
         <form>
           <div class="box-item">

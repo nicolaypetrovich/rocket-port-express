@@ -1,6 +1,6 @@
 $(document).ready(function(){
     tinymce.init({
-        selector: "textarea",
+        selector: ".container-fluid textarea",
         language : 'ru',
         browser_spellcheck: true,
         branding: false,

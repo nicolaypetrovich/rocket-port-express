@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Media;
+use app\models\Pages;
 use app\modules\admin\models\AdminLoginForm;
 use app\models\Settings;
 use app\models\Ordercall;
@@ -62,14 +63,7 @@ class AdminController extends Controller
             'meta'=>$meta
             ]);
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+
     /**
      * Renders the index view for the module
      * @return string

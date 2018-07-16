@@ -53,6 +53,7 @@ function createPlacemark(coords) {
     });
 }
 function getAddress(coords,mainMapPlacemark) {
+
     document.getElementById('maps_cords').value = coords;
     //console.dir(coords);
     // mainMapPlacemark.properties.set('iconCaption', 'поиск...');
