@@ -64,14 +64,6 @@ class AdminController extends Controller
             ]);
     }
 
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionClients()
-    {
-        return $this->render('clients');
-    }
 
     /**
      * Renders the index view for the module

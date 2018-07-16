@@ -26,14 +26,14 @@ class SettingsController extends Controller
     public function actionIndex()
     {
 
-        $fieldsArray=array('global_headertext1','global_headertext2','global_phone','global_email','global_address','global_copyright','global_mainMap');
-        $data=Yii::$app->request->post();
+        $fieldsArray = array('global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
+        $data = Yii::$app->request->post();
 
         if ($data) {
-            foreach ($fieldsArray as $field){
-                $tempModel=$this->findModel($field);
-                if(null != $tempModel){
-                    $tempModel->value=$data[$field];
+            foreach ($fieldsArray as $field) {
+                $tempModel = $this->findModel($field);
+                if (null != $tempModel) {
+                    $tempModel->value = $data[$field];
                     $tempModel->save();
                 }
             }
@@ -54,41 +54,58 @@ class SettingsController extends Controller
      * Renders the index view for the module
      * @return string
      */
+    public function actionClients()
+    {
+        $page = Pages::findBySlug('client');
+        $data = Yii::$app->request->post();
+        if(!empty($data)){
+            $page->content=json_encode($data['content']);
+            $page->save();
+        }
+
+        return $this->render('clients', ['page' => $page]);
+    }
+
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
     public function actionAbout()
     {
-        $currPage=Pages::findBySlug('about');
+        $currPage = Pages::findBySlug('about');
 
-        $data=Yii::$app->request->post();
-        if(!empty($data)){
-            if(!empty($data['video'])){
-                $aboutVideo=Settings::findOne(['key'=>'about_video']);
-                $aboutVideo->value=$data['video'];
+        $data = Yii::$app->request->post();
+        if (!empty($data)) {
+            if (!empty($data['video'])) {
+                $aboutVideo = Settings::findOne(['key' => 'about_video']);
+                $aboutVideo->value = $data['video'];
                 $aboutVideo->save();
             }
-            if(!empty($data['slider'])){
-                $aboutSlider=Settings::findOne(['key'=>'about_slider']);
-                $aboutSlider->value=json_encode($data['slider']);
+            if (!empty($data['slider'])) {
+                $aboutSlider = Settings::findOne(['key' => 'about_slider']);
+                $aboutSlider->value = json_encode($data['slider']);
                 $aboutSlider->save();
             }
-            if(!empty($data['content'])){
-                $currPage->content=json_encode($data['content']);
+            if (!empty($data['content'])) {
+                $currPage->content = json_encode($data['content']);
                 $currPage->save();
             }
 
         }
 
-        $content=json_decode($currPage->content);
-        $meta = Settings::find()->select(['key','value'])
-            ->where(['or', ['key'=>'about_video'], ['key'=>'about_slider'] ])
+        $content = json_decode($currPage->content);
+        $meta = Settings::find()->select(['key', 'value'])
+            ->where(['or', ['key' => 'about_video'], ['key' => 'about_slider']])
             ->indexBy('key')
             ->all();
 
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
 
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['id'=>$meta['about_slider']['value']])
+            ->where(['id' => $meta['about_slider']['value']])
             ->all();
-        return $this->render('about',compact('content', 'meta', 'media'));
+        return $this->render('about', compact('content', 'meta', 'media'));
     }
 
     /**
@@ -100,7 +117,7 @@ class SettingsController extends Controller
      */
     protected function findModel($val)
     {
-        if (($model = Settings::findOne(['key'=>$val])) !== null) {
+        if (($model = Settings::findOne(['key' => $val])) !== null) {
             return $model;
         }
 
