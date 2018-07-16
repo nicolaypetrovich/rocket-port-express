@@ -19,10 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h5>Логотип</h5>
                 <div class="box-img">
                     <img src="<?php echo $meta['global_logo']->media->getImageOfSize();?>" alt="User Image">
+                    <input type="hidden" name="global_logo" value="<?=$meta['global_logo']->value;?>">
                     <div class="s-boxbtn">
                         <button type="button" class="btn btn-block btn-success">Загрузить</button>
                         <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                        <button type="button" class="btn btn-block bg-purple">Изменить</button>
+                        <button type="button" class="btn btn-block bg-purple media-open-button">Изменить</button>
                     </div>
                 </div>
             </div>
