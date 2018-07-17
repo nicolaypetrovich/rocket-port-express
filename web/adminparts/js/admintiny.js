@@ -28,13 +28,20 @@ function initializeTinyMce(){
             'table contextmenu emoticons paste textcolor code'
         ],
         toolbar1: "styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify  | table | subscript superscript",
-        toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor | insertdatetime preview | forecolor backcolor | mybutton custom_media",
+        toolbar2: "cut copy paste | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor | insertdatetime preview | forecolor backcolor | mybutton custom_media textfooter_btn",
         setup: function(editor) {
             editor.addButton('mybutton', {
                 text: 'Текст с желтой полосой',
                 icon: false,
                 onclick: function () {
                     editor.insertContent('<p class="aboutus__y-linebox d-flex align-items-center"></p>');
+                }
+            });
+            editor.addButton('textfooter_btn', {
+                text: 'Горизонтальная желтая полоса',
+                icon: false,
+                onclick: function () {
+                    editor.insertContent('<p class="y-line"></p>');
                 }
             });
             editor.addButton('custom_media', {

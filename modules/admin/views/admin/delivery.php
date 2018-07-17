@@ -4,7 +4,7 @@
         <div class="box-item">
             <div class="box-textarea"><textarea class="form-control"
                                                 placeholder="Введите текст"
-                                                name="delivery[content]"><?= $content['content'] ?></textarea></div>
+                                                name="delivery[content]"><?php if($content['content']){echo $content['content'];}; ?></textarea></div>
 
             <div class="box-item-del">
                 <h3>Здесь лежат какие-то настройки доставки</h3>
