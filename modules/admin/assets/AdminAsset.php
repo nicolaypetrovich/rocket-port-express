@@ -34,10 +34,10 @@ class AdminAsset extends AssetBundle
         'adminparts/plugins/timepicker/bootstrap-timepicker.min.js',
         'adminparts/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         '//api-maps.yandex.ru/2.1/?lang=ru_RU',
-        'adminparts/js/admincustom.js',
-        'adminparts/js/adminmedia.js',
         'adminparts/tinymce/tinymce.min.js',
         'adminparts/js/admintiny.js',
+        'adminparts/js/admincustom.js',
+        'adminparts/js/adminmedia.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset',

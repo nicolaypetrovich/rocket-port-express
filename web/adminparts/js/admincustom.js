@@ -8,10 +8,19 @@ $(document).ready(function () {
     }
 
     $('.btn-plus').on('click', function(){
+        console.log('removed');
+        // tinyMCE.remove('.container-fluid textarea');
+        tinymce.remove('.container-fluid textarea');
         var f = $(this).prev('.box-item-repeat');
         $(this).prev('.box-item-repeat').clone(true).insertAfter(f);
         $(this).prev('.box-item-repeat').find("input:text").val("");
-        $(this).prev('.box-item-repeat').find("textarea").val("");
+        $(this).prev('.box-item-repeat').find("textarea").attr('id', 'area'+$('textarea').length+1).val("");
+
+
+
+            initializeTinyMce();
+
+
     });
 
 
