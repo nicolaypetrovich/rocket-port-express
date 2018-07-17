@@ -1,4 +1,14 @@
 $(document).ready(function(){
+    initializeTinyMce();
+    $('.inner-media').on('click', '.media-selected-tiny', function(){
+        // console.dir(this);
+        var image_src = $(this).attr('src'),
+            modal = $("#MediaLibrary");
+        tinymce.activeEditor.execCommand('mceInsertContent', false, '<img class="tiny-img" src="' + image_src + '"></img>');
+        modal[0].style.display = "none";
+    });
+});
+function initializeTinyMce(){
     tinymce.init({
         selector: ".container-fluid textarea",
         language : 'ru',
@@ -55,4 +65,6 @@ $(document).ready(function(){
             });
         }
     });
-});
+
+}
+

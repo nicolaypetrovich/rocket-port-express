@@ -158,6 +158,58 @@ class SettingsController extends Controller
         return $this->render('about', compact('content', 'meta', 'media'));
     }
 
+
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionServices()
+    {
+        $data = Yii::$app->request->post();
+
+        if ($data) {
+            $service_array=array('image'=>$data['image'],'text'=>$data['text']);
+
+            try {
+                $tempModel = $this->findModel('services_blocks');
+                if (null != $tempModel) {
+                    $tempModel->value = json_encode($service_array);
+                    $tempModel->save();
+                }
+            } catch (NotFoundHttpException $e) {
+                $tempModel= new Settings();
+                $tempModel->key='services_blocks';
+                $tempModel->value=json_encode($service_array);
+                $tempModel->save();
+            }
+
+
+        }
+        $meta = Settings::find()
+            ->select('key,value')
+            ->where(['like', 'key', 'services_blocks'])
+            ->one();
+        $meta=json_decode($meta['value']);
+        $images=array();
+
+        foreach ($meta->image as $item){
+            $images[]=$item;
+        }
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+
+        return $this->render('services',[
+            'meta'=>$meta,
+            'media'=>$media
+        ]);
+    }
+
+
+
+
+
     /**
      * Finds the Settings model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

@@ -92,14 +92,6 @@ class AdminController extends Controller
 
 
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionServices()
-    {
-        return $this->render('services');
-    }
 
 
 
