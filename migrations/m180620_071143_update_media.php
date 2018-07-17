@@ -93,8 +93,17 @@ class m180620_071143_update_media extends Migration
             ]);
             $id_counter++;
         }
-
-
+        $id_counter=25;
+        for ($i=1; $i <= 5; $i++) {
+            $this->insert('media', [
+                'id' => $id_counter,
+                'name' => 'addservice'.$i.'.jpg',
+                'title' => 'addservice#'.$i,
+                'alt' => 'addservice'.$i,
+            ]);
+            $id_counter++;
+        }
+     
 
 
         echo "Default images created\n";
