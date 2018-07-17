@@ -110,10 +110,4 @@ class AdminController extends Controller
         return Media::getImagesLibrary($counter);
     }
 
-    public function actionMediaLibraryTiny()
-    {
-        $data = yii::$app->request->post();
-        $counter = $data['counter'];
-        return Media::getTinyImages($counter);
-    }
 }
