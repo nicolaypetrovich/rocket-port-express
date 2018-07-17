@@ -43,7 +43,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="<?= $base ?>/admin/settings/home" class="logo">
+        <a href="<?= $base ?>/admin/settings/index" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>P</b>E</span>
             <!-- logo for regular state and mobile devices -->
@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 'activateParents' => true,
                 'submenuTemplate' => "\n<ul class='treeview-menu'>\n{items}\n</ul>\n",
                 'items' => [
-                    ['label' => '<i class="fa fa-flag"></i><span>Главная</span>', 'url' => ['/admin/settings/home'],'encode' => false],
+                    ['label' => '<i class="fa fa-flag"></i><span>Главная</span>', 'url' => ['/admin/settings/index'],'encode' => false],
                     [
                         'options' => ['class' => 'treeview'],
                         'label' => '<i class="fa fa-folder"></i><span>Страницы</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>',
