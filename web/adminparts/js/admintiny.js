@@ -66,5 +66,10 @@ function initializeTinyMce(){
         }
     });
 
+    $('#insertrepeater').on('click', function(e){
+        e.preventDefault();
+        tinymce.activeEditor.execCommand('mceInsertContent', false, '%repeater%');
+    })
+
 }
 
