@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         'template' => '<a href="javascript:void(0);" >{label}<i class="fa fa-angle-left pull-right"></i></a>',
                         'items'=>[
                             ['label' => 'О компании', 'url' => ['/admin/settings/about']],
-                            ['label' => 'Услуги и тарифы', 'url' => ['/admin/admin/services']],
+                            ['label' => 'Услуги и тарифы', 'url' => ['/admin/settings/services']],
                             ['label' => 'Клиентам', 'url' => ['/admin/settings/clients']],
                             ['label' => 'Доставка', 'url' => ['/admin/admin/delivery'],],
                         ],

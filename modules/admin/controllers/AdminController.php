@@ -92,20 +92,6 @@ class AdminController extends Controller
 
 
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionServices()
-    {
-        $data = Yii::$app->request->post();
-
-        if ($data) {
-            var_dump($data);
-            die();
-        }
-        return $this->render('services');
-    }
 
 
 

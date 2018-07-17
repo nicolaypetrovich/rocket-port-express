@@ -14,13 +14,10 @@ $(document).ready(function () {
         var f = $(this).prev('.box-item-repeat');
         $(this).prev('.box-item-repeat').clone(true).insertAfter(f);
         $(this).prev('.box-item-repeat').find("input:text").val("");
+        $(this).prev('.box-item-repeat').find("img").attr("src",'');
+        $(this).prev('.box-item-repeat').find("input:hidden").val('');
         $(this).prev('.box-item-repeat').find("textarea").attr('id', 'area'+$('textarea').length+1).val("");
-
-
-
             initializeTinyMce();
-
-
     });
 
 
