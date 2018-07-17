@@ -32,13 +32,22 @@ $(document).ready(function () {
 
 
     $('.btn-plus-first').on('click', function(){
-        var b = $(this).parent().find('.box-item-del-inner:not(.active)');
+        var b = $('.box-item-del-inner:not(.active)');
         b.clone(true).insertBefore($(this)).addClass('active');
+        var count = $('.box-item-del-inner.active').length,
+            obj = $(this).prev();
+        $(obj).find('input').first().attr('name', 'delivery[repeater]['+count+'][title]');
+        $(obj).find('input').eq(1).attr('name', 'delivery[repeater]['+count+'][liststyle]');
     });
+
     $('.btn-plus-second').on('click', function(){
         var b = $(this).prev('.box-item-del-data');
         $(this).prev('.box-item-del-data').clone(true).insertAfter(b).addClass('active');
         $(this).prev('.box-item-del-data').find("input:text").val("");
+        var count = $('.box-item-del-inner').length - 1,
+            count1 = $(this).parent().find('.box-item-del-data.active').length;
+        $(this).prev('.box-item-del-data').find("input").eq(0).attr('name', 'delivery[repeater]['+count+'][repeater]['+count1+'][char]');
+        $(this).prev('.box-item-del-data').find("input").eq(1).attr('name', 'delivery[repeater]['+count+'][repeater]['+count1+'][value]');
     });
 
     // $('input').iCheck({
