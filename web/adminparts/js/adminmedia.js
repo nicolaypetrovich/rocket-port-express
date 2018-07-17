@@ -42,18 +42,28 @@ $(document).ready(function(){
         })
     });
 
-    $('.inner-media').on('click', '.media-selected', function(){
-        var CurrentMediaBtn = $('.active-media'),
-            parent = $('.active-media').parent().parent();
+    modal.on('click', '.media-selected', function(){
 
-        $(parent).find("img").attr('src', $(this).attr('src'));
-        $(parent).find("input").val($(this).data('imageid'));
-        CurrentMediaBtn.removeClass('active-media');
+        var CurrentMediaBtn = $('.active-media'),
+            parent = CurrentMediaBtn.parent().parent(),
+            modal = $("#MediaLibrary"),
+            image_src = $(this).attr('src');
+
+        if(modal.hasClass('tiny')){
+
+            tinymce.activeEditor.execCommand('mceInsertContent', false, '<img class="tiny-img" src="' + image_src + '"></img>');
+        }else{
+            $(parent).find("img").attr('src', $(this).attr('src'));
+            $(parent).find("input").val($(this).data('imageid'));
+            CurrentMediaBtn.removeClass('active-media');
+        }
+        modal.removeClass('tiny');
         modal[0].style.display = "none";
     });
 
     var span = $(".close-media")[0];
     span.onclick = function() {
+        modal.removeClass('tiny');
         modal[0].style.display = "none";
     };
 })

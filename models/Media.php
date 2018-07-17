@@ -16,9 +16,42 @@ use yii\web\UploadedFile;
 class Media extends ActiveRecord
 {
 
-	public $image;
+    public $image;
 
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'media';
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 60],
+            [['alt'], 'string', 'max' => 125],
+            [['name'], 'unique'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'title' => 'Название',
+            'alt' => 'Alt изображения',
+        ];
+    }
 
     /**
      * Single image upload method
@@ -76,23 +109,5 @@ class Media extends ActiveRecord
         return $result;
     }
 
-    public static function getTinyImages($counter){
-        $result = array();
-        $query = Media::find()->offset($counter*12)->limit(12)->all();
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        foreach ($query as $image){
-            $result[0] .= '<div class="media-image-tiny"><img class="media-selected-tiny" src="/uploads/images/'.$image['name'].'" data-imageid="'.$image['id'].'"></div>';
-        }
-        if(count($query)==12)
-        {
-            $result[1] = true;
-            $counter++;
-        } else {
-            $result[1] = false;
-            $counter = false;
-        }
-        $result[2] =  $counter;
-        return $result;
-    }
 
 }
