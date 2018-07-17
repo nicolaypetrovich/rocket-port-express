@@ -55,4 +55,10 @@ $(document).ready(function(){
             });
         }
     });
+
+    $('#insertrepeater').on('click', function(e){
+        e.preventDefault();
+        tinymce.activeEditor.execCommand('mceInsertContent', false, '%repeater%');
+    })
+
 });

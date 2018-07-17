@@ -103,7 +103,7 @@ class SiteController extends Controller
             ]);
 
             //получаем декодированный json
-            $content = json_decode($page['content']);
+            $content = json_decode($page['content'], true);
 
             //если нет ошибки json`a то записываем в переменную массив
             if (json_last_error() === JSON_ERROR_NONE) {

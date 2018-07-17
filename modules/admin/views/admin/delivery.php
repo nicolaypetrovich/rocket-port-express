@@ -8,8 +8,8 @@
 
             <div class="box-item-del">
                 <h3>Здесь лежат какие-то настройки доставки</h3>
-                <button>
-                    
+                <button id="insertrepeater">
+                    Вставить повторитель
                 </button>
                 <div class="box-item-del-inner">
                     <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i>
@@ -28,10 +28,10 @@
                     </div>
                     <button type="button" class="btn btn-plus-second" data-widget="collapse">Добавить</button>
                 </div>
-                <?php if ($content['repeater']) {
+                <?php if ($content['repeater']) { $i = 1;
                     foreach ($content['repeater'] as $key1 => $val1) {
-                        $i = 0;
-                        $i++; ?>
+
+                        ?>
                         <div class="box-item-del-inner active">
                             <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i>
                             </button>
@@ -52,10 +52,10 @@
                                 <input type="text" placeholder="Введите данные" class="form-control first">
                                 <input type="text" placeholder="Введите данные" class="form-control second">
                             </div>
-                            <?php if ($val1['repeater']) {
+                            <?php if ($val1['repeater']) { $r = 1;
                                 foreach ($val1['repeater'] as $key2 => $val2) {
-                                    $r = 0;
-                                    $r++; ?>
+
+                                     ?>
                                     <div class="box-item-del-data active">
                                         <button type="button" class="btn btn-close" data-widget="remove"><i
                                                     class="fa fa-times"></i>
@@ -67,8 +67,8 @@
                                                value="<?= $val2['value'] ?>"
                                                name="delivery[repeater][<?= $i ?>][repeater][<?= $r ?>][value]">
                                     </div>
-                                <?php };
-                            }; ?>
+                                <?php $r++; }; $i++;
+                            };  ?>
                             <button type="button" class="btn btn-plus-second" data-widget="collapse">Добавить</button>
                         </div>
                     <?php };
