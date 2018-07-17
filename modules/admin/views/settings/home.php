@@ -2,7 +2,7 @@
 $this->title = 'Главная страница';
 $this->params['breadcrumbs'][] = $this->title; ;?>
       <div class="box-bl">
-        <form>
+        <form method="post" action="">
           <div class="box-item">
             <h4>Главный баннер</h4>
               <?php $block2=json_decode($meta['index_block2']->value);?>
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                           <?php if($icons['image'.$i]==$media['id']):?>
                               <div class="box-img">
                                   <img src="<?=$media->getImageOfSize();?>" alt="<?=$media->alt;?>" style="width: 150px">
-                                  <input type="hidden" name="image[]" value="<?=$media->id;?>">
+                                  <input type="hidden" name="index_block_icons_images[]" value="<?=$media->id;?>">
                                   <div class="s-boxbtn">
                                       <button type="button" class="btn btn-block btn-danger">Удалить</button>
                                       <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
@@ -63,14 +63,21 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                               </div>
                           <?php break; endif; ?>
                       <?php endforeach; ?>
-                      <div class="box-text"><textarea class="form-control" placeholder="Заполните текст" name="text[]">  <?= $blockWithIcons['text'.$i]; ?></textarea></div>
+                      <div class="box-text"><textarea class="form-control" placeholder="Заполните текст" name="index_block_icons[]">  <?= $blockWithIcons['text'.$i]; ?></textarea></div>
                   </div>
 
               <?php endfor; ?>
 
 
               <button type="button" class="btn btn-plus" data-widget="collapse">Добавить</button>
+              <div class="box-item-inner">
+                  <h5>Заголовок блока с новостями</h5>
+                  <input type="text" name="index_news_title" placeholder="Заполните текст" class="form-control" value="<?= $meta['index_news_title']->value;?>">
+              </div>
           </div>
-          <button type="sibmit" class="btn btn-block btn-warning btn-save">Сохранить</button>
+            <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
+                   value="<?=Yii::$app->request->csrfToken?>" autocomplete="off"/>
+          <button type="submit" class="btn btn-block btn-warning btn-save">Сохранить</button>
+
         </form>
       </div>
