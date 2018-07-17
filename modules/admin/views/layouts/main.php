@@ -92,7 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     ['label' => '<i class="fa fa-bank"></i> <span>Офисы</span>', 'url' => ['/admin/offices'],'encode' => false],
                     ['label' => '<i class="fa fa-newspaper-o"></i> <span>Новости</span>', 'url' => ['/admin/news/index'],'encode' => false],
-                    ['label' => '<i class="fa fa-photo"></i> <span>Изображения</span>', 'url' => ['/admin/admin/media'],'encode' => false],
+                    ['label' => '<i class="fa fa-photo"></i> <span>Изображения</span>', 'url' => ['/admin/media/index'],'encode' => false],
                     ['label' => '<i class="fa fa-phone"></i> <span>Запросы звонков</span>', 'url' => ['/admin/ordercall/index'],'encode' => false],
                     ['label' => '<i class="fa fa-envelope-o"></i><span>Сообщения</span>', 'url' => ['/admin/customer-messages/index'],'encode' => false],
                     ['label' => '<i class="fa fa-user"></i><span>Пользователи</span>', 'url' => ['/admin/users'],'encode' => false],

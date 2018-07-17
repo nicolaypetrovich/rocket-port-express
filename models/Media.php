@@ -16,9 +16,42 @@ use yii\web\UploadedFile;
 class Media extends ActiveRecord
 {
 
-	public $image;
+    public $image;
 
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'media';
+    }
 
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 60],
+            [['alt'], 'string', 'max' => 125],
+            [['name'], 'unique'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'title' => 'Название',
+            'alt' => 'Alt изображения',
+        ];
+    }
 
     /**
      * Single image upload method
