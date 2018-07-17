@@ -46,23 +46,6 @@ class AdminController extends Controller
     {
         return $this->render('index');
     }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionHome()
-    {
-        $meta = Settings::find()->select('key,value')
-            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
-            ->where(['like', 'key', 'index'])
-//            ->where(['like', 'key', 'img'])
-            ->indexBy('key')
-//            ->asArray()
-            ->all();
-        return $this->render('home',[
-            'meta'=>$meta
-            ]);
-    }
 
 
     /**

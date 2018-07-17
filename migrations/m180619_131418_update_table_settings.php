@@ -153,9 +153,26 @@ class m180619_131418_update_table_settings extends Migration
                     'text4'=>'Доставка цветов и продуктовых корзин по всему Миру.',
                     'text5'=>'Доставка заказов Интернет-магазинов.',
                     'text6'=>'Безадресная доставка рекламной продукции и дополнительные сервисы.',
+
                 )
             ),
         ]);
+
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'index_block_icons_images',
+            'value' => json_encode(
+                array(
+                    'image1'=>19,
+                    'image2'=>20,
+                    'image3'=>21,
+                    'image4'=>22,
+                    'image5'=>23,
+                    'image6'=>24,
+                )
+            ),
+        ]);
+
 
 
         $this->insert('settings', [

@@ -19,6 +19,56 @@ class SettingsController extends Controller
 
 
     /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionIndex()
+    {
+
+        $fieldsArray = array('index_block2','index_block_about','index_block_icons','index_block_icons_images');
+        $data = Yii::$app->request->post();
+
+        if ($data) {
+
+            foreach ($fieldsArray as $field) {
+                $tempModel = $this->findModel($field);
+                if (null != $tempModel) {
+                    $tempModel->value = json_encode($data[$field]);
+                    $tempModel->save();
+                }
+            }
+            if(isset($data['index_news_title'])&&!empty($data['index_news_title'])){
+                $tempModel=$this->findModel('index_news_title');
+                if(null != $tempModel){
+                    $tempModel->value=$data['index_news_title'];
+                    $tempModel->save();
+                }
+            }
+        }
+
+	    $meta = Settings::find()->select('key,value')
+	                    ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+	                    ->where(['like', 'key', 'index'])
+                        ->indexBy('key')
+//            ->asArray()
+                        ->all();
+
+        $images=array();
+        foreach (json_decode($meta['index_block_icons_images']->value,true) as $item){
+            $images[]=$item;
+        }
+
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+        return $this->render('index',[
+            'meta'=>$meta,
+            'icons_media'=>$media,
+        ]);
+    }
+
+
+    /**
      * Lists all Settings models.
      * @return mixed
      * @throws NotFoundHttpException

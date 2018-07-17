@@ -9,7 +9,7 @@ $(document).ready(function(){
         custom_elements: "i",
         width: '100%',
         height: 400,
-        autoresize_min_height: 400,
+        autoresize_min_height: 100,
         autoresize_max_height: 800,
         keep_styles : false,
         plugins: [
