@@ -28,6 +28,9 @@ $(document).ready(function () {
     $('.btn-plus-first').on('click', function(){
         var b = $(this).parent().find('.box-item-del-inner:not(.active)');
         b.clone(true).insertBefore($(this)).addClass('active');
+        var count = console.dir($('.box-item-del-inner').length);
+        var obj = $(this).parent().children();
+        console.dir(obj.parseInt(count));
     });
     $('.btn-plus-second').on('click', function(){
         var b = $(this).prev('.box-item-del-data');

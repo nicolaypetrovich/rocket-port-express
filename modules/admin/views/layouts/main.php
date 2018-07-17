@@ -52,11 +52,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
+            <div class="navbar-custom-menu">
+                <form action="/admin/admin/logout">
+                    <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->getCsrfToken()?>">
+                    <div class="pull-right">
+                        <input type="submit" class="btn btn-default" value="Выйти">
+                    </div>
+                </form>
 
+            </div>
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->

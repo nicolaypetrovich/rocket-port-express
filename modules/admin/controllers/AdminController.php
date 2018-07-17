@@ -54,6 +54,17 @@ class AdminController extends Controller
      */
     public function actionDelivery()
     {
+        if(Yii::$app->request->post()){
+            var_dump(Yii::$app->request->post());
+            die();
+        }
+
+
+        if(Yii::$app->request->isPost)
+        {
+
+        }
+
         return $this->render('delivery');
     }
     /**
@@ -81,7 +92,7 @@ class AdminController extends Controller
         $model = new AdminLoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
+            return $this->redirect(\yii\helpers\Url::base() . '/admin/settings/index');
         }
 
         $model->password = '';
@@ -90,6 +101,16 @@ class AdminController extends Controller
             'model' => $model,
         ]);
 
+
+    }
+
+    public function actionLogout()
+    {
+        $session = Yii::$app->session;
+        if (!$session->isActive)
+            $session->open();
+        $session->set('admin', 'no');
+        return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
 
     }
     /**

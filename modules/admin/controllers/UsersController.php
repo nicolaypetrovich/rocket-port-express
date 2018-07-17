@@ -14,6 +14,26 @@ use yii\filters\VerbFilter;
  */
 class UsersController extends Controller
 {
+
+    public function beforeAction($action)
+    {
+        $session = Yii::$app->session;
+
+        if($action->id!='login') {
+
+            if($session->get('admin')!=='yes'){
+
+                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
+            }
+        }else{
+            if($session->get('admin')==='yes'){
+                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
+            }
+
+        }
+        return parent::beforeAction($action);
+    }
+
     /**
      * @inheritdoc
      */
