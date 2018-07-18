@@ -48,28 +48,7 @@ class AdminController extends Controller
     }
 
 
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionDelivery()
-    {
 
-        $data = Pages::findBySlug($this->action->id);
-
-        if(Yii::$app->request->post()){
-            $content = json_encode(Yii::$app->request->post('delivery'));
-            $data->content = $content;
-            $data->save();
-            $content = json_decode($content, true);
-        } else {
-            $content = $data->content;
-        }
-
-        $content = json_decode($data->content, true);
-
-        return $this->render('delivery', compact('content'));
-    }
     /**
      * Renders the index view for the module
      * @return string
