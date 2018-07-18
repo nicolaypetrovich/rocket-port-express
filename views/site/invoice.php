@@ -2,7 +2,7 @@
 
 use yii\widgets\Breadcrumbs;
 $this->title =(isset(Yii::$app->getRequest()->get("NewsSearch")['title']))?'Поиск':$page->title;
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = 'Оформить накладную';
 ?>
 <section class="invoice-hat">
 <div class="container">

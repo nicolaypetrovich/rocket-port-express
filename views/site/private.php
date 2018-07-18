@@ -62,6 +62,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h2 class="section__title y-line red">
                     ОФОРМИТЬ ОТПРАВЛЕНИЕ
                 </h2>
+                <a href="/invoice">
+                    ОФОРМИТЬ ОТПРАВЛЕНИЕ
+                </a>
             </div>
             <div class="private__rightside privat__mo">
                 <img src="img/russia.png" alt="">
@@ -224,15 +227,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 echo 'Пароль был успешно изменен';
                             }?>
                         <?= $formReset->field($modelReset, 'password')
-                            ->textInput(['id' => 'input35', 'class' => 'private__input input', 'placeholder' => 'Текущий пароль'])
-                            ->label(false);
-                        ?>
-                        <?= $formReset->field($modelReset, 'new_password')
-                            ->textInput(['id' => 'input36', 'class' => 'private__input input', 'placeholder' => 'Новый пароль'])
+                            ->passwordInput(['id' => 'input35', 'class' => 'private__input input', 'placeholder' => 'Текущий пароль'])
                             ->label(false);
                         ?>
                         <?= $formReset->field($modelReset, 'new_password_repeat')
-                            ->textInput(['id' => 'input37', 'class' => 'private__input input', 'placeholder' => 'Повторите пароль'])
+                            ->passwordInput(['id' => 'input37', 'class' => 'private__input input', 'placeholder' => 'Повторите пароль'])
+                            ->label(false);
+                        ?>
+                        <?= $formReset->field($modelReset, 'new_password')
+                            ->passwordInput(['id' => 'input36', 'class' => 'private__input input', 'placeholder' => 'Новый пароль'])
                             ->label(false);
                         ?>
 

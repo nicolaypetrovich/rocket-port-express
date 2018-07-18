@@ -50,6 +50,13 @@ $(document).ready(function () {
         $(this).prev('.box-item-del-data').find("input").eq(1).attr('name', 'delivery[repeater]['+count+'][repeater]['+count1+'][value]');
     });
 
+    $('.btn.btn-block.btn-danger').on('click', function(e){
+        e.preventDefault();
+        $(this).parent().prev().val('');
+        console.dir($(this).parent().prev().prev());
+        $(this).parent().prev().prev().attr('src', '');
+    })
+
     // $('input').iCheck({
     //     checkboxClass: 'icheckbox_square-blue',
     //     radioClass: 'iradio_square-blue',

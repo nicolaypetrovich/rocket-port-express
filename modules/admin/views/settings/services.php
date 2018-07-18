@@ -16,17 +16,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i>
                     </button>
                     <div class="box-img">
-                        <?php foreach ($media as $item):?>
-                        <?php if($item->id==$meta->image[$i]):?>
-                        <img src="<?php echo $item->getImageOfSize();?>" alt="User Image">
-                        <input class="test" name="image[]" value="<?=$item->id;?>" type="hidden">
+
+                        <img src="<?php if($media[$meta->image[$i]]->id){ echo $media[$meta->image[$i]]->getImageOfSize();}?>">
+                        <input class="test" name="image[]" value="<?=$media[$meta->image[$i]]->id;?>" type="hidden">
                         <div class="s-boxbtn">
                             <button type="button" class="btn btn-block btn-danger">Удалить</button>
                             <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить
                             </button>
                         </div>
-                        <?php break; endif; ?>
-                        <?php endforeach; ?>
                     </div>
                     <div class="box-text">
                         <textarea class="form-control" placeholder="Заполните текст" name="text[]"

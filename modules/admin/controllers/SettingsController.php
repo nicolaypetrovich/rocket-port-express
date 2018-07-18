@@ -206,6 +206,7 @@ class SettingsController extends Controller
             $images[]=$item;
         }
         $media = Media::find()->select('id, name, title, alt')
+            ->indexBy('id')
             ->where(['id' => $images])
             ->all();
 

@@ -381,17 +381,18 @@ AppAsset::register($this);
                         ?>
                     </div>
                     <div>
-                        <?= $formRegister->field($modelRegister, 'password')
-                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
+                        <?= $formRegister->field($modelRegister, 'password_repeat')
+                            ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
                             ->label(false);
                         ?>
                     </div>
                     <div>
-                        <?= $formRegister->field($modelRegister, 'password_repeat')
-                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
+                        <?= $formRegister->field($modelRegister, 'password')
+                            ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
                             ->label(false);
                         ?>
                     </div>
+
                     <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox24">
                         <label for="checkbox24" id="checkboxLabel24"
