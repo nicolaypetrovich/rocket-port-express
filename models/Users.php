@@ -77,13 +77,17 @@ class Users extends ActiveRecord
 
     public function uploadUserImage($file)
     {
-        $name = md5(time()) . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
+        $name = md5(time() . $file->name) . '.' . pathinfo($file->name, PATHINFO_EXTENSION);
         if (!is_dir(Yii::getAlias('@web'). 'uploads/user_images/')) {
             mkdir(Yii::getAlias('@web'). 'uploads/user_images/', 0777, true);
             if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
             {
                 $this->photo = $name;
-
+            }
+        } else {
+            if( $file->saveAs( Yii::getAlias('@web') . 'uploads/user_images/' . $name ) )
+            {
+                $this->photo = $name;
             }
         }
 
