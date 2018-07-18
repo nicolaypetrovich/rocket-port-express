@@ -137,8 +137,14 @@ class SettingsController extends Controller
                 $aboutSlider->value = json_encode($data['slider']);
                 $aboutSlider->save();
             }
-            if (!empty($data['content'])) {
-                $currPage->content = json_encode($data['content']);
+            if (!empty($data['content1'])&&!empty($data['content2'])&&!empty($data['title_middle'])&&!empty($data['content2'])) {
+
+                $currPage->content = json_encode(array(
+                	'content1'=>$data['content1'],
+	                'content_img'=>$data['content_img'],
+	                'title_middle'=>$data['title_middle'],
+                	'content2'=>$data['content2']
+                ));
                 $currPage->save();
             }
 
@@ -151,9 +157,15 @@ class SettingsController extends Controller
             ->all();
 
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
+        //adding in list image from
+	    $media_arr=$meta['about_slider']['value'];
+	    $media_arr[]=$content['content_img'];
+
 
         $media = Media::find()->select('id, name, title, alt')
+
             ->where(['id' => $meta['about_slider']['value']])
+
             ->all();
         return $this->render('about', compact('content', 'meta', 'media'));
     }
