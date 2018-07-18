@@ -31,7 +31,7 @@ class AdminController extends Controller
             }
         }else{
             if($session->get('admin')==='yes'){
-                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
+                return $this->redirect(\yii\helpers\Url::base() . '/admin/settings/index');
             }
 
         }
