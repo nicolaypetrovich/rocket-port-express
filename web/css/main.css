@@ -41,8 +41,11 @@ a, a:hover, a:active {
 button, button:hover, button:active, input[type=submit], input[type=submit]:hover, input[type=submit]:active {
 	cursor: pointer;
 }
-
+.map .container{
+	position: relative;
+}
 .container {
+
 	width: 1170px;
 	margin: 0 auto;
 	padding: 0 15px;

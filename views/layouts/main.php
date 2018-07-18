@@ -430,13 +430,13 @@ AppAsset::register($this);
                         Задать вопрос службе поддержки
                     </h2>
                     <div>
-                        <input type="text" name="cm_name" placeholder="ФИО" class="required popup__input input" autocomplete="off">
+                        <input required type="text" name="cm_name" placeholder="ФИО" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="email" name="cm_email" placeholder="Ваш E-mail" class="required popup__input input" autocomplete="off">
+                        <input required type="email" name="cm_email" placeholder="Ваш E-mail" class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <textarea name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
+                        <textarea required name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
                                   class="feed__input input" autocomplete="off"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
@@ -451,7 +451,7 @@ AppAsset::register($this);
                             </span>
                         </label>
                     </div>
-                    <button type="submit" class="contact-box__btn">
+                    <button type="submit" class="contact-box__btn faq-sbmt-btn">
                         ОТПРАВИТЬ
                     </button>
                 </form>

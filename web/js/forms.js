@@ -262,6 +262,26 @@ $('body').on('click', '.ordercall-btn', function (e) {
     }
 });
 
+$('body').on('click', '.faq-sbmt-btn', function (e) {
+
+    var check = true;
+    $('#faq__form :input[type=text],#faq__form :input[type=textarea]').each(function () {
+        if ($(this).val() == '') {
+            check = false;
+        }
+    });
+
+    if ($('#checkbox26').prop('checked') == false) {
+        if (check){
+            $("#checkbox26").parent().addClass("invalid");
+            e.preventDefault();
+            return false;
+        }
+    } else {
+        $("#checkbox26").parent().removeClass("invalid");
+    }
+});
+
 
 $('body').on('beforeSubmit', 'form#registerUser', function () {
     var form = $(this);
