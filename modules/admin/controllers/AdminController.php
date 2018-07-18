@@ -106,23 +106,14 @@ class AdminController extends Controller
 
 
     }
-
     public function actionLogout()
     {
-        $session = Yii::$app->session;
         if (!$session->isActive)
+        $session = Yii::$app->session;
             $session->open();
         $session->set('admin', 'no');
         return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
 
-    }
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
-    public function actionServices()
-    {
-        return $this->render('services');
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use yii\widgets\Breadcrumbs;
+
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="search-hat">
@@ -50,46 +51,28 @@ $this->params['breadcrumbs'][] = $this->title;
         <h2 class="about__title section__title y-line red mt40">
             ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ
         </h2>
-        <div class="d-flex justify-content-between">
+
+
+        <?php for ($i = 0; $i < sizeof($meta->text); $i++): ?>
+            <?php if (($i + 1) == 1 || ($i + 1) % 4 == 0): ?>
+                <?php if (sizeof($meta->text) - $i < 3): ?>
+                    <div class="d-flex justify-content-center">
+                <?php else: ?>
+                    <div class="d-flex justify-content-between">
+                <?php endif; ?>
+            <?php endif; ?>
             <div class="services__additional d-flex flex-column align-items-center">
-                <img src="img/addservice1.jpg" alt="Система срочной доставки">
-                <p>
-                    <span class="red">Система срочной доставки</span>
-                    «Из рук в руки»
-                </p>
+                <?php foreach ($media as $item): ?>
+                    <?php if ($item->id == $meta->image[$i]): ?>
+                        <img src="<?php echo $item->getImageOfSize(); ?>" alt="Система срочной доставки">
+                        <?php break; endif; ?>
+                <?php endforeach; ?>
+                <?= $meta->text[$i]; ?>
             </div>
-            <div class="services__additional d-flex flex-column align-items-center">
-                <img src="img/addservice2.jpg" alt="Система срочной доставки">
-                <p>
-                    Мы являемся официальными представителями бренда
-                    <span class="red">«Почта Деда Мороза»</span>
-                     по Вологодской области
-                </p>
-            </div>
-            <div class="services__additional d-flex flex-column align-items-center">
-                <img src="img/addservice3.jpg" alt="Система срочной доставки">
-                <p>
-                    <span class="red">Приём корреспонденции</span>
-                     у ответственного лица по акту приема-передачи
-                </p>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center">
-            <div class="services__additional d-flex flex-column align-items-center">
-                <img src="img/addservice4.jpg" alt="Система срочной доставки">
-                <p>
-                    <span class="red">Регулярные отчеты</span>
-                     о проделанной работе: ежедневный,
-                    ежемесячный (счет, акт выполненных работ)
-                </p>
-            </div>
-            <div class="services__additional d-flex flex-column align-items-center">
-                <img src="img/addservice5.jpg" alt="Система срочной доставки">
-                <p>
-                    <span class="red">Поставка</span>
-                     конвертов и уведомлений
-                </p>
-            </div>
-        </div>
+            <?php if ((($i + 1) % 3) == 0 || $i==sizeof($meta->text)): ?>
+                </div>
+            <?php endif; ?>
+        <?php endfor; ?>
+
     </div>
 </section>

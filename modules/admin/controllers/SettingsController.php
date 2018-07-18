@@ -137,8 +137,14 @@ class SettingsController extends Controller
                 $aboutSlider->value = json_encode($data['slider']);
                 $aboutSlider->save();
             }
-            if (!empty($data['content'])) {
-                $currPage->content = json_encode($data['content']);
+            if (!empty($data['content1'])&&!empty($data['content2'])&&!empty($data['title_middle'])&&!empty($data['content2'])) {
+
+                $currPage->content = json_encode(array(
+                	'content1'=>$data['content1'],
+	                'content_img'=>$data['content_img'],
+	                'title_middle'=>$data['title_middle'],
+                	'content2'=>$data['content2']
+                ));
                 $currPage->save();
             }
 
@@ -151,12 +157,67 @@ class SettingsController extends Controller
             ->all();
 
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
+        //adding in list image from
+
 
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['id' => $meta['about_slider']['value']])
+            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' =>$content->content_img]])
+            ->indexBy('id')
             ->all();
         return $this->render('about', compact('content', 'meta', 'media'));
     }
+
+
+
+    /**
+     * Renders the index view for the module
+     * @return string
+     */
+    public function actionServices()
+    {
+        $data = Yii::$app->request->post();
+
+        if ($data) {
+            $service_array=array('image'=>$data['image'],'text'=>$data['text']);
+
+            try {
+                $tempModel = $this->findModel('services_blocks');
+                if (null != $tempModel) {
+                    $tempModel->value = json_encode($service_array);
+                    $tempModel->save();
+                }
+            } catch (NotFoundHttpException $e) {
+                $tempModel= new Settings();
+                $tempModel->key='services_blocks';
+                $tempModel->value=json_encode($service_array);
+                $tempModel->save();
+            }
+
+
+        }
+        $meta = Settings::find()
+            ->select('key,value')
+            ->where(['like', 'key', 'services_blocks'])
+            ->one();
+        $meta=json_decode($meta['value']);
+        $images=array();
+
+        foreach ($meta->image as $item){
+            $images[]=$item;
+        }
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+
+        return $this->render('services',[
+            'meta'=>$meta,
+            'media'=>$media
+        ]);
+    }
+
+
+
+
 
     /**
      * Finds the Settings model based on its primary key value.

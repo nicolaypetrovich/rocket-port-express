@@ -275,7 +275,8 @@ class SiteController extends Controller
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
 
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['id'=>$meta['about_slider']['value']])
+            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' => $content['content_img']]])
+            ->indexBy('id')
 //            ->asArray()
             ->all();
 
@@ -355,7 +356,21 @@ class SiteController extends Controller
     public function actionServices()
     {
         $content = $this->content;
-        return $this->render('services', compact('content'));
+        $meta = Settings::find()
+            ->select('key,value')
+            ->where(['like', 'key', 'services_blocks'])
+            ->one();
+        $meta=json_decode($meta['value']);
+        $images=array();
+
+        foreach ($meta->image as $item){
+            $images[]=$item;
+        }
+        $media = Media::find()->select('id, name, title, alt')
+            ->where(['id' => $images])
+            ->all();
+
+        return $this->render('services', compact('content','meta','media'));
     }
 
     /**

@@ -25,14 +25,31 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="aboutus wrapperbody" id="aboutus">
     <div class="container">
         <div class="aboutus__wrapper verylarge-frame news__box">
-            <?php echo $content; ?>
+            <div class="aboutus__hat d-flex flex-column justify-content-between align-items-start">
+                <?php echo $content['content1']; ?>
+
+            </div>
+            <div class="aboutus__hat_image d-flex justify-content-center">
+                <img src="<?php echo $media[$content['content_img']]->getImageOfSize();?>" alt="<?php echo $media[$content['content_img']]->alt;?>">
+            </div>
+            <h2 class="about__title section__title y-line red">
+                <?php echo $content['title_middle']; ?>
+            </h2>
+            <div class="aboutus__box">
+                <?php echo $content['content2']; ?>
+            </div>
+
+
+
+
+
             <div class="aboutus__slider">
                 <?php foreach ($meta['about_slider']['value'] as $id) { ?>
-                    <?php foreach ($media as $value) if($value['id']==$id) { ?>
-                        <div class="aboutus__slide">
-                            <img src="<?php echo $value->getImageOfSize(); ?>" alt="<?php echo $value->alt; ?>">
-                        </div>
-                    <?php break; } ?>
+
+                    <div class="aboutus__slide">
+                        <img src="<?php echo $media[$id]->getImageOfSize(); ?>" alt="<?php echo $media[$id]->alt; ?>">
+                    </div>
+
                 <?php } ?>
             </div>
 
@@ -42,6 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
+
 <section class="newsbuttons">
     <div class="newsbuttons__box">
         <a href="tracking" class="newsbuttons__link">
