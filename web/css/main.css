@@ -2534,6 +2534,7 @@ img.thumbnail {
     cursor: pointer;
     white-space: nowrap;
     margin-left: 12px;
+	padding-right: 15px;
 }
 .private__leftside ul{
 	padding-top: 25px;

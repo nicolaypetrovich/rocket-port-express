@@ -54,26 +54,26 @@ $this->params['breadcrumbs'][] = $this->title;
                     </li>
                 </ul>
             </div>
-            <div class="private__rightside privat__oo">
+            <div class="private__rightside privat__oo" style="display: none">
                 <img src="img/russia.png" alt="">
                 <h2 class="section__title y-line red">
                     ОФОРМИТЬ ОТПРАВЛЕНИЕ
                 </h2>
                
             </div>
-            <div class="private__rightside privat__mo">
+            <div class="private__rightside privat__mo" style="display: none">
                 <img src="img/russia.png" alt="">
                 <h2 class="section__title y-line red">
                     МОИ ОТПРАВЛЕНИЯ
                 </h2>
             </div>
-            <div class="private__rightside privat__mn">
+            <div class="private__rightside privat__mn" style="display: none">
                 <img src="img/russia.png" alt="">
                 <h2 class="section__title y-line red">
                     МОИ НАКЛАДНЫЕ
                 </h2>
             </div>
-            <div class="private__rightside privat__io">
+            <div class="private__rightside privat__io"  style="display: none">
                 <img src="img/russia.png" alt="">
                 <h2 class="section__title y-line red">
                     ИСТОРИЯ ОТПРАВЛЕНИЙ
@@ -245,10 +245,10 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 <section class="newsbuttons">
     <div class="newsbuttons__box">
-        <a href="search.html" class="newsbuttons__link">
+        <a href="tracking" class="newsbuttons__link">
             <img src="img/search-btn.jpg" alt="Отследить почтовое отправление">
         </a>
-        <a href="calculate.html" class="newsbuttons__link">
+        <a href="calculate" class="newsbuttons__link">
             <img src="img/calc-btn.jpg" alt="Расчитать тариф перевозки">
         </a>
     </div>
