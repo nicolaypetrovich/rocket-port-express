@@ -1654,12 +1654,19 @@ label {
 	font-size: 8pt;
 }
 
-.delivery__block table tr td, .delivery__block table tr th {
+.delivery__wrapper table {
+	padding: 30px 65px;
+	border: 1px solid #999;
+	background-color: #fbf8f4;
+	margin-bottom: 30px;
+}
+
+.delivery__wrapper table tr td, .delivery__wrapper  table tr th {
 	text-align: center;
 	border-bottom: 1px dashed #999;
 }
 
-.delivery__block table tr:last-child td, .border-none {
+.delivery__wrapper  table tr:last-child td, .border-none {
 	border-bottom: none !important;
 }
 
@@ -2426,4 +2433,36 @@ img.thumbnail {
 
 #updateUser {
 	margin-bottom: 20px;
+}
+
+.container .delivery__wrapper .delivery__footer_text {
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 35px;
+}
+
+.delivery__footer_text{
+	position: relative;
+	max-width: 400px;
+	width: 100%;
+}
+
+.delivery__footer_text:after{
+	content: "";
+	width: 169px;
+	height: 3px;
+	background-color: #ffca00;
+	position: absolute;
+	top: 56px;
+	right: 392px;
+}
+
+.delivery__footer_text:before{
+	content: "";
+	width: 169px;
+	height: 3px;
+	background-color: #ffca00;
+	position: absolute;
+	top: 56px;
+	left: 392px;
 }

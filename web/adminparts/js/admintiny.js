@@ -10,7 +10,7 @@ $(document).ready(function(){
         width: '100%',
         height: 400,
         autoresize_min_height: 100,
-        autoresize_max_height: 800,
+        autoresize_max_height: 700,
         keep_styles : false,
         plugins: [
             'advlist autolink link image lists charmap print preview autoresize',
