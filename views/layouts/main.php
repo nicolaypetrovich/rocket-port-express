@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\models\News;
@@ -43,48 +44,50 @@ AppAsset::register($this);
                 <div class="logo-box d-flex justify-content-end align-items-center">
 
                     <a href="/" class="logo">
-                    <?php if(null != $header_settings['global_logo']->media):?>
-                        <img src="<?=$header_settings['global_logo']->media->getImageOfSize();?>" alt="<?=$header_settings['global_logo']->media->alt;?>">
-                    <?php endif;?>
+                        <?php if (null != $header_settings['global_logo']->media): ?>
+                            <img src="<?= $header_settings['global_logo']->media->getImageOfSize(); ?>"
+                                 alt="<?= $header_settings['global_logo']->media->alt; ?>">
+                        <?php endif; ?>
                     </a>
 
                     <h1 class="logo-box__text">
-                        <span class="red"><?php echo ($header_settings['global_headertext1']['value']); ?></span>
-                        <?php echo ($header_settings['global_headertext2']['value']); ?>
+                        <span class="red"><?php echo($header_settings['global_headertext1']['value']); ?></span>
+                        <?php echo($header_settings['global_headertext2']['value']); ?>
                     </h1>
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
                         <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>"
                            class="contact-box__tel">
-                            <?php echo ($header_settings['global_phone']['value']); ?>
+                            <?php echo($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <a href="#ordercall__popup" class="contact-box__btn popup-with-form">
                             ЗАКАЗАТЬ ЗВОНОК
                         </a>
-                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>"
+                        <a href="mailto:<?php echo($header_settings['global_email']['value']); ?>"
                            class="contact-box__link">
-                            <?php echo ($header_settings['global_email']['value']); ?>
+                            <?php echo($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
                 <div class="address-box">
-                    <?php if(Yii::$app->user->isGuest){ ?>
+                    <?php if (Yii::$app->user->isGuest) { ?>
                         <a href="#entry__popup" class="contact-box__link popup-with-form" id="pencil">
                             Личный кабинет
                         </a>
-                    <?php }else{?>
-                        <a href="/private" class="contact-box__link">Личный кабинет</a> <a id="logout_link" class="contact-box__link">Выйти</a>
-                    <?php };?>
+                    <?php } else { ?>
+                        <a href="/private" class="contact-box__link">Личный кабинет</a> <a id="logout_link"
+                                                                                           class="contact-box__link">Выйти</a>
+                    <?php }; ?>
                     <div class="contact-box__text">
-                    <span>Наш адрес:</span>
-                    <p>
-                        <?php
-                        //todo: id="mail"?? Is there a way to remove <br> without breaking code?
-                        echo ($header_settings['global_address']['value']); ?>
-                    </p>
+                        <span>Наш адрес:</span>
+                        <p>
+                            <?php
+                            //todo: id="mail"?? Is there a way to remove <br> without breaking code?
+                            echo($header_settings['global_address']['value']); ?>
+                        </p>
 
                     </div>
                 </div>
@@ -130,13 +133,13 @@ AppAsset::register($this);
 
                 <div class="search">
                     <?php
-                    $model= new \app\models\NewsSearch();
+                    $model = new \app\models\NewsSearch();
                     $form = ActiveForm::begin([
                         'action' => ['search'],
                         'method' => 'get',
                     ]); ?>
 
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder'=>'Поиск', 'class' => 'search__input input'])->label(false); ?>
+                    <?= $form->field($model, 'name')->textInput(['maxlength' => 255, 'placeholder' => 'Поиск', 'class' => 'search__input input'])->label(false); ?>
 
                     <?= Html::submitButton('<img src="img/search.png" alt="Поиск">', ['class' => 'search__btn']) ?>
 
@@ -144,15 +147,12 @@ AppAsset::register($this);
                 </div>
 
 
-
-
-
                 <div class="triangle t_left"></div>
                 <div class="triangle t_right"></div>
             </div>
             <script>
-                var createcalllink='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
-                var createcus_message_link='<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-customer-message'); ?>';
+                var createcalllink = '<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-order-call'); ?>';
+                var createcus_message_link = '<?php echo \Yii::$app->getUrlManager()->createUrl('site/create-customer-message'); ?>';
             </script>
         </div>
     </header>
@@ -160,9 +160,10 @@ AppAsset::register($this);
     <?= $content ?>
 
     <footer class="footer" id="footer">
-        <div id="mainMap"></div>
+        <?php if (! ($this->context->action->id == 'contact')): ?>
+            <div id="mainMap"></div>
             <script>
-                window.onload = function(){
+                window.onload = function () {
                     var mainMapPlacemark,
                         mainMapCoords = '<?=$header_settings['global_mainMap']['value']?>',
                         mainMap = new ymaps.Map('mainMap', {
@@ -172,13 +173,15 @@ AppAsset::register($this);
                             searchControlProvider: 'yandex#search'
                         });
                     mainMapPlacemark = new ymaps.Placemark(mainMapCoords.split(","), {}, {
-                        draggable : false,
+                        draggable: false,
                         preset: 'islands#redDotIconWithCaption',
                     });
                     mainMap.geoObjects.add(mainMapPlacemark);
                     getAddress(mainMapCoords, mainMapPlacemark);
                     //check for contact page (render contact page maps if render function exists)
-                    if(typeof initCmap === "function"){initCmap();}
+                    if (typeof initCmap === "function") {
+                        initCmap();
+                    }
                 }
             </script>
         <div class="container">
@@ -187,6 +190,17 @@ AppAsset::register($this);
                     КАК НАС НАЙТИ
                 </p>
             </div>
+        <?php else: ?>
+            <script>
+                window.onload = function () {
+                    if (typeof initCmap === "function") {
+                        initCmap();
+                    }
+                }
+            </script>
+            <div class="container">
+        <?php endif; ?>
+
             <div class="footer__credits d-flex justify-content-between align-items-center">
                 <div class="credits__box">
                     <ul class="credits__list d-flex">
@@ -202,27 +216,29 @@ AppAsset::register($this);
                         </li>
                     </ul>
                     <p class="credits__text">
-                        <?=($header_settings['global_copyright']['value']); ?>
+                        <?= ($header_settings['global_copyright']['value']); ?>
                     </p>
                 </div>
                 <div class="contact-box">
                     <div class="contact-box__phones">
-                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>" class="contact-box__tel">
-                            <?php echo ($header_settings['global_phone']['value']); ?>
+                        <a href="tel:<?php echo preg_replace('/\s/', '', ($header_settings['global_phone']['value'])); ?>"
+                           class="contact-box__tel">
+                            <?php echo($header_settings['global_phone']['value']); ?>
                         </a>
                     </div>
                     <div class="contact-box__links d-flex align-items-center">
                         <p class="contact-box__text">
                             Наш адрес:
-                            <?php echo ($header_settings['global_address']['value']); ?>
+                            <?php echo($header_settings['global_address']['value']); ?>
                         </p>
-                        <a href="mailto:<?php echo ($header_settings['global_email']['value']); ?>" class="contact-box__link">
-                            <?php echo ($header_settings['global_email']['value']); ?>
+                        <a href="mailto:<?php echo($header_settings['global_email']['value']); ?>"
+                           class="contact-box__link">
+                            <?php echo($header_settings['global_email']['value']); ?>
                         </a>
                     </div>
                 </div>
                 <a href="/" class="logo">
-                    <img src="<?=$header_settings['global_logo']->media->getImageOfSize();?>" alt="Экспресс доставка">
+                    <img src="<?= $header_settings['global_logo']->media->getImageOfSize(); ?>" alt="Экспресс доставка">
                 </a>
             </div>
         </div>
@@ -237,15 +253,17 @@ AppAsset::register($this);
                         ЗАКАЗАТЬ ЗВОНОК
                     </h2>
                     <div>
-                        <input type="text" required placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input" autocomplete="off">
+                        <input type="text" required placeholder="ФИО" name="call_name"
+                               class="required popup__input input mm-form-input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="tel" required placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input" autocomplete="off">
+                        <input type="tel" required placeholder="Телефон" name="call_phone"
+                               class="required popup__input input phone-mask mm-form-input" autocomplete="off">
                     </div>
-                    <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
-                           value="<?=Yii::$app->request->csrfToken?>" autocomplete="off"/>
+                    <input id="form-token" type="hidden" name="<?= Yii::$app->request->csrfParam ?>"
+                           value="<?= Yii::$app->request->csrfToken ?>" autocomplete="off"/>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox"  id="checkbox22" name="checkbox" class="mm-form-input">
+                        <input type="checkbox" id="checkbox22" name="checkbox" class="mm-form-input">
                         <label for="checkbox22" id="checkboxLabel22"
                                class="pt15 d-flex justify-content-center align-items-center">
                             <span>
@@ -270,25 +288,25 @@ AppAsset::register($this);
         <div id="entry__popup" class="white-popup-block mfp-hide">
             <div class="popup__entry popup">
                 <?php
-                $model= new \app\models\LoginForm();
+                $model = new \app\models\LoginForm();
                 $form = ActiveForm::begin([
                     'action' => ['login'],
                     'method' => 'post',
                     'options' => [
-                            'class' => 'form__ordercall d-flex flex-column align-items-center',
-                            'id' => 'entry__form'
+                        'class' => 'form__ordercall d-flex flex-column align-items-center',
+                        'id' => 'entry__form'
                     ],
                 ]); ?>
                 <h2 class="section__title rect__title red">
                     ВХОД В ЛИЧНЫЙ КАБИНЕТ
                 </h2>
                 <span id="login__entry_error"></span>
-                <?= $form->field($model, 'email')->textInput(['placeholder'=>'Email','class'=>'popup__input input'])->label(false)->error();?>
-                <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль','class'=>'popup__input input'])->label(false);?>
+                <?= $form->field($model, 'email')->textInput(['placeholder' => 'Email', 'class' => 'popup__input input'])->label(false)->error(); ?>
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'class' => 'popup__input input'])->label(false); ?>
                 <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox23" name="checkbox">
-                        <label for="checkbox23" id="checkboxLabel23"
-                               class="pt15 d-flex justify-content-center align-items-center">
+                    <input type="checkbox" id="checkbox23" name="checkbox">
+                    <label for="checkbox23" id="checkboxLabel23"
+                           class="pt15 d-flex justify-content-center align-items-center">
                             <span>
                                 Я согласен с
                                 <a href="#">
@@ -296,8 +314,8 @@ AppAsset::register($this);
                                 </a>
                                 и даю согласие на обработку моих данных
                             </span>
-                        </label>
-                    </div>
+                    </label>
+                </div>
 
                 <div class="d-flex">
                     <?= Html::submitButton('Войти', ['class' => 'contact-box__btn', 'name' => 'login-button']) ?>
@@ -307,38 +325,38 @@ AppAsset::register($this);
                 </div>
                 <?php $form = ActiveForm::end(); ?>
 
-<!--                 <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
-                    <h2 class="section__title rect__title red">
-                        ВХОД В ЛИЧНЫЙ КАБИНЕТ
-                    </h2>
-                    <div>
-                        <input type="text" placeholder="Логин" name="username" class="required popup__input input">
-                    </div>
-                    <div>
-                        <input type="password" placeholder="Пароль" name="password" class="required popup__input input">
-                    </div>
-                    <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox23" name="checkbox">
-                        <label for="checkbox23" id="checkboxLabel23"
-                               class="pt15 d-flex justify-content-center align-items-center">
-                            <span>
-                                Я согласен с
-                                <a href="#">
-                                    Политикой конфиденциальности
-                                </a>
-                                и даю согласие на обработку моих данных
-                            </span>
-                        </label>
-                    </div>
-                    <div class="d-flex">
-                        <button type="submit" class="contact-box__btn">
-                            ВОЙТИ
-                        </button>
-                        <a href="#reg__popup" class="contact-box__btn popup-with-form">
-                            ЗАРЕГЕСТРИРОВАТЬСЯ
-                        </a>
-                    </div>
-                </form> -->
+                <!--                 <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
+                                    <h2 class="section__title rect__title red">
+                                        ВХОД В ЛИЧНЫЙ КАБИНЕТ
+                                    </h2>
+                                    <div>
+                                        <input type="text" placeholder="Логин" name="username" class="required popup__input input">
+                                    </div>
+                                    <div>
+                                        <input type="password" placeholder="Пароль" name="password" class="required popup__input input">
+                                    </div>
+                                    <div class="checkbox-group group-required">
+                                        <input type="checkbox" id="checkbox23" name="checkbox">
+                                        <label for="checkbox23" id="checkboxLabel23"
+                                               class="pt15 d-flex justify-content-center align-items-center">
+                                            <span>
+                                                Я согласен с
+                                                <a href="#">
+                                                    Политикой конфиденциальности
+                                                </a>
+                                                и даю согласие на обработку моих данных
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button type="submit" class="contact-box__btn">
+                                            ВОЙТИ
+                                        </button>
+                                        <a href="#reg__popup" class="contact-box__btn popup-with-form">
+                                            ЗАРЕГЕСТРИРОВАТЬСЯ
+                                        </a>
+                                    </div>
+                                </form> -->
                 <button type="submit" class="popup-modal-dismiss close-btn">
                     <span class="yui1"></span>
                     <span class="yui2"></span>
@@ -354,49 +372,49 @@ AppAsset::register($this);
                     'action' => ['register-user'],
                     'method' => 'post',
                     'options' => [
-                            'class' => 'form__ordercall d-flex flex-column align-items-center'
+                        'class' => 'form__ordercall d-flex flex-column align-items-center'
                     ]
                 ]); ?>
-                    <img src="img/russia.png" alt="">
-                    <h2 class="section__title rect__title red">
-                        ЗАРЕГИСТРИРОВАТЬСЯ
-                    </h2>
-                    <div id="reg_result"></div>
-                    <div>
-                        <?= $formRegister->field($modelRegister, 'name')
-                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'ФИО'])
-                            ->label(false);
-                        ?>
-                    </div>
-                    <div>
-                        <?= $formRegister->field($modelRegister, 'email')
-                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Email'])
-                            ->label(false);
-                        ?>
-                    </div>
-                    <div>
-                        <?= $formRegister->field($modelRegister, 'organization')
-                            ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Организация (не обязательно)'])
-                            ->label(false);
-                        ?>
-                    </div>
-                    <div>
-                        <?= $formRegister->field($modelRegister, 'password_repeat')
-                            ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
-                            ->label(false);
-                        ?>
-                    </div>
-                    <div>
-                        <?= $formRegister->field($modelRegister, 'password')
-                            ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
-                            ->label(false);
-                        ?>
-                    </div>
+                <img src="img/russia.png" alt="">
+                <h2 class="section__title rect__title red">
+                    ЗАРЕГИСТРИРОВАТЬСЯ
+                </h2>
+                <div id="reg_result"></div>
+                <div>
+                    <?= $formRegister->field($modelRegister, 'name')
+                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'ФИО'])
+                        ->label(false);
+                    ?>
+                </div>
+                <div>
+                    <?= $formRegister->field($modelRegister, 'email')
+                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Email'])
+                        ->label(false);
+                    ?>
+                </div>
+                <div>
+                    <?= $formRegister->field($modelRegister, 'organization')
+                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Организация (не обязательно)'])
+                        ->label(false);
+                    ?>
+                </div>
+                <div>
+                    <?= $formRegister->field($modelRegister, 'password_repeat')
+                        ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
+                        ->label(false);
+                    ?>
+                </div>
+                <div>
+                    <?= $formRegister->field($modelRegister, 'password')
+                        ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
+                        ->label(false);
+                    ?>
+                </div>
 
-                    <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox24">
-                        <label for="checkbox24" id="checkboxLabel24"
-                               class="pt15 d-flex justify-content-center align-items-center">
+                <div class="checkbox-group group-required">
+                    <input type="checkbox" id="checkbox24">
+                    <label for="checkbox24" id="checkboxLabel24"
+                           class="pt15 d-flex justify-content-center align-items-center">
                             <span>
                                 Я согласен с
                                 <a href="#">
@@ -404,18 +422,18 @@ AppAsset::register($this);
                                 </a>
                                 и даю согласие на обработку моих данных
                             </span>
-                        </label>
-                    </div>
+                    </label>
+                </div>
                 <?= Html::submitButton('ОТПРАВИТЬ', ['class' => 'contact-box__btn']) ?>
-                    <div>
-                        <input type="checkbox" id="checkbox25">
-                        <label for="checkbox25" id="checkboxLabel25"
-                               class="pt15 d-flex justify-content-center align-items-center">
+                <div>
+                    <input type="checkbox" id="checkbox25">
+                    <label for="checkbox25" id="checkboxLabel25"
+                           class="pt15 d-flex justify-content-center align-items-center">
                             <span class="w115">
                                 Оставаться в системе
                             </span>
-                        </label>
-                    </div>
+                    </label>
+                </div>
                 <?php ActiveForm::end(); ?>
                 <button class="popup-modal-dismiss close-btn">
                     <span class="yui1"></span>
@@ -431,13 +449,16 @@ AppAsset::register($this);
                         Задать вопрос службе поддержки
                     </h2>
                     <div>
-                        <input required type="text" name="cm_name" placeholder="ФИО" class="required popup__input input" autocomplete="off">
+                        <input required type="text" name="cm_name" placeholder="ФИО" class="required popup__input input"
+                               autocomplete="off">
                     </div>
                     <div>
-                        <input required type="email" name="cm_email" placeholder="Ваш E-mail" class="required popup__input input" autocomplete="off">
+                        <input required type="email" name="cm_email" placeholder="Ваш E-mail"
+                               class="required popup__input input" autocomplete="off">
                     </div>
                     <div>
-                        <textarea required name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form" placeholder="Ваш вопрос"
+                        <textarea required name="cm_message" rows="6" cols="10" maxlength="333" form="faq__form"
+                                  placeholder="Ваш вопрос"
                                   class="feed__input input" autocomplete="off"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
@@ -468,6 +489,6 @@ AppAsset::register($this);
         </div>
     </section>
     <?php $this->endBody() ?>
-</body>
-</html>
+    </body>
+    </html>
 <?php $this->endPage() ?>

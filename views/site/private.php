@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ИСТОРИЯ ОТПРАВЛЕНИЙ
                         </a>
                     </li>
-                    <li data-tab=".privat__ld">
+                    <li  data-tab=".privat__ld">
                         <a>
                             ЛИЧНЫЕ ДАННЫЕ
                         </a>
