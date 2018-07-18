@@ -197,7 +197,7 @@ class m180619_131418_update_table_settings extends Migration
         $this->insert('settings', [
             'id' => $i++,
             'key' => 'global_mainMap',
-            'value' => '10,10',
+            'value' => '55.697545264968994,37.56125891208644',
         ]);
         $this->insert('settings', [
             'id' => $i++,
