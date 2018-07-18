@@ -145,3 +145,11 @@
     margin-top: 8px;
     margin-right: 5px;
 }
+
+.main-sidebar{
+    position: fixed;
+}
+.main-header{
+    position: fixed;
+    width: 100%;
+}

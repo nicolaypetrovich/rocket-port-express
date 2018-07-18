@@ -41,7 +41,7 @@ class OrdercallSearch extends Ordercall
      */
     public function search($params)
     {
-        $query = Ordercall::find();
+        $query = Ordercall::find()->orderBy(['date' => SORT_DESC]);
 
         // add conditions that should always apply here
 

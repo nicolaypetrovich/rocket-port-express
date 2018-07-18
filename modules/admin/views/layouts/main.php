@@ -50,8 +50,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <span class="logo-lg"><b>Port-Express</b></span>
         </a>
 
+
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
             <div class="navbar-custom-menu">
                 <form class="logout" action="/admin/admin/logout">
                     <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->getCsrfToken()?>">

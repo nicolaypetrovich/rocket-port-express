@@ -41,7 +41,7 @@ class CustomerMessagesSearch extends CustomerMessages
      */
     public function search($params)
     {
-        $query = CustomerMessages::find();
+        $query = CustomerMessages::find()->orderBy(['date' => SORT_DESC]);
 
         // add conditions that should always apply here
 

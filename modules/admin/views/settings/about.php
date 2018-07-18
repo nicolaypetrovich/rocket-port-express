@@ -7,23 +7,7 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
 <?= Html::a('Перейти на страницу', ['/about'], ['class'=>'btn btn-primary']) ?>
 <div class="box-bl">
   <form action="" method="post">
-    <div class="box-item">
-        <?php foreach ($meta['about_slider']['value'] as $id) { ?>
-                <div class="box-item-repeat">
-                    <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i></button>
-                    <div class="box-img">
-                        <img src="<?php echo $media[$id]?$media[$id]->getImageOfSize():''; ?>" alt="<?php echo $media[$id]?$media[$id]->alt:''; ?>">
-                        <input class="test" name="slider[]" value="<?=$id;?>" type="hidden">
-                        <div class="s-boxbtn">
-                            <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                            <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
-                        </div>
-                    </div>
-                </div>
-        <?php } ?>
 
-      <button type="button" class="btn btn-plus" data-widget="collapse">Добавить</button>
-    </div>
     <div class="box-item">
       <div class="box-textarea">
           Контент1
@@ -54,6 +38,24 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
           </textarea>
         </div>
     </div>
+      <div class="box-item">
+          Картинки для слайдера
+          <?php foreach ($meta['about_slider']['value'] as $id) { ?>
+              <div class="box-item-repeat">
+                  <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i></button>
+                  <div class="box-img">
+                      <img src="<?php echo $media[$id]?$media[$id]->getImageOfSize():''; ?>" alt="<?php echo $media[$id]?$media[$id]->alt:''; ?>">
+                      <input class="test" name="slider[]" value="<?=$id;?>" type="hidden">
+                      <div class="s-boxbtn">
+                          <button type="button" class="btn btn-block btn-danger">Удалить</button>
+                          <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
+                      </div>
+                  </div>
+              </div>
+          <?php } ?>
+
+          <button type="button" class="btn btn-plus" data-widget="collapse">Добавить</button>
+      </div>
     <div class="box-item">
       <div class="box-video">
         <input type="text" name="video" placeholder="Введите iframe с видео" >
