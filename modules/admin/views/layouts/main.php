@@ -56,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form action="/admin/admin/logout">
                     <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->getCsrfToken()?>">
                     <div class="pull-right">
-                        <input type="submit" class="btn btn-default" value="Выйти">
+                        <input type="submit" class="btn btn-danger" value="Выйти">
                     </div>
                 </form>
 

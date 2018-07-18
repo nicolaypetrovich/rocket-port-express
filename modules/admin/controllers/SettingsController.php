@@ -158,14 +158,11 @@ class SettingsController extends Controller
 
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
         //adding in list image from
-	    $media_arr=$meta['about_slider']['value'];
-	    $media_arr[]=$content['content_img'];
 
 
         $media = Media::find()->select('id, name, title, alt')
-
-            ->where(['id' => $meta['about_slider']['value']])
-
+            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' =>$content->content_img]])
+            ->indexBy('id')
             ->all();
         return $this->render('about', compact('content', 'meta', 'media'));
     }

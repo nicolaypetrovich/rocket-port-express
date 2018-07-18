@@ -275,7 +275,8 @@ class SiteController extends Controller
         $meta['about_slider']['value'] = json_decode($meta['about_slider']['value']);
 
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['id'=>$meta['about_slider']['value']])
+            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' => $content['content_img']]])
+            ->indexBy('id')
 //            ->asArray()
             ->all();
 
