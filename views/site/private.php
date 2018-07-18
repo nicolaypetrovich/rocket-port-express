@@ -28,13 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="private wrapperbody" id="private">
     <div class="container">
         <div class="private__wrapper large-frame news__box d-flex">
+
             <div class="private__leftside">
+                <a class="main-tab" href="/invoice">ОФОРМИТЬ ОТПРАВЛЕНИЕ</a>
                 <ul>
-                    <li class="active" data-tab=".privat__oo">
-                        <a>
-                            ОФОРМИТЬ ОТПРАВЛЕНИЕ
-                        </a>
-                    </li>
                     <li data-tab=".privat__mo">
                         <a>
                             МОИ ОТПРАВЛЕНИЯ
@@ -50,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ИСТОРИЯ ОТПРАВЛЕНИЙ
                         </a>
                     </li>
-                    <li  data-tab=".privat__ld">
+                    <li class="active"  data-tab=".privat__ld">
                         <a>
                             ЛИЧНЫЕ ДАННЫЕ
                         </a>
@@ -62,9 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h2 class="section__title y-line red">
                     ОФОРМИТЬ ОТПРАВЛЕНИЕ
                 </h2>
-                <a href="/invoice">
-                    ОФОРМИТЬ ОТПРАВЛЕНИЕ
-                </a>
+               
             </div>
             <div class="private__rightside privat__mo">
                 <img src="img/russia.png" alt="">
@@ -84,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ИСТОРИЯ ОТПРАВЛЕНИЙ
                 </h2>
             </div>
-            <div class="private__rightside privat__ld">
+            <div class="private__rightside privat__ld active">
                 <img src="img/russia.png" alt="">
                 <div class="d-flex">
                     <div>

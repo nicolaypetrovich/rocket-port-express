@@ -87,7 +87,7 @@ $(document).ready(function(){
         };
 
         allTabHide();
-        $('.privat__oo').show().addClass('active');
+        $('.privat__ld').show().addClass('active');
 
 
 // Function forAllLiTabRemoveActive

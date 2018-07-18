@@ -1731,7 +1731,7 @@ label {
 
 .private__leftside ul {
 	padding-right: 15px;
-	border-right: 3px solid #ffca00;
+
 }
 
 .private__leftside ul li {
@@ -2524,4 +2524,20 @@ img.thumbnail {
 
 .aboutus__y-linebox img{
 	margin: 11px;
+}
+
+.main-tab{
+	font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 13.5pt;
+    line-height: 13.5pt;
+    color: #ab1010;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: 12px;
+}
+.private__leftside ul{
+	padding-top: 25px;
+}
+.private__leftside{
+	border-right: 3px solid #ffca00;
 }
