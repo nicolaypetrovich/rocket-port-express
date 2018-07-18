@@ -1875,6 +1875,7 @@ label {
     border-left: 3px solid #ffca00;
     margin-top: 35px;
     padding: 0 10px;
+    margin-bottom: 10px;
 }
 
 .mt0 {
@@ -2426,4 +2427,59 @@ img.thumbnail {
 
 #updateUser {
 	margin-bottom: 20px;
+}
+
+.aboutus__hat img{
+	position: absolute;
+	top:0;
+	right: 0;
+}
+
+.aboutus__hat{
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.aboutus__hat p{
+	max-width: 760px;
+	width:100%;
+	margin-bottom: 20px;
+}
+
+.aboutus__hat h4{
+	margin-bottom: 20px;
+}
+
+
+.aboutus__box ol{
+
+	margin-left: -40px;
+	position: relative;
+}
+
+.aboutus__box ol li{
+
+		display: list-item;
+	list-style-type: decimal;
+	list-style-position: inside;
+	position: relative;
+
+}
+
+.aboutus__box ol span{
+	color: #ab1010;
+}
+.aboutus__box .aboutus__y-linebox{
+	 max-width: 640px;
+    width: 100%
+}
+
+.aboutus__box h4{
+	margin-top: 20px;
+
+	margin-bottom: 20px;
+}
+
+.aboutus__y-linebox img{
+	margin: 11px;
 }

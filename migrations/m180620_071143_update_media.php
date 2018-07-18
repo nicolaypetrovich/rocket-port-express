@@ -103,7 +103,13 @@ class m180620_071143_update_media extends Migration
             ]);
             $id_counter++;
         }
-     
+
+        $this->insert('media', [
+            'id' => $id_counter++,
+            'name' => 'about.jpg',
+            'title' => 'about',
+            'alt' => 'about',
+        ]);
 
 
         echo "Default images created\n";
