@@ -1248,8 +1248,8 @@ label {
 }
 
 .body__select select {
-	padding: 12px;
-	border: 1px solid #999;
+	padding: 9px 12px;
+	border: 1px solid #cdcdcd;
 	border-radius: 5px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -1799,13 +1799,13 @@ label {
 .private__avatar {
 	padding: 70px 15px;
 	position: absolute;
-	top: 0;
-	left: 550px;
+	top: 0px;
+	left: 475px;
 }
 
 .avatar__wrap {
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	border-radius: 3px;
 	overflow: hidden;
 }

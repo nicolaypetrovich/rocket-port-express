@@ -45,7 +45,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Фотография',
                 'format' => 'raw',
                 'value' => function ($data) {
+                        if($data->photo)
                     return '<img class="admin_user_image" src="../../uploads/user_images/'.$data->photo.'">';
+                        else
+                            return 'No image';
                 }
             ],
             'address',

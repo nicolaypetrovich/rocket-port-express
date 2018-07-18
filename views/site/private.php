@@ -2,25 +2,22 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\widgets\Breadcrumbs;
+$this->title="Личный кабинет";
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<section class="private-hat">
+<section class="delivery-hat">
     <div class="container">
-        <ul class="crumbs">
-            <li>
-                <a href="/">
-                    Главная
-                </a>
-            </li>
-            <li>
-                <img src="img/crumb.png" alt="">
-            </li>
-            <li>
-                <a href="#">
-                    Личный кабинет
-                </a>
-            </li>
-        </ul>
+        <?=
+        Breadcrumbs::widget([
+            'itemTemplate' => "<li>{link}</li><li><img src=\"img/crumb.png\" alt=\"\"></li>",
+            'homeLink' => [
+                'label' => Yii::t('yii', 'Главная'),
+                'url' => Yii::$app->homeUrl,
+            ],
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ])
+        ?>
         <div>
             <h2 class="section__title y-line red mt40">
                 ЛИЧНЫЙ КАБИНЕТ
@@ -190,9 +187,9 @@ use yii\widgets\ActiveForm;
 
 
                             <div class="avatar__wrap">
-                                <img src="uploads/user_images/<?php echo $user['photo']; ?>" alt="Фото">
+                                <img class="js-user-photo" src="uploads/user_images/<?php echo $user['photo']; ?>" alt="Фото">
                             </div>
-                            <p>
+                            <p id="take_file">
                                 Сменить фото
                             </p>
                         </label>

@@ -1,6 +1,10 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'О компании';
 $this->params['breadcrumbs'][] = $this->title; ;?>
+<?= Html::a('Перейти на страницу', ['/about'], ['class'=>'btn btn-primary']) ?>
 <div class="box-bl">
   <form action="" method="post">
     <div class="box-item">
@@ -8,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                 <div class="box-item-repeat">
                     <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i></button>
                     <div class="box-img">
-                        <img src="<?php echo $media[$id]->getImageOfSize(); ?>" alt="<?php echo $media[$id]->alt; ?>">
+                        <img src="<?php echo $media[$id]?$media[$id]->getImageOfSize():''; ?>" alt="<?php echo $media[$id]?$media[$id]->alt:''; ?>">
                         <input class="test" name="slider[]" value="<?=$id;?>" type="hidden">
                         <div class="s-boxbtn">
                             <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                            <button type="button" class="btn btn-block bg-purple media-open-button">Загрузить/Изменить</button>
+                            <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
                         </div>
                     </div>
                 </div>
@@ -30,11 +34,11 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
         </br>
         <div class="box-img">
             Картинка разделяющая контент
-            <img src="<?php echo $media[$content->content_img]->getImageOfSize(); ?>" alt="">
+            <img src="<?php echo $media[$content->content_img]?$media[$content->content_img]->getImageOfSize():''; ?>" alt="">
             <input class="test" name="content_img" value="<?=$content->content_img;?>" type="hidden">
             <div class="s-boxbtn">
                 <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                <button type="button" class="btn btn-block bg-purple media-open-button">Загрузить/Изменить</button>
+                <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
             </div>
         </div>
         </br>

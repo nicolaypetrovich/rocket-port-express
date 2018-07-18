@@ -1,8 +1,12 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Сервисы и услуги';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
+<?= Html::a('Перейти на страницу', ['/services'], ['class'=>'btn btn-primary']); ?>
 <div class="box-bl">
     <form action="" method="post">
         <div class="box-item">
@@ -18,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <input class="test" name="image[]" value="<?=$item->id;?>" type="hidden">
                         <div class="s-boxbtn">
                             <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                            <button type="button" class="btn btn-block bg-purple media-open-button">Загрузить/Изменить
+                            <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить
                             </button>
                         </div>
                         <?php break; endif; ?>

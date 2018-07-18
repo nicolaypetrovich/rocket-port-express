@@ -57,7 +57,10 @@ $this->params['breadcrumbs'][] =$model->id;
                 'format' => 'html',
                 'label' => 'Изображение',
                 'value' => function ($data) {
+                    if($data->media)
                     return Html::img($data->media->getImageOfSize());
+                    else
+                        return 'No image';
                 },
             ],
         ],

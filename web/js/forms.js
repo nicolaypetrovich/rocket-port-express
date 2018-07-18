@@ -3,6 +3,7 @@
 $(document).ready(function () {
 
     function validateForm(form) {
+
         var form = document.querySelectorAll('form');
 
         var generateError = function (text) {
@@ -38,6 +39,7 @@ $(document).ready(function () {
                 // Delete validate
 
                 removeValidate(this);
+
 
                 // Test on empty field
 
@@ -130,14 +132,15 @@ $(document).ready(function () {
 
                 if (submit) {
 
+
                     var url = '';
                     var fd = $(this).serializeArray();
                     var form = this;
                     if ('ordercall__form' === this.id) {
-                        url=createcalllink;
+                        url = createcalllink;
                     } else {
                         if ('faq__form' === this.id) {
-                            url=createcus_message_link;
+                            url = createcus_message_link;
                         }
                     }
                     if ('' !== url) {
@@ -201,21 +204,25 @@ $(document).ready(function () {
 
 });
 
-$('#logout_link').on('click', function(e){
+$('#logout_link').on('click', function (e) {
     e.preventDefault();
     $.ajax({
-        method:"POST",
-        url:"logout",
-        data:'logout',
-        success:function(r){location.reload();},
-        error:function(r){console.log('error')}
+        method: "POST",
+        url: "logout",
+        data: 'logout',
+        success: function (r) {
+            location.reload();
+        },
+        error: function (r) {
+            console.log('error')
+        }
     })
 });
 
 $('body').on('beforeSubmit', 'form#entry__form', function () {
     var form = $(this);
     $('#login__entry_error')[0].innerHTML = '';
-    if ($('#checkbox23').prop('checked') == false){
+    if ($('#checkbox23').prop('checked') == false) {
         $("#checkbox23").parent().addClass("invalid");
         return false;
     }
@@ -233,9 +240,32 @@ $('body').on('beforeSubmit', 'form#entry__form', function () {
     return false;
 });
 
+
+$('body').on('click', '.ordercall-btn', function (e) {
+
+    var check = true;
+    $('#ordercall__form :input[type=text]').each(function () {
+        if ($(this).val() == '') {
+            check = false;
+        }
+    });
+
+    if ($('#checkbox22').prop('checked') == false) {
+        if (check){
+            $("#checkbox22").parent().addClass("invalid");
+            e.preventDefault();
+            return false;
+        }
+
+    } else {
+        $("#checkbox22").parent().removeClass("invalid");
+    }
+});
+
+
 $('body').on('beforeSubmit', 'form#registerUser', function () {
     var form = $(this);
-    if ($('#checkbox24').prop('checked') == false){
+    if ($('#checkbox24').prop('checked') == false) {
         $("#checkbox24").parent().addClass("invalid");
         return false;
     }
@@ -247,7 +277,7 @@ $('body').on('beforeSubmit', 'form#registerUser', function () {
         type: 'post',
         data: form.serialize(),
         success: function (response) {
-            if(response==1){
+            if (response == 1) {
                 $("#reg_result").text("Такая почта уже зарегестрирована!");
             }
             // console.dir(response);

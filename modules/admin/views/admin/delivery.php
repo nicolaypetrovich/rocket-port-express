@@ -1,3 +1,6 @@
+<?php
+$this->title = 'Доставка';
+$this->params['breadcrumbs'][] = $this->title; ;?>
 <div class="box-bl">
     <form action="/admin/admin/delivery" method="POST">
         <input type="hidden" value="<?php echo Yii::$app->request->getCsrfToken() ?>" name="_csrf">
@@ -9,7 +12,7 @@
             <div class="box-item-del">
                 <h3>Здесь лежат какие-то настройки доставки</h3>
                 <button id="insertrepeater">
-                    Вставить повторитель
+                    Вставить повторитель в редактор
                 </button>
                 <div class="box-item-del-inner">
                     <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i>

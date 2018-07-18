@@ -1,5 +1,37 @@
 $(document).ready(function(){
+    /*------change photo avatar----------*/
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            // create filereader
+            var reader = new FileReader();
 
+
+            // А так же нужно указать место для замены src картинки которую нужно поменять на загруженную
+            reader.onload = function (e) {
+                //Change default image src on new path
+                $('.js-user-photo').attr('src', e.target.result);
+            };
+            // read file path
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    //When field have change call function readURL
+    $('#updateuser-photo, .take-file').change(function () {
+        readURL(this);
+    });
+    // Remove photo from preview and change on default image
+    $('.clear_photo_field').on('click',function () {
+        $('.js-user-photo').attr('src', 'assets/images/personal-photo.png');
+    });
+
+    $('#req_field').on('change',function () {
+        var files = fileInput.files;
+
+        for (var i = 0; i < files.length; i++) {
+            alert("Filename " + files[i].name);
+        }
+    });
+/*-------end change photo avatar-------*/
         /* ---Slider--- */
         $('.news__slider').slick({
             infinite: true,

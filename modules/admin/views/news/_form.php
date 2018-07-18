@@ -15,11 +15,7 @@ $model->date= date('Y-m-d', strtotime($model->date));
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -31,14 +27,21 @@ $model->date= date('Y-m-d', strtotime($model->date));
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+
     <div class="box-item-inner">
         <div class="box-img">
+            <?php if ($model->media):?>
             <img src="<?php echo $model->media->getImageOfSize(); ?>" alt="User Image">
+            <?php endif;?>
                 <?= $form->field($model, 'media_id')->hiddenInput(['class' => 'test'])->label(false) ?>
                 <div class="s-boxbtn">
-                    <button type="button" class="btn btn-block btn-success">Загрузить</button>
                     <button type="button" class="btn btn-block btn-danger">Удалить</button>
-                    <button type="button" class="btn btn-block bg-purple media-open-button">Изменить</button>
+                    <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
             </div>
         </div>
     </div>

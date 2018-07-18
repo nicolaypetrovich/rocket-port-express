@@ -1,6 +1,10 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Клиентам';
 $this->params['breadcrumbs'][] = $this->title; ;?>
+<?= Html::a('Перейти на страницу', ['/client'], ['class'=>'btn btn-primary']) ?>
       <div class="box-bl">
         <form method="post">
           <div class="box-item">

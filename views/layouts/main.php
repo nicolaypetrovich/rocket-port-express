@@ -237,15 +237,15 @@ AppAsset::register($this);
                         ЗАКАЗАТЬ ЗВОНОК
                     </h2>
                     <div>
-                        <input type="text" placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input" autocomplete="off">
+                        <input type="text" required placeholder="ФИО" name="call_name" class="required popup__input input mm-form-input" autocomplete="off">
                     </div>
                     <div>
-                        <input type="tel" placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input" autocomplete="off">
+                        <input type="tel" required placeholder="Телефон" name="call_phone" class="required popup__input input phone-mask mm-form-input" autocomplete="off">
                     </div>
                     <input id="form-token" type="hidden" name="<?=Yii::$app->request->csrfParam?>"
                            value="<?=Yii::$app->request->csrfToken?>" autocomplete="off"/>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox22" name="checkbox" class="mm-form-input">
+                        <input type="checkbox"  id="checkbox22" name="checkbox" class="mm-form-input">
                         <label for="checkbox22" id="checkboxLabel22"
                                class="pt15 d-flex justify-content-center align-items-center">
                             <span>
@@ -257,7 +257,7 @@ AppAsset::register($this);
                             </span>
                         </label>
                     </div>
-                    <button type="submit" class="contact-box__btn">
+                    <button type="submit" class="contact-box__btn ordercall-btn">
                         ОТПРАВИТЬ
                     </button>
                 </form>
@@ -283,7 +283,7 @@ AppAsset::register($this);
                     ВХОД В ЛИЧНЫЙ КАБИНЕТ
                 </h2>
                 <span id="login__entry_error"></span>
-                <?= $form->field($model, 'email')->textInput(['placeholder'=>'Логин','class'=>'popup__input input'])->label(false)->error();?>
+                <?= $form->field($model, 'email')->textInput(['placeholder'=>'Email','class'=>'popup__input input'])->label(false)->error();?>
                 <?= $form->field($model, 'password')->passwordInput(['placeholder'=>'Пароль','class'=>'popup__input input'])->label(false);?>
                 <div class="checkbox-group group-required">
                         <input type="checkbox" id="checkbox23" name="checkbox">
@@ -302,7 +302,7 @@ AppAsset::register($this);
                 <div class="d-flex">
                     <?= Html::submitButton('Войти', ['class' => 'contact-box__btn', 'name' => 'login-button']) ?>
                     <a href="#reg__popup" class="contact-box__btn popup-with-form">
-                        ЗАРЕГЕСТРИРОВАТЬСЯ
+                        ЗАРЕГИСТРИРОВАТЬСЯ
                     </a>
                 </div>
                 <?php $form = ActiveForm::end(); ?>

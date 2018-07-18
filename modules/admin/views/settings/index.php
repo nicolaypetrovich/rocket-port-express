@@ -1,6 +1,10 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Главная страница';
 $this->params['breadcrumbs'][] = $this->title; ;?>
+<?= Html::a('Перейти на страницу', ['/'], ['class'=>'btn btn-primary']) ?>
       <div class="box-bl">
         <form method="post" action="">
           <div class="box-item">
@@ -54,8 +58,8 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                       foreach ($icons_media as $media):?>
                           <?php if($icons['image'.$i]==$media['id']):?>
                               <div class="box-img">
-                                  <img src="<?=$media->getImageOfSize();?>" alt="<?=$media->alt;?>" style="width: 150px">
-                                  <input type="hidden" name="index_block_icons_images[image<?=$i;?>]" value="<?=$media->id;?>">
+                                  <img src="<?=$media?$media->getImageOfSize():'';?>" alt="<?=$media?$media->alt:'';?>" style="width: 150px">
+                                  <input type="hidden" name="index_block_icons_images[image<?=$i;?>]" value="<?=$media?$media->id:'';?>">
                                   <div class="s-boxbtn">
                                       <button type="button" class="btn btn-block btn-danger">Удалить</button>
                                       <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
