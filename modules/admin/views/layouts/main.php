@@ -53,7 +53,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
             <div class="navbar-custom-menu">
-                <form action="/admin/admin/logout">
+                <form class="logout" action="/admin/admin/logout">
                     <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->getCsrfToken()?>">
                     <div class="pull-right">
                         <input type="submit" class="btn btn-danger" value="Выйти">
