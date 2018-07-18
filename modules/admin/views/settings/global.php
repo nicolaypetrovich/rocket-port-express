@@ -14,6 +14,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="box-bl">
     <form action="" method="post">
         <div class="box-item">
+            <h4>Настройки Администратора</h4>
+            <div class="box-item-inner">
+                <h5>Текущий пароль администратора</h5>
+                <input type="text" name="ad_pass_old" placeholder="Заполните текст" class="form-control" autocomplete="off">
+            </div>
+            <div class="box-item-inner">
+                <h5>Новый пароль администратора</h5>
+                <input type="text" name="ad_pass_new" placeholder="Заполните текст" class="form-control" autocomplete="off">
+            </div>
+            <div class="box-item-inner">
+                <h5>Повторение нового пароля администратора</h5>
+                <input type="text" name="ad_pass_new_repeat" placeholder="Заполните текст" class="form-control" autocomplete="off">
+            </div>
+        </div>
+        <div class="box-item">
             <h4>Настройки header</h4>
             <div class="box-item-inner">
                 <h5>Логотип</h5>

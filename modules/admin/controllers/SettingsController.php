@@ -87,6 +87,16 @@ class SettingsController extends Controller
                     $tempModel->save();
                 }
             }
+
+            if(isset($data['ad_pass_old'])&&isset($data['ad_pass_new'])&&isset($data['ad_pass_new_repeat'])){
+                $tempModel=$this->findModel('admin_password');
+                if ($tempModel->value==md5($data['ad_pass_old'])){
+                    if($data['ad_pass_new']===$data['ad_pass_new_repeat']){
+                        $tempModel->value=md5($data['ad_pass_new']);
+                        $tempModel->save();
+                    }
+                }
+            }
         }
         $meta = Settings::find()
             ->select('key,value')
