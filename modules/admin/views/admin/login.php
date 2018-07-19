@@ -1,5 +1,5 @@
 <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html"><b>Port</b>Express</a>
 </div>
 
 <div class="register-box-body">
