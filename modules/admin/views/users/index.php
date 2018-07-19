@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'name',
-            //'login',
+            'login',
             //'gender',
             [
                 'attribute' => 'photo',
