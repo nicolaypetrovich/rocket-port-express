@@ -29,7 +29,11 @@ class SettingsController extends Controller
         $data = Yii::$app->request->post();
 
         if ($data) {
-
+            if($data['index_block_about']['text4_1']||$data['index_block_about']['text4_2']){
+                $data['index_block_about']['text4']=$data['index_block_about']['text4_1'].'<span>'.$data['index_block_about']['text4_2'].'</span>';
+                unset($data['index_block_about']['text4_1']);
+                unset($data['index_block_about']['text4_2']);
+            }
             foreach ($fieldsArray as $field) {
                 $tempModel = $this->findModel($field);
                 if (null != $tempModel) {

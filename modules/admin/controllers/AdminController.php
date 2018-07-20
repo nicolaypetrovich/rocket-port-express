@@ -66,7 +66,7 @@ class AdminController extends Controller
     public function actionLogin()
     {
         $this->layout='login-layout.php';
-        
+
 
         $model = new AdminLoginForm();
 
@@ -84,8 +84,8 @@ class AdminController extends Controller
     }
     public function actionLogout()
     {
-        if (!$session->isActive)
         $session = Yii::$app->session;
+        if (!$session->isActive)
             $session->open();
         $session->set('admin', 'no');
         return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');

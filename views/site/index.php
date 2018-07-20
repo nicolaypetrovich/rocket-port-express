@@ -85,31 +85,31 @@
         </h2>
         <div class="about__textbox">
             <div class="textbox__item">
-                <p class="about__text">
+                <div class="about__text">
                     <?= $blockAbout->text1; ?>
-                </p>
+                </div>
             </div>
             <div class="textbox__item">
-                <p class="about__text">
+                <div class="about__text">
                     <?= $blockAbout->text2; ?>
-                </p>
+                </div>
             </div>
             <div class="textbox__item">
-                <p class="about__text">
+                <div class="about__text">
                     <?= $blockAbout->text3; ?>
-                </p>
+                </div>
                 <a href="about" class="about__link ghost-btn red d-flex align-items-center justify-content-between">
                     <p>Подробнее</p>
                     <span></span>
                 </a>
             </div>
             <div class="about__info">
-                <p class="info__text red">
+                <div class="info__text red">
                     <?= $blockAbout->text4; ?>
-                </p>
-                <p class="info__num">
+                </div>
+                <div class="info__num">
                     <?= $blockAbout->number; ?>
-                </p>
+                </div>
             </div>
         </div>
     </div>
@@ -129,9 +129,9 @@
                 </div>
                 <?php break; endif; ?>
                 <?php endforeach; ?>
-                <p class="services__text">
+                <div class="services__text">
                     <?= $blockWithIcons['text'.$i]; ?>
-                </p>
+                </div>
             </div>
             <?php endfor; ?>
 

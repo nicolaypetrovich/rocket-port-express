@@ -43,9 +43,22 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
             <div class="box-item-inner">
               <textarea name="index_block_about[text3]" class="form-control"><?= $blockAbout->text3;?></textarea>
             </div>
+              <?php
+
+              //matches[1] because 0 match is full match, while 1 is actual match, flag creates position at index [1] inside of matches array
+              preg_match('/<span>(.*?)<\/span>/s', $blockAbout->text4, $matches, PREG_OFFSET_CAPTURE);
+              //string before needle(span)
+              $expStr=strstr($blockAbout->text4, $matches[0][0], true);
+
+                ?>
             <div class="box-item-inner">
-              <input type="text" name="index_block_about[text4]" placeholder="Заполните текст" class="form-control" value="<?= $blockAbout->text4;?>">
+                Большой текст на карте
+              <input type="text" name="index_block_about[text4_1]" placeholder="Заполните текст" class="form-control" value="<?= $expStr;?>">
             </div>
+              <div class="box-item-inner">
+                  Маленький текст на карте
+                  <input type="text" name="index_block_about[text4_2]" placeholder="Заполните текст" class="form-control" value="<?= $matches[1][0];?>">
+              </div>
             <div class="box-item-inner">
               <input type="text" name="index_block_about[number]" placeholder="Заполните текст" class="form-control" value="<?= $blockAbout->number;?>">
             </div>
