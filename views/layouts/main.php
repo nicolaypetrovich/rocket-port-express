@@ -85,7 +85,7 @@ AppAsset::register($this);
                         <span>Наш адрес:</span>
                         <p>
                             <?php
-                            //todo: id="mail"?? Is there a way to remove <br> without breaking code?
+
                             echo($header_settings['global_address']['value']); ?>
                         </p>
 
@@ -105,27 +105,26 @@ AppAsset::register($this);
                     //                            ],
                     //                        ]
                     //                    );
+                    $menuArr=array();
+                    $menuDb=json_decode($header_settings['global_menu']['value'],true);
+                    //creating menu structure to fit Nav widget
+                    for ($i=0;$i<sizeof($menuDb['menu_item']);$i++){
+                        $menuArr[]=[
+                                'label'=>$menuDb['menu_item_text'][$i],
+                                'url'=>[$menuDb['menu_item'][$i]]
+                        ];
+                    }
+
                     echo Nav::widget([
                         'options' => ['class' => ''],
-                        'items' => [
-                            ['label' => 'НА ГЛАВНУЮ', 'url' => ['/']],
-                            ['label' => 'О КОМПАНИИ', 'url' => ['/site/about']],
-                            ['label' => 'УСЛУГИ И ТАРИФЫ', 'url' => ['/site/services']],
-                            ['label' => 'КЛИЕНТАМ', 'url' => ['/site/client']],
-                            ['label' => 'КОНТАКТНАЯ ИНФОРМАЦИЯ', 'url' => ['/site/contact']],
-//                            Yii::$app->user->isGuest ? (                     might be needed later
-//                            ['label' => 'Login', 'url' => ['/site/login']]
-//                            ) : (
-//                                '<li>'
-//                                . Html::beginForm(['/site/logout'], 'post')
-//                                . Html::submitButton(
-//                                    'Logout (' . Yii::$app->user->identity->username . ')',
-//                                    ['class' => 'btn btn-link logout']
-//                                )
-//                                . Html::endForm()
-//                                . '</li>'
-//                            )
-                        ],
+                        'items' =>$menuArr,
+//                         [
+//                            ['label' => 'НА ГЛАВНУЮ', 'url' => ['/']],
+//                            ['label' => 'О КОМПАНИИ', 'url' => ['/site/about']],
+//                            ['label' => 'УСЛУГИ И ТАРИФЫ', 'url' => ['/site/services']],
+//                            ['label' => 'КЛИЕНТАМ', 'url' => ['/site/client']],
+//                            ['label' => 'КОНТАКТНАЯ ИНФОРМАЦИЯ', 'url' => ['/site/contact']],
+//                         ],
                     ]);
                     //                    NavBar::end();
                     ?>

@@ -13,6 +13,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="box-bl">
     <form action="" method="post">
+
+        <div class="box-item">
+            <h4>Настройки Меню</h4>
+            <?php $global_menu=json_decode($meta['global_menu']->value,true);?>
+
+            <?php for ($i=0;$i<sizeof($global_menu['menu_item']);$i++):?>
+            <div class="box-item-inner">
+                <select name="menu_item[]">
+                    <?php foreach ($pages as $page):?>
+                    <option <?php if ($global_menu['menu_item'][$i]==$page->slug) echo 'selected';?> value="<?=$page->slug;?>"><?=$page->title;?></option>
+                    <?php endforeach; ?>
+                </select>
+                <input type="text" name="menu_item_text[]" placeholder="Заполните текст" class="form-control" autocomplete="off" value="<?=$global_menu['menu_item_text'][$i];?>">
+            </div>
+            <?php endfor; ?>
+
+        </div>
+
         <div class="box-item">
             <h4>Настройки Администратора</h4>
             <div class="box-item-inner">

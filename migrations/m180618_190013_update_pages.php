@@ -32,7 +32,7 @@ class m180618_190013_update_pages extends Migration
         $this->insert('pages', [
             'id' => 1,
             'slug' => 'index',
-            'title' => 'Port Express',
+            'title' => 'Главная',
             'keywords' => '',
             'description' => '',
             'content' => 'Pages content was created from migrations.',

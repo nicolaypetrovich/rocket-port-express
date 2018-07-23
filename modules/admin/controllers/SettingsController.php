@@ -114,6 +114,7 @@ class SettingsController extends Controller
     public function actionGlobal()
     {
 
+
         $fieldsArray = array('global_logo', 'global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
         $data = Yii::$app->request->post();
 
@@ -135,6 +136,23 @@ class SettingsController extends Controller
                     }
                 }
             }
+
+            if( isset($data['menu_item'])&& isset($data['menu_item_text'])){
+//                var_dump($data);
+                try {
+                    $tempModel = $this->findModel('global_menu');
+                } catch (NotFoundHttpException $e) {
+                    $tempModel= new Settings();
+                    $tempModel->key='global_menu';
+                    $tempModel->value=json_encode(array('menu_item'=>$data['menu_item'],'menu_item_text'=>$data['menu_item_text']));
+                    $tempModel->save();
+                }
+
+                if (null != $tempModel) {
+                    $tempModel->value = json_encode(array('menu_item'=>$data['menu_item'],'menu_item_text'=>$data['menu_item_text']));
+                    $tempModel->save();
+                }
+            }
         }
         $meta = Settings::find()
             ->select('key,value')
@@ -142,8 +160,12 @@ class SettingsController extends Controller
             ->where(['like', 'key', 'global'])
             ->indexBy('key')
             ->all();
+        $pages= Pages::find()
+            ->select('title,slug')
+            ->all();
         return $this->render('global', [
-            'meta' => $meta
+            'meta' => $meta,
+            'pages' => $pages
         ]);
     }
 
