@@ -36,20 +36,22 @@
     cursor: pointer;
 }
 
-.media-image, .media-image-tiny {
+.media-image {
     display: inline-block;
-
     border: #3c8dbc solid;
-
     border-radius: 5px;
-
     margin: 3px 15px;
+    width: auto;
 }
 
-.media-image img, .media-image-tiny img{
+.media-image img {
     max-height: 250px;
     width: auto;
     padding: 15px 5px;
+}
+.media-image:hover {
+    border: 3px solid #3c8dbc;
+    background-color: #3c8dbc;
 }
 
 .box-img img{
