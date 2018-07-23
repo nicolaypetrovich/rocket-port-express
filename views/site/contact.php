@@ -105,29 +105,31 @@ foreach ($offices_list as $item) { ?>
 </script>
 <section class="contact__feedback d-flex">
     <div class="feed__leftside">
-        <form class="feed__form" name="feed__form" id="feed__form">
+        <form class="feed__form" action="" name="feed__form" id="feed__form" method="post">
             <h5>
                 ОБРАТНАЯ СВЯЗЬ
             </h5>
             <div>
-                <input type="text" placeholder="Имя*" class="required feed__input input">
+                <input required type="text" placeholder="Имя*" class="required feed__input input" name="cm_name">
             </div>
             <div>
-                <input type="text" placeholder="Email*" class="required email feed__input input">
+                <input required type="text" placeholder="Email*" class="required email feed__input input" name="cm_email">
             </div>
             <div>
-                <textarea rows="6" cols="10" maxlength="333" form="feed__form" placeholder="Комментарий" class="feed__input input"></textarea>
+                <textarea required name="cm_message" rows="6" cols="10" maxlength="333" form="feed__form" placeholder="Комментарий" class="feed__input input"></textarea>
             </div>
             <p>Поля, отмеченные * обязательны для заполнения</p>
             <div class="checkbox-group group-required">
-                <input type="checkbox" id="checkbox21" value="True">
+                <input type="checkbox" id="checkbox21" value="True" required>
                 <label for="checkbox21" id="checkboxLabel21" class="d-flex justify-content-center align-items-center">
                     <p>
                         Выполняя подтверждение, Вы даете согласие на обработку своих персональных данных
                     </p>
                 </label>
             </div>
-            <button type="submit" class="contact-box__btn">
+            <input id="form-token" type="hidden" name="<?= Yii::$app->request->csrfParam ?>"
+                   value="<?= Yii::$app->request->csrfToken ?>" autocomplete="off"/>
+            <button type="submit" class="contact-box__btn feed-sbmt-btn">
                 ОТПРАВИТЬ
             </button>
         </form>

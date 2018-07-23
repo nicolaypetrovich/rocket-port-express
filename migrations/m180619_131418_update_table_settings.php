@@ -214,7 +214,7 @@ class m180619_131418_update_table_settings extends Migration
         $this->insert('settings', [
             'id' => $i++,
             'key' => 'about_video',
-            'value' => '<iframe width="560" height="315" src="https://www.youtube.com/embed/FM7MFYoylVs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+            'value' => 'https://www.youtube.com/embed/FM7MFYoylVs',
         ]);
 
 

@@ -1251,7 +1251,7 @@ label {
 }
 
 .body__select select {
-	padding: 6px 60px;
+	padding: 6px 59px;
 	border: 1px solid #cdcdcd;
 	border-radius: 5px;
 	-webkit-appearance: none;
@@ -2545,6 +2545,5 @@ img.thumbnail {
 }
 
 #updateUser input{
-width: 190px;
-
+	width: 190px;
 }

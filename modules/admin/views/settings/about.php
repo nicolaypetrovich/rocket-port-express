@@ -68,11 +68,12 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
       </div>
     <div class="box-item">
       <div class="box-video">
-        <input type="text" name="video" placeholder="Введите iframe с видео" >
+        <input type="text" name="video" placeholder="Введите url, которые выводится в iframe" >
         <div class="timeline-item">
           <div class="timeline-body">
             <div class="embed-responsive embed-responsive-16by9">
-                <?php  echo $meta['about_video']['value']; ?>
+                <iframe width="800" height="600" src="<?php  echo $meta['about_video']['value']; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
             </div>
           </div>
         </div>

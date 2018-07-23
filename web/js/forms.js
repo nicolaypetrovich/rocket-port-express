@@ -29,6 +29,7 @@ $(document).ready(function () {
 
         for (var i = 0; i < form.length; i++) {
             form[i].addEventListener('submit', function (e) {
+
                 e.preventDefault();
                 var self = this;
 
@@ -132,7 +133,6 @@ $(document).ready(function () {
 
                 if (submit) {
 
-
                     var url = '';
                     var fd = $(this).serializeArray();
                     var form = this;
@@ -141,6 +141,10 @@ $(document).ready(function () {
                     } else {
                         if ('faq__form' === this.id) {
                             url = createcus_message_link;
+                        }else{
+                            if('feed__form'===this.id){
+                                url=createcus_message_link;
+                            }
                         }
                     }
                     if ('' !== url) {
@@ -263,7 +267,6 @@ $('body').on('click', '.ordercall-btn', function (e) {
 });
 
 $('body').on('click', '.faq-sbmt-btn', function (e) {
-
     var check = true;
     $('#faq__form :input[type=text],#faq__form :input[type=textarea]').each(function () {
         if ($(this).val() == '') {
@@ -279,6 +282,25 @@ $('body').on('click', '.faq-sbmt-btn', function (e) {
         }
     } else {
         $("#checkbox26").parent().removeClass("invalid");
+    }
+});
+
+$('body').on('click', '.feed-sbmt-btn', function (e) {
+    var check = true;
+    $('#feed__form :input[type=text],#feed__form :input[type=textarea]').each(function () {
+        if ($(this).val() == '') {
+            check = false;
+        }
+    });
+
+    if ($('#checkbox21').prop('checked') == false) {
+        if (check){
+            $("#checkbox21").parent().addClass("invalid");
+            e.preventDefault();
+            return false;
+        }
+    } else {
+        $("#checkbox21").parent().removeClass("invalid");
     }
 });
 

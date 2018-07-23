@@ -227,11 +227,16 @@ class SiteController extends Controller
     public function actionContact()
     {
         $content = $this->content;
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
 
-            return $this->refresh();
+
+        $data = Yii::$app->request->post();
+
+        if (isset($data['cm_name']) && isset($data['cm_email']) && isset($data['cm_message'])) {
+            $model = new CustomerMessages();
+            $model->name = $data['cm_name'];
+            $model->email = $data['cm_email'];
+            $model->text = $data['cm_message'];
+            $model->save();
         }
 
         $offices = new Offices();
