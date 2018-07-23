@@ -462,7 +462,7 @@ AppAsset::register($this);
                                   class="feed__input input" autocomplete="off"></textarea>
                     </div>
                     <div class="checkbox-group group-required">
-                        <input type="checkbox" id="checkbox26" name="checkbox" autocomplete="off">
+                        <input type="checkbox" id="checkbox26" name="checkbox" >
                         <label for="checkbox26" id="checkboxLabel26" class="pt15 d-flex align-items-center">
                             <span>
                                 Я согласен с

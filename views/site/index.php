@@ -67,9 +67,9 @@
                 <h2 class="resp__title rect__title section__title">
                     <?= $block2->textright1; ?>
                 </h2>
-                <p class="resp__text">
+                <div class="resp__text">
                     <?= $block2->textright2; ?>
-                </p>
+                </div>
             </div>
             <div class="boy">
                 <img src="img/boy.png" alt="Curier">

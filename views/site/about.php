@@ -27,8 +27,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="aboutus__wrapper verylarge-frame news__box">
             <div class="aboutus__hat d-flex flex-column justify-content-between align-items-start">
                 <?php echo $content['content1']; ?>
-
+                <img src="<?php echo $media[$content['content1_img']]->getImageOfSize();?>" alt="Экспресс доставка">
             </div>
+
             <div class="aboutus__hat_image d-flex justify-content-center">
                 <img src="<?php echo $media[$content['content_img']]->getImageOfSize();?>" alt="<?php echo $media[$content['content_img']]->alt;?>">
             </div>
@@ -38,9 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="aboutus__box">
                 <?php echo $content['content2']; ?>
             </div>
-
-
-
 
 
             <div class="aboutus__slider">

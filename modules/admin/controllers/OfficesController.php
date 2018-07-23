@@ -19,17 +19,9 @@ class OfficesController extends Controller
     {
         $session = Yii::$app->session;
 
-        if($action->id!='login') {
+        if ($session->get('admin') !== 'yes') {
 
-            if($session->get('admin')!=='yes'){
-
-                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
-            }
-        }else{
-            if($session->get('admin')==='yes'){
-                return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/home');
-            }
-
+            return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
         }
         return parent::beforeAction($action);
     }

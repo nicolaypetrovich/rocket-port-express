@@ -15,6 +15,16 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
               <?=$content->content1;?>
           </textarea>
       </div>
+        <br>
+      <div class="box-img">
+          Картинка Справа от контента
+          <img src="<?php echo $media[$content->content1_img]?$media[$content->content1_img]->getImageOfSize():''; ?>" alt="">
+          <input class="test" name="content1_img" value="<?=$content->content1_img;?>" type="hidden">
+          <div class="s-boxbtn">
+              <button type="button" class="btn btn-block btn-danger">Удалить</button>
+              <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
+          </div>
+      </div>
         </br>
         <div class="box-img">
             Картинка разделяющая контент

@@ -17,6 +17,18 @@ use yii\filters\VerbFilter;
 class SettingsController extends Controller
 {
 
+    public function beforeAction($action)
+    {
+        $session = Yii::$app->session;
+
+
+        if ($session->get('admin') !== 'yes') {
+
+            return $this->redirect(\yii\helpers\Url::base() . '/admin/admin/login');
+        }
+
+        return parent::beforeAction($action);
+    }
 
     /**
      * Renders the index view for the module
@@ -25,12 +37,12 @@ class SettingsController extends Controller
     public function actionIndex()
     {
 
-        $fieldsArray = array('index_block2','index_block_about','index_block_icons','index_block_icons_images');
+        $fieldsArray = array('index_block2', 'index_block_about', 'index_block_icons', 'index_block_icons_images');
         $data = Yii::$app->request->post();
 
         if ($data) {
-            if($data['index_block_about']['text4_1']||$data['index_block_about']['text4_2']){
-                $data['index_block_about']['text4']=$data['index_block_about']['text4_1'].'<span>'.$data['index_block_about']['text4_2'].'</span>';
+            if ($data['index_block_about']['text4_1'] || $data['index_block_about']['text4_2']) {
+                $data['index_block_about']['text4'] = $data['index_block_about']['text4_1'] . '<span>' . $data['index_block_about']['text4_2'] . '</span>';
                 unset($data['index_block_about']['text4_1']);
                 unset($data['index_block_about']['text4_2']);
             }
@@ -41,33 +53,33 @@ class SettingsController extends Controller
                     $tempModel->save();
                 }
             }
-            if(isset($data['index_news_title'])&&!empty($data['index_news_title'])){
-                $tempModel=$this->findModel('index_news_title');
-                if(null != $tempModel){
-                    $tempModel->value=$data['index_news_title'];
+            if (isset($data['index_news_title']) && !empty($data['index_news_title'])) {
+                $tempModel = $this->findModel('index_news_title');
+                if (null != $tempModel) {
+                    $tempModel->value = $data['index_news_title'];
                     $tempModel->save();
                 }
             }
         }
 
-	    $meta = Settings::find()->select('key,value')
-	                    ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
-	                    ->where(['like', 'key', 'index'])
-                        ->indexBy('key')
+        $meta = Settings::find()->select('key,value')
+            ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+            ->where(['like', 'key', 'index'])
+            ->indexBy('key')
 //            ->asArray()
-                        ->all();
+            ->all();
 
-        $images=array();
-        foreach (json_decode($meta['index_block_icons_images']->value,true) as $item){
-            $images[]=$item;
+        $images = array();
+        foreach (json_decode($meta['index_block_icons_images']->value, true) as $item) {
+            $images[] = $item;
         }
 
         $media = Media::find()->select('id, name, title, alt')
             ->where(['id' => $images])
             ->all();
-        return $this->render('index',[
-            'meta'=>$meta,
-            'icons_media'=>$media,
+        return $this->render('index', [
+            'meta' => $meta,
+            'icons_media' => $media,
         ]);
     }
 
@@ -80,7 +92,7 @@ class SettingsController extends Controller
 
         $data = Pages::findBySlug($this->action->id);
 
-        if(Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $content = json_encode(Yii::$app->request->post('delivery'));
             $data->content = $content;
             $data->save();
@@ -93,6 +105,7 @@ class SettingsController extends Controller
 
         return $this->render('delivery', compact('content'));
     }
+
     /**
      * Lists all Settings models.
      * @return mixed
@@ -101,7 +114,7 @@ class SettingsController extends Controller
     public function actionGlobal()
     {
 
-        $fieldsArray = array('global_logo','global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
+        $fieldsArray = array('global_logo', 'global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
         $data = Yii::$app->request->post();
 
         if ($data) {
@@ -113,11 +126,11 @@ class SettingsController extends Controller
                 }
             }
 
-            if(isset($data['ad_pass_old'])&&isset($data['ad_pass_new'])&&isset($data['ad_pass_new_repeat'])){
-                $tempModel=$this->findModel('admin_password');
-                if ($tempModel->value==md5($data['ad_pass_old'])){
-                    if($data['ad_pass_new']===$data['ad_pass_new_repeat']){
-                        $tempModel->value=md5($data['ad_pass_new']);
+            if (isset($data['ad_pass_old']) && isset($data['ad_pass_new']) && isset($data['ad_pass_new_repeat'])) {
+                $tempModel = $this->findModel('admin_password');
+                if ($tempModel->value == md5($data['ad_pass_old'])) {
+                    if ($data['ad_pass_new'] === $data['ad_pass_new_repeat']) {
+                        $tempModel->value = md5($data['ad_pass_new']);
                         $tempModel->save();
                     }
                 }
@@ -143,8 +156,8 @@ class SettingsController extends Controller
     {
         $page = Pages::findBySlug('client');
         $data = Yii::$app->request->post();
-        if(!empty($data)){
-            $page->content=json_encode($data['content']);
+        if (!empty($data)) {
+            $page->content = json_encode($data['content']);
             $page->save();
         }
 
@@ -172,13 +185,14 @@ class SettingsController extends Controller
                 $aboutSlider->value = json_encode($data['slider']);
                 $aboutSlider->save();
             }
-            if (!empty($data['content1'])&&!empty($data['content2'])&&!empty($data['title_middle'])&&!empty($data['content2'])) {
+            if (!empty($data['content1']) && !empty($data['content1_img']) && !empty($data['content2']) && !empty($data['title_middle']) && !empty($data['content2'])) {
 
                 $currPage->content = json_encode(array(
-                	'content1'=>$data['content1'],
-	                'content_img'=>$data['content_img'],
-	                'title_middle'=>$data['title_middle'],
-                	'content2'=>$data['content2']
+                    'content1' => $data['content1'],
+                    'content1_img' => $data['content1_img'],
+                    'content_img' => $data['content_img'],
+                    'title_middle' => $data['title_middle'],
+                    'content2' => $data['content2']
                 ));
                 $currPage->save();
             }
@@ -196,12 +210,11 @@ class SettingsController extends Controller
 
 
         $media = Media::find()->select('id, name, title, alt')
-            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' =>$content->content_img]])
+            ->where(['or', ['id' => $meta['about_slider']['value']], ['id' => $content->content_img], ['id' => $content->content1_img]])
             ->indexBy('id')
             ->all();
         return $this->render('about', compact('content', 'meta', 'media'));
     }
-
 
 
     /**
@@ -213,7 +226,7 @@ class SettingsController extends Controller
         $data = Yii::$app->request->post();
 
         if ($data) {
-            $service_array=array('image'=>$data['image'],'text'=>$data['text']);
+            $service_array = array('image' => $data['image'], 'text' => $data['text']);
 
             try {
                 $tempModel = $this->findModel('services_blocks');
@@ -222,9 +235,9 @@ class SettingsController extends Controller
                     $tempModel->save();
                 }
             } catch (NotFoundHttpException $e) {
-                $tempModel= new Settings();
-                $tempModel->key='services_blocks';
-                $tempModel->value=json_encode($service_array);
+                $tempModel = new Settings();
+                $tempModel->key = 'services_blocks';
+                $tempModel->value = json_encode($service_array);
                 $tempModel->save();
             }
 
@@ -234,25 +247,22 @@ class SettingsController extends Controller
             ->select('key,value')
             ->where(['like', 'key', 'services_blocks'])
             ->one();
-        $meta=json_decode($meta['value']);
-        $images=array();
+        $meta = json_decode($meta['value']);
+        $images = array();
 
-        foreach ($meta->image as $item){
-            $images[]=$item;
+        foreach ($meta->image as $item) {
+            $images[] = $item;
         }
         $media = Media::find()->select('id, name, title, alt')
             ->indexBy('id')
             ->where(['id' => $images])
             ->all();
 
-        return $this->render('services',[
-            'meta'=>$meta,
-            'media'=>$media
+        return $this->render('services', [
+            'meta' => $meta,
+            'media' => $media
         ]);
     }
-
-
-
 
 
     /**

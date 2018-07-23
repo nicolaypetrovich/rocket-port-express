@@ -2,7 +2,7 @@
 $this->title = 'Доставка';
 $this->params['breadcrumbs'][] = $this->title; ;?>
 <div class="box-bl">
-    <form action="/admin/admin/delivery" method="POST">
+    <form action="/admin/settings/delivery" method="POST">
         <input type="hidden" value="<?php echo Yii::$app->request->getCsrfToken() ?>" name="_csrf">
         <div class="box-item">
             <div class="box-textarea"><textarea class="form-control"
