@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
           <img src="<?php echo $media[$content->content1_img]?$media[$content->content1_img]->getImageOfSize():''; ?>" alt="">
           <input class="test" name="content1_img" value="<?=$content->content1_img;?>" type="hidden">
           <div class="s-boxbtn">
-              <button type="button" class="btn btn-block btn-danger">Удалить</button>
+
               <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
           </div>
       </div>
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
             <img src="<?php echo $media[$content->content_img]?$media[$content->content_img]->getImageOfSize():''; ?>" alt="">
             <input class="test" name="content_img" value="<?=$content->content_img;?>" type="hidden">
             <div class="s-boxbtn">
-                <button type="button" class="btn btn-block btn-danger">Удалить</button>
+
                 <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
             </div>
         </div>
@@ -59,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                       <img src="<?php echo $media[$id]?$media[$id]->getImageOfSize():''; ?>" alt="<?php echo $media[$id]?$media[$id]->alt:''; ?>">
                       <input class="test" name="slider[]" value="<?=$id;?>" type="hidden">
                       <div class="s-boxbtn">
-                          <button type="button" class="btn btn-block btn-danger">Удалить</button>
                           <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
                       </div>
                   </div>

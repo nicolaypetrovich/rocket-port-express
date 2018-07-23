@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <img src="<?php if($media[$meta->image[$i]]->id){ echo $media[$meta->image[$i]]->getImageOfSize();}?>">
                         <input class="test" name="image[]" value="<?=$media[$meta->image[$i]]->id;?>" type="hidden">
                         <div class="s-boxbtn">
-                            <button type="button" class="btn btn-block btn-danger">Удалить</button>
+
                             <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить
                             </button>
                         </div>

@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <img width="50" src="<?php echo $meta['global_favicon']->media?$meta['global_favicon']->media->getImageOfSize():'';?>" alt="User Image">
                     <input type="hidden" name="global_favicon" value="<?=$meta['global_favicon']->value;?>">
                     <div class="s-boxbtn">
-                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
+
                         <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <img src="<?php echo $meta['global_logo']->media?$meta['global_logo']->media->getImageOfSize():'';?>" alt="User Image">
                     <input type="hidden" name="global_logo" value="<?=$meta['global_logo']->value;?>">
                     <div class="s-boxbtn">
-                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
+
                         <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
                     </div>
                 </div>

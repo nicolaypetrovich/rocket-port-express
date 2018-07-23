@@ -74,7 +74,6 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                                   <img src="<?=$media?$media->getImageOfSize():'';?>" alt="<?=$media?$media->alt:'';?>" style="width: 150px">
                                   <input type="hidden" name="index_block_icons_images[image<?=$i;?>]" value="<?=$media?$media->id:'';?>">
                                   <div class="s-boxbtn">
-                                      <button type="button" class="btn btn-block btn-danger">Удалить</button>
                                       <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
                                   </div>
                               </div>
