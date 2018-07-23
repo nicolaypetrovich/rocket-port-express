@@ -36,6 +36,7 @@ $(document).ready(function () {
         b.clone(true).insertBefore($(this)).addClass('active');
         var count = $('.box-item-del-inner.active').length,
             obj = $(this).prev();
+        $(obj).data('count', count);
         $(obj).find('input').first().attr('name', 'delivery[repeater]['+count+'][title]');
         $(obj).find('input').eq(1).attr('name', 'delivery[repeater]['+count+'][liststyle]');
     });
@@ -44,8 +45,9 @@ $(document).ready(function () {
         var b = $(this).prev('.box-item-del-data');
         $(this).prev('.box-item-del-data').clone(true).insertAfter(b).addClass('active');
         $(this).prev('.box-item-del-data').find("input:text").val("");
-        var count = $('.box-item-del-inner').length - 1,
-            count1 = $(this).parent().find('.box-item-del-data.active').length;
+        // var count = $('.box-item-del-inner').length,
+        var count1 = $(this).parent().find('.box-item-del-data.active').length;
+        var count = $(this).parent().data('count');
         $(this).prev('.box-item-del-data').find("input").eq(0).attr('name', 'delivery[repeater]['+count+'][repeater]['+count1+'][char]');
         $(this).prev('.box-item-del-data').find("input").eq(1).attr('name', 'delivery[repeater]['+count+'][repeater]['+count1+'][value]');
     });

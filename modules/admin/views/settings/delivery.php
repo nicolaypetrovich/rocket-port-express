@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                     foreach ($content['repeater'] as $key1 => $val1) {
 
                         ?>
-                        <div class="box-item-del-inner active">
+                        <div class="box-item-del-inner active" data-count="<?=$i?>">
                             <button type="button" class="btn btn-close" data-widget="remove"><i class="fa fa-times"></i>
                             </button>
                             <input type="text" placeholder="Введите данные" class="form-control"
