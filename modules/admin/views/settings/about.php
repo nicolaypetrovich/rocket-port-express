@@ -16,8 +16,9 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
           </textarea>
       </div>
         <br>
+        Картинка Справа от контента
       <div class="box-img">
-          Картинка Справа от контента
+
           <img src="<?php echo $media[$content->content1_img]?$media[$content->content1_img]->getImageOfSize():''; ?>" alt="">
           <input class="test" name="content1_img" value="<?=$content->content1_img;?>" type="hidden">
           <div class="s-boxbtn">
@@ -25,9 +26,10 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
               <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
           </div>
       </div>
-        </br>
+        <br>
+        Картинка разделяющая контент
         <div class="box-img">
-            Картинка разделяющая контент
+
             <img src="<?php echo $media[$content->content_img]?$media[$content->content_img]->getImageOfSize():''; ?>" alt="">
             <input class="test" name="content_img" value="<?=$content->content_img;?>" type="hidden">
             <div class="s-boxbtn">
@@ -35,12 +37,12 @@ $this->params['breadcrumbs'][] = $this->title; ;?>
                 <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
             </div>
         </div>
-        </br>
+        <br>
         <label>
             Заголовок второй части контента
             <input type="text" name="title_middle" value="<?=$content->title_middle;?>">
         </label>
-        </br>
+        <br>
         <div class="box-textarea">
             Контент2
           <textarea class="form-control" placeholder="Второй текст" name="content2">
