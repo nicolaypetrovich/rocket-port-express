@@ -113,14 +113,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             </p>
                             <?php $items = ['0' => 'Не выбран', '1' => 'Мужской', '2' => 'Женский']; ?>
                             <?php $modelUpdate->gender = $user['gender'] ?>
-                            <div class="select-wrapper body__select">
+                            
                                 <div class="select-wrapper body__select">
                                     <?= $formUpdate->field($modelUpdate, 'gender')
                                         ->dropDownList($items)
                                         ->label(false);
                                     ?>
                                 </div>
-                            </div>
+                            
                         </div>
                         <div class="private__item d-flex align-items-center">
                             <p class="private__title red">
