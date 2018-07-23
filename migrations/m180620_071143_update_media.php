@@ -111,6 +111,12 @@ class m180620_071143_update_media extends Migration
             'alt' => 'about',
         ]);
 
+        $this->insert('media', [
+            'id' => $id_counter++,
+            'name' => 'favicon.png',
+            'title' => 'favicon',
+            'alt' => 'favicon',
+        ]);
 
         echo "Default images created\n";
 
@@ -119,7 +125,7 @@ class m180620_071143_update_media extends Migration
 
     public function down()
     {
-        $this->delete('media', 'id<=25');
+        $this->delete('media', 'id<=30');
 
         echo "Default images deleted\n";
 

@@ -15,6 +15,14 @@ use yii\web\View;
 use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
+
+$header_settings = Settings::find()
+    ->select('key,value')
+    ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
+    ->where(['like', 'key', 'global'])
+    ->indexBy('key')
+    ->all();
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
@@ -23,21 +31,14 @@ AppAsset::register($this);
         <meta charset="<?= Yii::$app->charset ?>">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <?php $this->registerLinkTag(['rel' => 'shortcut icon', 'type' => 'image/png', 'href' => 'img/favicon.png']); ?>
+        <?php $this->registerLinkTag(['rel' => 'shortcut icon', 'type' => 'image', 'href' =>$header_settings['global_favicon']->media?$header_settings['global_favicon']->media->getImageOfSize():'']); ?>
         <?php $this->head() ?>
     </head>
 
     <body>
     <?php $this->beginBody() ?>
 
-    <?php
-    $header_settings = Settings::find()
-        ->select('key,value')
-        ->leftJoin('media', '`settings`.`value` = `media`.`id`')->with('media')
-        ->where(['like', 'key', 'global'])
-        ->indexBy('key')
-        ->all();
-    ?>
+
     <header class="header" id="header">
         <div class="container">
             <div class="hat-up d-flex justify-content-between">

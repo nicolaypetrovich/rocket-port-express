@@ -115,12 +115,19 @@ class SettingsController extends Controller
     {
 
 
-        $fieldsArray = array('global_logo', 'global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap');
+        $fieldsArray = array('global_logo', 'global_headertext1', 'global_headertext2', 'global_phone', 'global_email', 'global_address', 'global_copyright', 'global_mainMap','global_favicon');
         $data = Yii::$app->request->post();
 
         if ($data) {
             foreach ($fieldsArray as $field) {
-                $tempModel = $this->findModel($field);
+                try {
+                    $tempModel = $this->findModel($field);
+                } catch (NotFoundHttpException $e) {
+                    $tempModel = new Settings();
+                    $tempModel->key=$field;
+                    $tempModel->value=$data[$field];
+                    $tempModel->save();
+                }
                 if (null != $tempModel) {
                     $tempModel->value = $data[$field];
                     $tempModel->save();

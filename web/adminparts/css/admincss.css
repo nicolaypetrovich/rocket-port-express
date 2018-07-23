@@ -38,16 +38,22 @@
 
 .media-image, .media-image-tiny {
     display: inline-block;
+
+    border: #3c8dbc solid;
+
+    border-radius: 5px;
+
+    margin: 3px 15px;
 }
 
 .media-image img, .media-image-tiny img{
-    height: 250px;
+    max-height: 250px;
     width: auto;
     padding: 15px 5px;
 }
 
 .box-img img{
-    width: 350px;
+    /*width: 350px;*/
     height: auto;
 }
 

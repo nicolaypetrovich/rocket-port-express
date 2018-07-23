@@ -49,6 +49,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-item">
             <h4>Настройки header</h4>
             <div class="box-item-inner">
+                <h5>Favicon</h5>
+                <div class="box-img">
+
+                    <img width="50" src="<?php echo $meta['global_favicon']->media?$meta['global_favicon']->media->getImageOfSize():'';?>" alt="User Image">
+                    <input type="hidden" name="global_favicon" value="<?=$meta['global_favicon']->value;?>">
+                    <div class="s-boxbtn">
+                        <button type="button" class="btn btn-block btn-danger">Удалить</button>
+                        <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-item-inner">
                 <h5>Логотип</h5>
                 <div class="box-img">
 

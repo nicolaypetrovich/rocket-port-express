@@ -238,6 +238,13 @@ class m180619_131418_update_table_settings extends Migration
             'value' => '{"menu_item":["index","about","services","client","contact"],"menu_item_text":["\u041d\u0410 \u0413\u041b\u0410\u0412\u041d\u0423\u042e","\u041e \u041a\u041e\u041c\u041f\u0410\u041d\u0418\u0418","\u0423\u0421\u041b\u0423\u0413\u0418 \u0418 \u0422\u0410\u0420\u0418\u0424\u042b","\u041a\u041b\u0418\u0415\u041d\u0422\u0410\u041c","\u041a\u041e\u041d\u0422\u0410\u041a\u0422\u041d\u0410\u042f \u0418\u041d\u0424\u041e\u0420\u041c\u0410\u0426\u0418\u042f"]}',
         ]);
 
+        $this->insert('settings', [
+            'id' => $i++,
+            'key' => 'global_favicon',
+            'value' => '31',
+        ]);
+
+
         echo "Default settings created.\n";
 
         return true;

@@ -2043,6 +2043,7 @@ label {
 .services__additional img {
 	max-height: 145px;
 	width: 360px;
+	object-fit: cover;
 }
 
 /*---SERVICES PAGE END---*/
