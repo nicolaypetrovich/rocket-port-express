@@ -214,7 +214,7 @@ class SettingsController extends Controller
                 $aboutSlider->value = json_encode($data['slider']);
                 $aboutSlider->save();
             }
-            if (!empty($data['content1']) && !empty($data['content1_img']) && !empty($data['content2']) && !empty($data['title_middle']) && !empty($data['content2'])) {
+            if (!empty($data['content1']) && isset($data['content1_img'])&& !empty($data['content2']) && !empty($data['title_middle']) && !empty($data['content2'])) {
 
                 $currPage->content = json_encode(array(
                     'content1' => $data['content1'],

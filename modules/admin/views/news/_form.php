@@ -38,7 +38,7 @@ $model->date= date('Y-m-d', strtotime($model->date));
             <?php if ($model->media):?>
             <img src="<?php echo $model->media->getImageOfSize(); ?>" alt="User Image">
             <?php endif;?>
-                <?= $form->field($model, 'media_id')->hiddenInput(['class' => 'test'])->label(false) ?>
+                <?= $form->field($model, 'media_id',['options' => ['tag' => false],'errorOptions' => ['tag' => null]])->hiddenInput(['class' => 'test'])->label(false) ?>
                 <div class="s-boxbtn">
                     <button type="button" class="btn btn-block btn-danger">Удалить</button>
                     <button type="button" class="btn btn-block bg-purple media-open-button">Выбрать/Изменить</button>
@@ -46,7 +46,7 @@ $model->date= date('Y-m-d', strtotime($model->date));
         </div>
     </div>
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

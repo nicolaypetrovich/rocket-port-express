@@ -7,6 +7,15 @@ $(document).ready(function () {
         );
     }
 
+    if($('.admin-save-btn').length){
+        // console.log('something');
+        $('.admin-save-btn').on('click',function (e) {
+            // console.log('else');
+            $('.container-fluid').find('form').submit();
+        });
+    }
+    
+    
     $('.btn-plus').on('click', function(){
         console.log('removed');
         // tinyMCE.remove('.container-fluid textarea');

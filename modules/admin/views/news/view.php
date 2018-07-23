@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] =$model->id;
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы уверены, что хотите удалить эту новость?',
                 'method'=>'post'
             ],
         ]) ?>
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] =$model->id;
                     if($data->media)
                     return Html::img($data->media->getImageOfSize());
                     else
-                        return 'No image';
+                        return 'Нет картинки';
                 },
             ],
         ],

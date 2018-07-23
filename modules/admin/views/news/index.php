@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-index">
 
-<!--    <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
+    <!--    <h1>--><? //= Html::encode($this->title) ?><!--</h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -27,23 +27,28 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             [
-                    'attribute' => 'img',
-                    'format' => 'html',
-                    'label' => 'Фото',
-                    'value'=>function($data){
-                        return   Html::img($data->media->getImageOfSize() ,['width' => '60px']);
-                    },
+                'attribute' => 'img',
+                'format' => 'html',
+                'label' => 'Фото',
+                'value' => function ($data) {
+                    if ($data->media) {
+                        return Html::img($data->media->getImageOfSize(), ['width' => '60px']);
+                    } else{
+                        return "Нет картинки";
+                    }
+
+                },
 
 
             ],
             [
-                'attribute'=>'name',
-                'label'=>'Заголовок',
+                'attribute' => 'name',
+                'label' => 'Заголовок',
                 'headerOptions' => ['style' => 'width:20%']
             ],
             [
-                'attribute'=>'shortdesc',
-                'label'=>'Краткий текст',
+                'attribute' => 'shortdesc',
+                'label' => 'Краткий текст',
 //                'header'=>'Краткий текст',
 
             ],
@@ -56,8 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             ['class' => 'yii\grid\ActionColumn',
-                'header'=>'Действия'],
+                'header' => 'Действия'],
         ],
     ]); ?>
-    <?php \yii\widgets\Pjax::end();?>
+    <?php \yii\widgets\Pjax::end(); ?>
 </div>

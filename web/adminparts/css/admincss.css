@@ -149,7 +149,7 @@
 }
 
 
-.logout .pull-right .btn.btn-danger{
+.logout .pull-right .btn.btn-danger,.logout .pull-right .btn.admin-save-btn{
     margin-top: 8px;
     margin-right: 5px;
 }

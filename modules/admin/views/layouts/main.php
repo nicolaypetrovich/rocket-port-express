@@ -60,9 +60,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <span class="icon-bar"></span>
             </a>
             <div class="navbar-custom-menu">
+
                 <form class="logout" action="/admin/admin/logout">
                     <input type="hidden" name="_csrf" value="<?php echo Yii::$app->request->getCsrfToken()?>">
                     <div class="pull-right">
+                        <span class="btn btn-success admin-save-btn">Сохранить</span>
                         <input type="submit" class="btn btn-danger" value="Выйти">
                     </div>
                 </form>
