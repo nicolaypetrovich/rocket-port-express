@@ -2548,3 +2548,22 @@ img.thumbnail {
 #updateUser input{
 	width: 190px;
 }
+
+.ui-helper-hidden-accessible {
+	display: none!important;
+}
+
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front {
+	padding-top: 1px;
+	width: 190px;
+	background-color: white;
+	border-radius: 5px;
+	border-bottom: 1px solid black;
+	max-height: 350px;
+	overflow-y: scroll;
+}
+
+.ui-menu.ui-widget.ui-widget-content.ui-autocomplete.ui-front .ui-menu-item {
+	margin-bottom: 3px;
+	border-bottom: 1px dashed black;
+}

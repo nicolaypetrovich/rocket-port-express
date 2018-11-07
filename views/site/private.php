@@ -78,6 +78,18 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h2 class="section__title y-line red">
                     ИСТОРИЯ ОТПРАВЛЕНИЙ
                 </h2>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function(){
+                        $("#tags").autocomplete({
+                            source: "http://port-express.loc/get-descr?inn=3528166338"
+                        });
+                    });
+                </script>
+                <form class="history_search_form">
+                    <span class="history_search_title"></span>
+                    <input name="docno" id="tags" class="private__input input">
+                    <input type="submit" id="calcProcess" name="Submit" class="contact-box__btn" value="Проверка уведомления">
+                </form>
             </div>
             <div class="private__rightside privat__ld active">
                 <img src="img/russia.png" alt="">

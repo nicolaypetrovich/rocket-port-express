@@ -34,6 +34,7 @@ class AppAsset extends AssetBundle
         'js/jquery.magnific-popup.min.js',
         'js/slick.min.js',
         'js/main.js',
+	    'js/autocomplete.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset'

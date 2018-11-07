@@ -453,7 +453,22 @@ class SiteController extends Controller
         return $this->render('private', compact('content', 'user', 'pass_error'));
     }
 
+	public function actionGetDescr($data = null){
 
+		header('Content-type: text/html; charset=windows-1251');
+
+		$url = "http://213.221.36.234/recipient.php";
+		$search = "name=" . iconv("utf-8", "cp1251", $_GET['term']) . "&inn=" . $_GET['inn'];
+
+		$c = curl_init($url);
+		curl_setopt($c, CURLOPT_POST, true);
+		curl_setopt($c, CURLOPT_POSTFIELDS, $search);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		$receive = curl_exec($c);
+		curl_close($c);
+
+		return iconv("cp1251", "utf-8", $receive);
+	}
 
     /**
      *
