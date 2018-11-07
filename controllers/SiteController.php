@@ -470,6 +470,26 @@ class SiteController extends Controller
 		return iconv("cp1251", "utf-8", $receive);
 	}
 
+	public function actionTestpage()
+	{
+		$docno = "docno=" . $_POST['name'] . "&inn=" . $_POST['inn'];
+
+		header('Content-type: text/html; charset=windows-1251');
+
+		$url1 = "http://213.221.36.234/index.php";
+
+		$cw = curl_init($url1);
+		curl_setopt($cw, CURLOPT_POST, true);
+		curl_setopt($cw, CURLOPT_POSTFIELDS, $docno);
+		curl_setopt($cw, CURLOPT_RETURNTRANSFER, true);
+		$recive1 = curl_exec($cw);
+		curl_close($cw);
+
+		$sx1 = simplexml_load_string($recive1);
+
+		return $recive1;
+	}
+
     /**
      *
      * this section is dedicated for actions related to OrderCall

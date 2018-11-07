@@ -327,3 +327,18 @@ $('body').on('beforeSubmit', 'form#registerUser', function () {
     });
     return false;
 });
+
+$('#history_search_form').on('submit', function(e){
+   e.preventDefault();
+   var ser = $(this).serialize();
+   console.log(ser);
+    $.ajax({
+        url: '/testpage',
+        type: 'post',
+        data: ser,
+        success: function (response) {
+            console.dir(response);
+            console.dir('ended');
+        }
+    });
+});

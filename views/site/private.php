@@ -85,8 +85,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         });
                     });
                 </script>
-                <form class="history_search_form">
+                <form id="history_search_form" class="history_search_form">
                     <span class="history_search_title"></span>
+                    <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
+                    <input type="hidden" name="inn" value="3528166338">
                     <input name="docno" id="tags" class="private__input input">
                     <input type="submit" id="calcProcess" name="Submit" class="contact-box__btn" value="Проверка уведомления">
                 </form>
