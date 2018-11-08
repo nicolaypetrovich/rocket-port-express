@@ -470,14 +470,14 @@ class SiteController extends Controller
 		return iconv("cp1251", "utf-8", $receive);
 	}
 
-	public function actionTestpage()
+	public function actionApiinfo()
 	{
-		$docno = "docno=" . $_POST['name'] . "&inn=" . $_POST['inn'];
+
+		$docno = "docno=" . iconv("utf-8", "cp1251", $_POST['docno']) . "&inn=" . $_POST['inn'];
 
 		header('Content-type: text/html; charset=windows-1251');
 
 		$url1 = "http://213.221.36.234/index.php";
-
 		$cw = curl_init($url1);
 		curl_setopt($cw, CURLOPT_POST, true);
 		curl_setopt($cw, CURLOPT_POSTFIELDS, $docno);
@@ -486,8 +486,43 @@ class SiteController extends Controller
 		curl_close($cw);
 
 		$sx1 = simplexml_load_string($recive1);
+		$return1 = '';
+		$return1 .= '<table id="tblStatus">
+						<tr class="tb_header">
+							<td>Номер</td>
+							<td>Дата отправления</td>
+							<td>Дата получения</td>
+							<td>ФИО</td>
+							<td>Статус</td>
+							<td>Адрес</td>
+						</tr>';
+		foreach ($sx1->row as $row){
 
-		return $recive1;
+			$docno = $row['docno'];
+			$date = $row['date_ot'];
+			$status = $row['status'];
+			$who = $row['who'];
+			$date_otpr = $row['date_otpr'];
+			$address = $row['address'];
+			$zakazchik = $row['zakazchik'];
+			$num_reestr = $row['num_reestr'];
+			$shpi = $row['shpi'];
+			$in_shpi = $row['in_shpi'];
+			$date_status = $row['date_status'];
+			$return1 .= "<tr>
+						<td>{$docno}</td>
+						<td>{$date_otpr}</td>
+						<td>{$date}</td>
+						<td>{$who}</td>
+						<td>{$status}</td>
+						<td>{$address}</td>
+						<td>{$zakazchik}</td>
+						</tr>";
+		}
+		$return1 .= '</table>';
+
+		return $return1;
+
 	}
 
     /**

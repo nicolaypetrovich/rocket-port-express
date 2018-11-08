@@ -92,6 +92,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <input name="docno" id="tags" class="private__input input">
                     <input type="submit" id="calcProcess" name="Submit" class="contact-box__btn" value="Проверка уведомления">
                 </form>
+                <div class="response_wrapper">
+
+                </div>
             </div>
             <div class="private__rightside privat__ld active">
                 <img src="img/russia.png" alt="">

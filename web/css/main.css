@@ -2567,3 +2567,17 @@ img.thumbnail {
 	margin-bottom: 3px;
 	border-bottom: 1px dashed black;
 }
+
+.response_wrapper {
+	margin-top: 10px;
+}
+
+.response_wrapper table tr:first-child {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 11pt;
+	line-height: 11pt;
+	color: #4c4c4c;
+	cursor: pointer;
+	white-space: nowrap;
+	border-bottom: 1px black;
+}

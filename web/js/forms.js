@@ -329,16 +329,14 @@ $('body').on('beforeSubmit', 'form#registerUser', function () {
 });
 
 $('#history_search_form').on('submit', function(e){
-   e.preventDefault();
-   var ser = $(this).serialize();
-   console.log(ser);
+    e.preventDefault();
+    var ser = $(this).serialize();
     $.ajax({
-        url: '/testpage',
+        url: '/apiinfo',
         type: 'post',
         data: ser,
         success: function (response) {
-            console.dir(response);
-            console.dir('ended');
+            $('.response_wrapper').html(response);
         }
     });
 });
