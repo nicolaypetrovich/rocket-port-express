@@ -81,14 +81,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <script>
                     document.addEventListener("DOMContentLoaded", function(){
                         $("#tags").autocomplete({
-                            source: "http://port-express.loc/get-descr?inn=3528166338"
+                            source: "/get-descr?inn=<?=Yii::$app->user->identity->api_id?>"
                         });
                     });
                 </script>
                 <form id="history_search_form" class="history_search_form">
                     <span class="history_search_title"></span>
                     <input type="hidden" name="<?= Yii::$app->request->csrfParam; ?>" value="<?= Yii::$app->request->csrfToken; ?>" />
-                    <input type="hidden" name="inn" value="3528166338">
+                    <input type="hidden" name="inn" value="<?=Yii::$app->user->identity->api_id?>">
                     <input name="docno" id="tags" class="private__input input">
                     <input type="submit" id="calcProcess" name="Submit" class="contact-box__btn" value="Проверка уведомления">
                 </form>

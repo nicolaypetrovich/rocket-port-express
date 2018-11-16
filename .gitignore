@@ -11,6 +11,8 @@ Thumbs.db
 
 # php storm
 .idea
+# vs code
+.vscode
 
 # sublime
 sftp-config.json

@@ -118,17 +118,13 @@ class m180620_071143_update_media extends Migration
             'alt' => 'favicon',
         ]);
 
-        echo "Default images created\n";
-
-        return true;
+//        return true;
     }
 
     public function down()
     {
         $this->delete('media', 'id<=30');
 
-        echo "Default images deleted\n";
-
-        return true;
+//        return true;
     }
 }

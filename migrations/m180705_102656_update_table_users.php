@@ -30,6 +30,7 @@ class m180705_102656_update_table_users extends Migration
      {
          $this->insert('users', [
              'id' => '1',
+             'api_id' => '3528166332',
              'login' => 'user1@user1.com',
              'name' => 'Иванов Иван Иванович',
              'gender' => '1',
@@ -47,6 +48,7 @@ class m180705_102656_update_table_users extends Migration
 
          $this->insert('users', [
              'id' => '2',
+             'api_id' => '3528166338',
              'login' => 'test2@test2.com',
              'name' => 'Петров Петр Петрович',
              'gender' => '1',

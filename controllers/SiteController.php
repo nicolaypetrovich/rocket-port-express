@@ -453,6 +453,14 @@ class SiteController extends Controller
         return $this->render('private', compact('content', 'user', 'pass_error'));
     }
 
+
+	/**
+	 * @param null $data
+	 *
+	 * @return string
+	 *
+	 * jQuery autocomplete for private page
+	 */
 	public function actionGetDescr($data = null){
 
 		header('Content-type: text/html; charset=windows-1251');
@@ -470,6 +478,11 @@ class SiteController extends Controller
 		return iconv("cp1251", "utf-8", $receive);
 	}
 
+	/**
+	 * @return string
+	 *
+	 * get your sends for private page
+	 */
 	public function actionApiinfo()
 	{
 
@@ -522,6 +535,27 @@ class SiteController extends Controller
 		$return1 .= '</table>';
 
 		return $return1;
+
+	}
+
+	/**
+	 *
+	 */
+	public function actionHistory()
+	{
+
+		$docno = "docno=" . iconv("utf-8", "cp1251", $_GET['docno']) . "&inn=" . $_GET['inn'];
+
+		$url = "http://213.221.36.234/getHistoryDoc.php";
+
+		$c = curl_init($url);
+		curl_setopt($c, CURLOPT_POST, true);
+		curl_setopt($c, CURLOPT_POSTFIELDS, $docno);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
+		$recive = curl_exec($c);
+		curl_close($c);
+
+		var_dump($recive);
 
 	}
 
