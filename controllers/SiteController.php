@@ -196,7 +196,9 @@ class SiteController extends Controller
             if($result) {
                 return $result;
             }
+            $api_id = rand(100, 999) . rand(100, 999) . rand(100, 999) . rand(0, 9);
             $user = new Users();
+            $user->api_id = $api_id;
             $user->name = $data['name'];
             $user->login = $data['email'];
             $user->email = $data['email'];

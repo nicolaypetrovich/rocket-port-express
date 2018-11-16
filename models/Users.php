@@ -9,6 +9,7 @@ use yii\db\ActiveRecord;
  * This is the model class for table "users".
  *
  * @property int $id
+ * @property string $api_id
  * @property string $name
  * @property string $login
  * @property int $gender
@@ -40,8 +41,10 @@ class Users extends ActiveRecord
     {
         return [
             [['name', 'email'], 'required'],
+            ['api_id', 'string'],
             ['photo', 'string'],
             ['gender', 'integer'],
+            [['api_id'], 'string', 'max' => 15],
             [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
@@ -59,6 +62,7 @@ class Users extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'api_id' => 'ID Api',
             'name' => 'ФИО',
             'login' => 'Идентифицирующий логин',
             'gender' => 'ПОЛ',

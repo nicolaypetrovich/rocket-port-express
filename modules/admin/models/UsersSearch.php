@@ -19,7 +19,7 @@ class UsersSearch extends Users
     {
         return [
             [['id', 'gender'], 'integer'],
-            [['name', 'login', 'photo', 'address', 'organization', 'position', 'email', 'mobile_phone', 'working_phone', 'password', 'auth_key', 'access_token'], 'safe'],
+            [['api_id', 'name', 'login', 'photo', 'address', 'organization', 'position', 'email', 'mobile_phone', 'working_phone', 'password', 'auth_key', 'access_token'], 'safe'],
         ];
     }
 
@@ -63,7 +63,8 @@ class UsersSearch extends Users
             'gender' => $this->gender,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
+        $query->andFilterWhere(['like', 'api_id', $this->api_id])
+            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'login', $this->login])
             ->andFilterWhere(['like', 'photo', $this->photo])
             ->andFilterWhere(['like', 'address', $this->address])

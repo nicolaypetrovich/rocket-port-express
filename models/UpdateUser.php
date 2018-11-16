@@ -14,6 +14,7 @@ use yii\base\Model;
 class UpdateUser extends Model
 {
 
+    public $api_id;
     public $name;
     public $email;
     public $photo;
@@ -31,6 +32,7 @@ class UpdateUser extends Model
             [['name', 'email'], 'required'],
             [['photo'], 'string'],
             [['gender'], 'integer'],
+            [['api_id'], 'string', 'max' => 15],
             [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
