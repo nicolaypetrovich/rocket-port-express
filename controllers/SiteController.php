@@ -513,7 +513,7 @@ class SiteController extends Controller
 						</tr>';
 		foreach ($sx1->row as $row){
 
-			$docno = $row['docno'];
+			$docno = preg_replace('/\s+/', '', $row['docno']);
 			$date = $row['date_ot'];
 			$status = $row['status'];
 			$who = $row['who'];
@@ -531,7 +531,8 @@ class SiteController extends Controller
 						<td>{$who}</td>
 						<td>{$status}</td>
 						<td>{$address}</td>
-						<td>{$zakazchik}</td>
+                        <td>{$zakazchik}</td>
+                        <td><a href='/history' class='history-link' data-docno='{$docno}'>Подробнее</td>
 						</tr>";
 		}
 		$return1 .= '</table>';
@@ -546,7 +547,9 @@ class SiteController extends Controller
 	public function actionHistory()
 	{
 
-		$docno = "docno=" . iconv("utf-8", "cp1251", $_GET['docno']) . "&inn=" . $_GET['inn'];
+        $inn = Yii::$app->user->identity->api_id;
+
+		$docno = "docno=" . iconv("utf-8", "cp1251", $_POST['docno']) . "&inn=" . $inn;
 
 		$url = "http://213.221.36.234/getHistoryDoc.php";
 
@@ -556,8 +559,17 @@ class SiteController extends Controller
 		curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
 		$recive = curl_exec($c);
 		curl_close($c);
+        
+        $recive = simplexml_load_string($recive);
 
-		var_dump($recive);
+        $result = '';
+
+        foreach ($recive->row as $row){
+            $line = "<tr class='history-response'><td colspan='1'>{$row['linenum']}</td><td colspan='5'>{$row['status']}</td><td colspan='1'>{$row['date_status']}</td></tr>";
+            $result .= $line;
+        }
+
+        return $result;
 
 	}
 
