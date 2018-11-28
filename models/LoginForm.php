@@ -15,7 +15,7 @@ use yii\base\Model;
 class LoginForm extends Model
 {
 
-    public $email;
+    public $login;
     public $password;
     public $rememberMe = true;
 
@@ -25,8 +25,7 @@ class LoginForm extends Model
     {
 
         return [
-            [['email', 'password'], 'required'],
-            ['email', 'email'],
+            [['login', 'password'], 'required'],
             ['password', 'validatePassword']
         ];
 
@@ -40,7 +39,7 @@ class LoginForm extends Model
 
             if(!$user)
             {
-                $this->addError('error', 'Пользователь с такой почтой не найден');
+                $this->addError('error', 'Пользователь с таким логином не найден');
             }
             if($user && !$user->validatePassword($this->password))
             {
@@ -61,7 +60,7 @@ class LoginForm extends Model
     {
         if($this->_user === false)
         {
-            $this->_user = UserIdentity::findByEmail($this->email);
+            $this->_user = UserIdentity::findBylogin($this->login);
         }
         return $this->_user;
     }

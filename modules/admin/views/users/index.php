@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'name',
-            'login',
+            'api_id',
             //'gender',
             [
                 'attribute' => 'photo',

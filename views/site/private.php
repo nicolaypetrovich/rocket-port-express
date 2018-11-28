@@ -111,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]); ?>
                         <div class="private__item d-flex align-items-center">
                             <p class="private__title red">
-                                Ваш уникальный Id
+                                Ваш Логин
                             </p>
                             <?php echo $user['login'] ?>
                         </div>

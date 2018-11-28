@@ -40,11 +40,12 @@ class Users extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
+            [['name', 'email', 'api_id'], 'required'],
             ['api_id', 'string'],
             ['photo', 'string'],
             ['gender', 'integer'],
-            [['api_id'], 'string', 'max' => 15],
+            [['login'], 'string', 'max' => 25],
+            [['api_id'], 'string', 'max' => 10],
             [['name'], 'string', 'max' => 70],
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
@@ -64,7 +65,7 @@ class Users extends ActiveRecord
             'id' => 'ID',
             'api_id' => 'ID Api',
             'name' => 'ФИО',
-            'login' => 'Идентифицирующий логин',
+            'login' => 'Логин',
             'gender' => 'ПОЛ',
             'photo' => 'Фотография',
             'address' => 'Адрес',

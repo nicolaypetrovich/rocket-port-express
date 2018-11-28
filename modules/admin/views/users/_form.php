@@ -28,8 +28,11 @@ use yii\widgets\ActiveForm;
         </div>
     </div>
 
-    <img class="admin_user_image" src="../../uploads/user_images/<?= $model->photo ?>">
-<!--    --><?//= $form->field($model, 'photo')->textInput(['maxlength' => true]) ?>
+    <?php if($model->photo) : ?>
+
+        <img class="admin_user_image" src="../../uploads/user_images/<?= $model->photo ?>">
+
+    <?php endif; ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
@@ -42,6 +45,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'mobile_phone')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'working_phone')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'login')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true, 'value' => '']) ?>
 

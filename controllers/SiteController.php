@@ -165,10 +165,12 @@ class SiteController extends Controller
     public function actionLogin()
     {
         $model = new LoginForm();
+
         if($model->load(Yii::$app->request->post()) && $model->login())
         {
             return $this->goBack();
         }
+
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $model->errors;
     }

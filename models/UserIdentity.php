@@ -29,6 +29,16 @@ class UserIdentity extends Users implements IdentityInterface
         return static::findOne(['email' => $email]);
     }
 
+    public static function findByApi($api_id)
+    {
+        return static::findOne(['api_id' => $api_id]);
+    }
+
+    public static function findByLogin($login)
+    {
+        return static::findOne(['login' => $login]);
+    }
+
     public function getId()
     {
         return $this->id;

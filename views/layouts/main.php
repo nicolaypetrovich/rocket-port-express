@@ -301,7 +301,7 @@ $header_settings = Settings::find()
                     ВХОД В ЛИЧНЫЙ КАБИНЕТ
                 </h2>
                 <span id="login__entry_error"></span>
-                <?= $form->field($model, 'email')->textInput(['placeholder' => 'Email', 'class' => 'popup__input input'])->label(false)->error(); ?>
+                <?= $form->field($model, 'login')->textInput(['placeholder' => 'Логин', 'class' => 'popup__input input'])->label(false)->error(); ?>
                 <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Пароль', 'class' => 'popup__input input'])->label(false); ?>
                 <div class="checkbox-group group-required">
                     <input type="checkbox" id="checkbox23" name="checkbox">
@@ -319,123 +319,10 @@ $header_settings = Settings::find()
 
                 <div class="d-flex">
                     <?= Html::submitButton('Войти', ['class' => 'contact-box__btn', 'name' => 'login-button']) ?>
-                    <a href="#reg__popup" class="contact-box__btn popup-with-form">
-                        ЗАРЕГИСТРИРОВАТЬСЯ
-                    </a>
                 </div>
                 <?php $form = ActiveForm::end(); ?>
 
-                <!--                 <form class="form__ordercall d-flex flex-column align-items-center" name="entry__form" id="entry__form">
-                                    <h2 class="section__title rect__title red">
-                                        ВХОД В ЛИЧНЫЙ КАБИНЕТ
-                                    </h2>
-                                    <div>
-                                        <input type="text" placeholder="Логин" name="username" class="required popup__input input">
-                                    </div>
-                                    <div>
-                                        <input type="password" placeholder="Пароль" name="password" class="required popup__input input">
-                                    </div>
-                                    <div class="checkbox-group group-required">
-                                        <input type="checkbox" id="checkbox23" name="checkbox">
-                                        <label for="checkbox23" id="checkboxLabel23"
-                                               class="pt15 d-flex justify-content-center align-items-center">
-                                            <span>
-                                                Я согласен с
-                                                <a href="#">
-                                                    Политикой конфиденциальности
-                                                </a>
-                                                и даю согласие на обработку моих данных
-                                            </span>
-                                        </label>
-                                    </div>
-                                    <div class="d-flex">
-                                        <button type="submit" class="contact-box__btn">
-                                            ВОЙТИ
-                                        </button>
-                                        <a href="#reg__popup" class="contact-box__btn popup-with-form">
-                                            ЗАРЕГЕСТРИРОВАТЬСЯ
-                                        </a>
-                                    </div>
-                                </form> -->
                 <button type="submit" class="popup-modal-dismiss close-btn">
-                    <span class="yui1"></span>
-                    <span class="yui2"></span>
-                </button>
-            </div>
-        </div>
-        <div id="reg__popup" class="white-popup-block mfp-hide">
-            <div class="popup__reg popup">
-                <?php
-                $modelRegister = new \app\models\RegistrationForm();
-                $formRegister = ActiveForm::begin([
-                    'id' => 'registerUser',
-                    'action' => ['register-user'],
-                    'method' => 'post',
-                    'options' => [
-                        'class' => 'form__ordercall d-flex flex-column align-items-center'
-                    ]
-                ]); ?>
-                <img src="img/russia.png" alt="">
-                <h2 class="section__title rect__title red">
-                    ЗАРЕГИСТРИРОВАТЬСЯ
-                </h2>
-                <div id="reg_result"></div>
-                <div>
-                    <?= $formRegister->field($modelRegister, 'name')
-                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'ФИО'])
-                        ->label(false);
-                    ?>
-                </div>
-                <div>
-                    <?= $formRegister->field($modelRegister, 'email')
-                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Email'])
-                        ->label(false);
-                    ?>
-                </div>
-                <div>
-                    <?= $formRegister->field($modelRegister, 'organization')
-                        ->textInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Организация (не обязательно)'])
-                        ->label(false);
-                    ?>
-                </div>
-                <div>
-                    <?= $formRegister->field($modelRegister, 'password_repeat')
-                        ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Повторите пароль'])
-                        ->label(false);
-                    ?>
-                </div>
-                <div>
-                    <?= $formRegister->field($modelRegister, 'password')
-                        ->passwordInput(['maxlength' => 30, 'class' => 'required popup__input input', 'placeholder' => 'Пароль'])
-                        ->label(false);
-                    ?>
-                </div>
-
-                <div class="checkbox-group group-required">
-                    <input type="checkbox" id="checkbox24">
-                    <label for="checkbox24" id="checkboxLabel24"
-                           class="pt15 d-flex justify-content-center align-items-center">
-                            <span>
-                                Я согласен с
-                                <a href="#">
-                                    Политикой конфиденциальности
-                                </a>
-                                и даю согласие на обработку моих данных
-                            </span>
-                    </label>
-                </div>
-                <?= Html::submitButton('ОТПРАВИТЬ', ['class' => 'contact-box__btn']) ?>
-                <div>
-                    <input type="checkbox" id="checkbox25">
-                    <label for="checkbox25" id="checkboxLabel25"
-                           class="pt15 d-flex justify-content-center align-items-center">
-                            <span class="w115">
-                                Оставаться в системе
-                            </span>
-                    </label>
-                </div>
-                <?php ActiveForm::end(); ?>
-                <button class="popup-modal-dismiss close-btn">
                     <span class="yui1"></span>
                     <span class="yui2"></span>
                 </button>
