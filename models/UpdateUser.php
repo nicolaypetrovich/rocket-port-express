@@ -29,7 +29,7 @@ class UpdateUser extends Model
     {
 
         return [
-            [['name', 'email'], 'required'],
+            [['name'], 'required'],
             [['photo'], 'string'],
             [['gender'], 'integer'],
             [['api_id'], 'string', 'max' => 15],
@@ -37,7 +37,7 @@ class UpdateUser extends Model
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
             [['position'], 'string', 'max' => 25],
-            [['email'], 'string', 'max' => 30],
+            [['email'], 'string', 'max' => 40],
             [['mobile_phone', 'working_phone'], 'string', 'max' => 14],
         ];
 

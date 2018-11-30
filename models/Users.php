@@ -40,7 +40,7 @@ class Users extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'email', 'api_id'], 'required'],
+            [['name', 'api_id'], 'required'],
             ['api_id', 'string'],
             ['photo', 'string'],
             ['gender', 'integer'],
@@ -50,7 +50,7 @@ class Users extends ActiveRecord
             [['address'], 'string', 'max' => 70],
             [['organization'], 'string', 'max' => 50],
             [['position'], 'string', 'max' => 25],
-            [['email'], 'string', 'max' => 30],
+            [['email'], 'string', 'max' => 40],
             [['mobile_phone', 'working_phone'], 'string', 'max' => 14],
             [['password', 'auth_key', 'access_token'], 'string', 'max' => 32],
         ];
